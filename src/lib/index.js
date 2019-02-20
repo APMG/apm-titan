@@ -9,6 +9,7 @@ import Event from './molecules/Event/Event';
 import Header from './molecules/Header/Header';
 import Hero from './molecules/Hero/Hero';
 import Player from './molecules/Player/Player';
+import Slideshow from './molecules/Slideshow/Slideshow';
 
 export { Heading };
 export { Button };
@@ -21,3 +22,4 @@ export { Event };
 export { Header };
 export { Hero };
 export { Player };
+export { Slideshow };

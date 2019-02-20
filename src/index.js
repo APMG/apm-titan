@@ -1,7 +1,8 @@
 import React from 'react';
-import { Heading, Button, TagLink, Loading, Body, Content, Event, Header, Hero } from './lib';
+import { Heading, Button, TagLink, Loading, Body, Content, Event, Header, Hero, Slideshow } from './lib';
 import { render } from 'react-dom';
 import { data } from './lib/molecules/Hero/test/data/data';
+import { images } from './lib/molecules/Slideshow/test/data/slideshow';
 
 const tag = {
   href: '/the/url/path',
@@ -19,6 +20,7 @@ const App = () => (
     <Event title="An Event" bodyHtml="<h1>Event Header</h1><p>A paragraph too.</p>" />
     <Header />
     <Hero image={data.image} title={data.title} />
+    <Slideshow images={images} />
   </div>
 );
 
