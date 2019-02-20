@@ -12,6 +12,8 @@ export { Figure };
 
 import Content from './molecules/Content/Content';
 import Body from './molecules/Body/Body';
+import Event from './molecules/Event/Event';
 
 export { Content };
 export { Body };
+export { Event };

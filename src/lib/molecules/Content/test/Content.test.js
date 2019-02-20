@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, prettyDOM } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import Content from '../Content';
 import 'jest-prop-type-error';
 
