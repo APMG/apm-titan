@@ -1,10 +1,11 @@
 import React from 'react';
-import { Heading } from './lib';
+import { Heading, Button } from './lib';
 import { render } from 'react-dom';
 
 const App = () => (
   <div>
-    <Heading title={'this is a title'} level={3}>Title</Heading>
+    <Heading title={'this is a title'} level={1}>Heading Example</Heading>
+    <Button>Button example</Button>
   </div>
 );
 

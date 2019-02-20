@@ -9,14 +9,19 @@
     "README.md"
   ],
   "dependencies": {
+    "@reach/router": "^1.2.1",
+    "@storybook/addon-knobs": "^4.1.12",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "storybook-readme": "^4.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^4.1.12",
     "eslint": "^5.13.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
@@ -29,7 +34,8 @@
     "start": "react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "eslintConfig": {
     "extends": "react-app"

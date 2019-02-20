@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, cleanup } from 'react-testing-library';
 import Heading from './Heading';
 import 'jest-prop-type-error';
