@@ -1,8 +1,7 @@
 import React from 'react';
-import { Heading, Button, TagLink, Loading, Body, Content, Event, Header, Hero, Slideshow, Teaser, Pagination } from './lib';
+import { Heading, Button, TagLink, Loading, Body, Content, Event, Header, Hero, Teaser, Pagination } from './lib';
 import { render } from 'react-dom';
 import { data } from './lib/molecules/Hero/test/data/data';
-import { images } from './lib/molecules/Slideshow/test/data/slideshow';
 import last from './lib/molecules/Pagination/test/data/last.json';
 
 const tag = {
@@ -24,7 +23,6 @@ const App = () => (
     <Event title="An Event" bodyHtml="<h1>Event Header</h1><p>A paragraph too.</p>" />
     <Header />
     <Hero image={data.image} title={data.title} />
-    <Slideshow images={images} />
     <Teaser
       id="1234"
       resourceType="story"
