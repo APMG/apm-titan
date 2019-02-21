@@ -5,7 +5,7 @@ import IconChevronRight from './svg/IconChevronRight';
 import IconChevronLeft from './svg/IconChevronLeft';
 import Poses from './Poses';
 import { animationDuration } from './animations';
-import './Slideshow.css';
+import { SlideshowDiv, SlideshowButton, SlideshowContainer, Invisible } from './Slideshow.css.js';
 
 // Links will not work with react-swipeable. If you need to add links, we might have to consider removing the swiping capabilities. Should I try react-swipeable-views? react-easy-swipe?
 
@@ -71,15 +71,14 @@ class Slideshow extends Component {
 
   render() {
     return (
-      <div className={`slideshow ${this.props.elementClass}`}>
-        <button
+      <SlideshowDiv className={`slideshow ${this.props.elementClass}`}>
+        <SlideshowButton
           data-testid="prev-button"
-          className="slideshow_button"
           onClick={this.prev}
         >
           <IconChevronLeft />
-          <span className="invisible">Previous Slide</span>
-        </button>
+          <Invisible>Previous Slide</Invisible>
+        </SlideshowButton>
 
         <Swipeable
           onSwipingLeft={this.next}
@@ -90,31 +89,29 @@ class Slideshow extends Component {
           stopPropagation={true}
           disabled={this.state.disabled}
         >
-          <div data-testid="slideshow" className="slideshow_container">
+          <SlideshowContainer data-testid="slideshow">
             {this.getNearestImages(this.state.images, this.state.index).map(
               (image) => (
                 <Poses
                   key={image.index}
                   animation={this.props.animation}
-                  elementClass="slideshow_item"
                   image={image}
                   stateIndex={this.state.index}
                   max={this.state.images.length}
                 />
               )
             )}
-          </div>
+          </SlideshowContainer>
         </Swipeable>
 
-        <button
+        <SlideshowButton
           data-testid="next-button"
-          className="slideshow_button"
           onClick={this.next}
         >
           <IconChevronRight />
-          <span className="invisible">Next Slide</span>
-        </button>
-      </div>
+          <Invisible>Next Slide</Invisible>
+        </SlideshowButton>
+      </SlideshowDiv>
     );
   }
 }

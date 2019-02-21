@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, cleanup, wait } from 'react-testing-library';
+import { render, fireEvent, cleanup, wait, prettyDOM } from 'react-testing-library';
 import { images } from './data/slideshow';
 import Slideshow from '../Slideshow';
 import { slideAnimation } from '../animations';
@@ -11,8 +11,7 @@ afterEach(cleanup);
 test('Renders a div with the class slideshow when an images array prop is provided', () => {
   const { container } = render(<Slideshow images={images} />);
 
-  expect(container.firstChild.classList.length).toEqual(1);
-  expect(container.firstChild.classList[0]).toBe('slideshow');
+  expect(container.firstChild.classList).toContain('slideshow');
 });
 
 test('Renders a div with the class slideshow and a custom class when the slideshow and elementClass props are provided', () => {
@@ -23,9 +22,8 @@ test('Renders a div with the class slideshow and a custom class when the slidesh
     <Slideshow images={images} elementClass={props.elementClass} />
   );
 
-  expect(container.firstChild.classList.length).toEqual(2);
-  expect(container.firstChild.classList[0]).toBe('slideshow');
-  expect(container.firstChild.classList[1]).toBe('test-slideshow');
+  expect(container.firstChild.classList).toContain('slideshow');
+  expect(container.firstChild.classList).toContain('test-slideshow');
 });
 
 describe('Renders the correct number of slides (max 3)', () => {
@@ -113,9 +111,9 @@ describe('Loads the correct animation', () => {
 
     getByTestId('slideshow').childNodes.forEach((node, i) => {
       if (i === 1) {
-        expect(node.getAttribute('style')).toBe('opacity: 1;');
+        expect(node.firstChild.getAttribute('style')).toBe('opacity: 1;');
       } else {
-        expect(node.getAttribute('style')).toBe('opacity: 0;');
+        expect(node.firstChild.getAttribute('style')).toBe('opacity: 0;');
       }
     });
   });
@@ -127,9 +125,9 @@ describe('Loads the correct animation', () => {
 
     getByTestId('slideshow').childNodes.forEach((node, i) => {
       if (i === 1) {
-        expect(node.getAttribute('style')).toBe('opacity: 1; transform: none;');
+        expect(node.firstChild.getAttribute('style')).toBe('opacity: 1; transform: none;');
       } else {
-        expect(node.getAttribute('style')).toBe(
+        expect(node.firstChild.getAttribute('style')).toBe(
           'opacity: 0; transform: translateX(100px) translateZ(0);'
         );
       }

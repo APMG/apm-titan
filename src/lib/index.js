@@ -10,6 +10,8 @@ import Header from './molecules/Header/Header';
 import Hero from './molecules/Hero/Hero';
 import Player from './molecules/Player/Player';
 import Slideshow from './molecules/Slideshow/Slideshow';
+import Teaser from './molecules/Teaser/Teaser';
+import Pagination from './molecules/Pagination/Pagination';
 
 export { Heading };
 export { Button };
@@ -23,3 +25,5 @@ export { Header };
 export { Hero };
 export { Player };
 export { Slideshow };
+export { Teaser };
+export { Pagination };

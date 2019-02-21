@@ -8,5 +8,8 @@
         "absoluteRuntime": false
       }
     ]
+  ],
+  "plugins": [
+    "babel-plugin-styled-components"
   ]
 }
