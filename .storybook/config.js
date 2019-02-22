@@ -1,8 +1,7 @@
 import { configure } from '@storybook/react';
 import './index.css';
-// styles/index.css is manually generated with this VSCode plugin (https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) because idek, it's only needed for documentation here
-import '../styles/index.css';
 import './table.css';
+import '../src/styles/index.scss';
 
 function loadStories() {
   require('../src/lib/atoms/Button/Button.story');
