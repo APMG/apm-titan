@@ -1,0 +1,12 @@
+//----------------------------------------------
+// Pagination - styles for Kaminari pagination
+//
+// Uses Kaminari's markup structure
+//----------------------------------------------
+
+.pagination {
+  .page.current {
+    font-size: 1.4rem;
+    padding: 2px 6px;
+  }
+}

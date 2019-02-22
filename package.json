@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9001 -c .storybook"
@@ -27,17 +27,17 @@
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/react": "^4.1.12",
-    "@storybook/addon-knobs": "^4.1.12",
-    "storybook-readme": "^4.0.5",
-    "babel-plugin-styled-components": "^1.10.0",
+    "@storybook/addon-knobs": "^4.1.13",
+    "@storybook/react": "^4.1.13",
+    "babel-loader": "^8.0.5",
     "eslint": "^5.13.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "jest-prop-type-error": "^1.1.0",
     "prettier": "1.16.4",
-    "react-testing-library": "^5.8.0"
+    "react-testing-library": "^5.8.0",
+    "storybook-readme": "^4.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"
