@@ -36,6 +36,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "jest-prop-type-error": "^1.1.0",
+    "node-sass": "^4.11.0",
     "prettier": "1.16.4",
     "react-testing-library": "^5.8.0",
     "storybook-readme": "^4.0.5"
