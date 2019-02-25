@@ -1,5 +1,17 @@
 import React from 'react';
-import { Heading, Button, TagLink, Loading, Body, Content, Event, Header, Hero, Teaser, Pagination } from './lib';
+import {
+  Heading,
+  Button,
+  TagLink,
+  Loading,
+  Body,
+  Content,
+  Event,
+  Header,
+  Hero,
+  Teaser,
+  Pagination
+} from './lib';
 import { render } from 'react-dom';
 import { data } from './lib/molecules/Hero/test/data/data';
 import last from './lib/molecules/Pagination/test/data/last.json';
@@ -17,11 +29,17 @@ const App = () => (
     <span>Unstyled basic components</span>
     <Button>A Button</Button>
     <Heading level={1}>A Heading</Heading>
-    <TagLink title='A TagLink' href='/the/url/path' tag={tag} />
+    <TagLink title="A TagLink" href="/the/url/path" tag={tag} />
     <Loading />
-    <Body elementClass="content_body" bodyHtml="<h1>Content Header</h1><p>A paragraph too.</p>" />
+    <Body
+      elementClass="content_body"
+      bodyHtml="<h1>Content Header</h1><p>A paragraph too.</p>"
+    />
     <Content title="A Content" />
-    <Event title="An Event" bodyHtml="<h1>Event Header</h1><p>A paragraph too.</p>" />
+    <Event
+      title="An Event"
+      bodyHtml="<h1>Event Header</h1><p>A paragraph too.</p>"
+    />
     <Header />
     <Hero image={data.image} title={data.title} />
     <Teaser
@@ -29,7 +47,7 @@ const App = () => (
       resourceType="story"
       headingLevel={3}
       href="/the/url/path"
-      title='This Here Is the Title'
+      title="This Here Is the Title"
     />
     <Pagination
       total={total}

@@ -18,9 +18,7 @@ const props = {
 
 describe('Content component', () => {
   test('renders ContentHeader', () => {
-    const { getByText } = render(
-      <Content title={props.title} />
-    );
+    const { getByText } = render(<Content title={props.title} />);
     expect(getByText('this is a title')).toBeDefined();
   });
 

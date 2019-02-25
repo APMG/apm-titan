@@ -8,9 +8,7 @@ afterEach(cleanup);
 
 describe('ContentBody component', () => {
   test('renders body component', () => {
-    const { getByText } = render(
-      <ContentBody bodyHtml="body text" />
-    );
+    const { getByText } = render(<ContentBody bodyHtml="body text" />);
     expect(getByText('body text')).toBeDefined();
   });
 

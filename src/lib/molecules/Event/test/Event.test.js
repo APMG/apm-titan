@@ -41,9 +41,9 @@ describe('Event component', () => {
   });
 
   // test('does not render EventHeader if heading prop is empty', () => {
-    // FIXME: This test doesn't do what was described and didn't before either. First off, what is a heading prop? Do you mean headingLevel? Either way, whether the component is rendered or not seems to be decided by whether you provide a title or not, and since you do here, it shows up.
-    // const { container } = render(<Event title={testProps.title} />);
-    // expect(container.getElementsByClassName('event_header').length).toBe(0);
+  // FIXME: This test doesn't do what was described and didn't before either. First off, what is a heading prop? Do you mean headingLevel? Either way, whether the component is rendered or not seems to be decided by whether you provide a title or not, and since you do here, it shows up.
+  // const { container } = render(<Event title={testProps.title} />);
+  // expect(container.getElementsByClassName('event_header').length).toBe(0);
   // });
 
   test('renders EventBody if bodyHtml prop exists', () => {

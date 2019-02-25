@@ -53,7 +53,9 @@ describe('EventTeaser component', () => {
   });
 
   test('does not render EventDates if prop is empty', () => {
-    const { container } = render(<EventTeaser title={testProps.title} id={324} />);
+    const { container } = render(
+      <EventTeaser title={testProps.title} id={324} />
+    );
     expect(container.getElementsByClassName('eventInfo-date').length).toBe(0);
   });
 
@@ -69,7 +71,9 @@ describe('EventTeaser component', () => {
   });
 
   test('does not render EventVenue if prop is empty', () => {
-    const { container } = render(<EventTeaser title={testProps.title} id={324} />);
+    const { container } = render(
+      <EventTeaser title={testProps.title} id={324} />
+    );
     expect(container.getElementsByClassName('eventInfo-venue').length).toBe(0);
   });
 

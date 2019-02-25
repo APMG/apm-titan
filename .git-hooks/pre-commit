@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# A hook that runs our linters before it will let a developer commit
+
+echo "Running pre-commit hooks . . ."
+
+echo "Running sass-lint . . ."
+npm run sasslint
+
+echo "Running eslint . . ."
+npm run eslint
+
+npm run prettier

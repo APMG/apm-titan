@@ -21,9 +21,7 @@ const testProps = {
 
 describe('ContentHeader component', () => {
   test('renders title prop', () => {
-    const { getByText } = render(
-      <ContentHeader title={testProps.title} />
-    );
+    const { getByText } = render(<ContentHeader title={testProps.title} />);
     expect(getByText(testProps.title)).toBeDefined();
   });
 
@@ -76,9 +74,7 @@ describe('ContentHeader component', () => {
   });
 
   test('renders the Heading component with an h1 if headingLevel not specified', () => {
-    const { getByText } = render(
-      <ContentHeader title={testProps.title} />
-    );
+    const { getByText } = render(<ContentHeader title={testProps.title} />);
     expect(getByText(testProps.title).tagName).toBe('H1');
   });
 

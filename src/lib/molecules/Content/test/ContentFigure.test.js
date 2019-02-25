@@ -13,9 +13,7 @@ const testProps = {
 
 describe('ContentFigure component', () => {
   test('renders Figure component if image prop exists', () => {
-    const { getByAltText } = render(
-      <ContentFigure image={testProps.image} />
-    );
+    const { getByAltText } = render(<ContentFigure image={testProps.image} />);
     const node = getByAltText(testProps.image.alt);
     expect(node).toBeDefined();
     expect(node.getAttribute('src')).toBe(testProps.image.src);
