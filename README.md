@@ -12,7 +12,7 @@ If you need to make a change to a component, you may do so in the usual way. You
 
 ## Available components
 
-We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that usually only appear on specifically templated pages. Our image component (name forthcoming) is a separate library that can be found [here]().
+We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that usually only appear on specifically templated pages. Our image component, Mimas, is a separate library that can be found [here](https://www.npmjs.com/package/apm-mimas).
 
 ## Available Scripts
 
