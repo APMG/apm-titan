@@ -1,5 +1,6 @@
 {
-  "name": "apm-react-components-lib",
+  "name": "apm-titan",
+  "description": "A number of React components that can be used as a starting point to create APM websites",
   "version": "0.1.0",
   "private": false,
   "main": "dist/index.js",

@@ -14,6 +14,7 @@ const { total, count, page_size, total_pages } = last;
 
 const App = () => (
   <div>
+    <span>Unstyled basic components</span>
     <Button>A Button</Button>
     <Heading level={1}>A Heading</Heading>
     <TagLink title='A TagLink' href='/the/url/path' tag={tag} />
