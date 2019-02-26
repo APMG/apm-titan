@@ -1,11 +1,11 @@
 {
   "name": "apm-titan",
   "description": "A number of React components that can be used as a starting point to create APM websites",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan"
@@ -26,7 +26,8 @@
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "sasslint:watch": "esw -w src/**",
     "prettier": "prettier --check '**/**.js'",
-    "prettier:fix": "prettier --check '**/**.js' --write"
+    "prettier:fix": "prettier --check '**/**.js' --write",
+    "hook:setup": "sh setup-hooks.sh"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
