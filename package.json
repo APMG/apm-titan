@@ -1,7 +1,7 @@
 {
   "name": "apm-titan",
   "description": "A number of React components that can be used as a starting point to create APM websites",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore 'src/**/*.story.js','src/**/*.test.js'",
     "test": "react-scripts test",
+    "jest": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "eslint": "eslint .",
