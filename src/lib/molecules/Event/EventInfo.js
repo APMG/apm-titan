@@ -7,7 +7,7 @@ import EventDates from './EventDates';
 
 const EventInfo = (props) => {
   return (
-    <article className="eventInfo">
+    <div className="eventInfo">
       {props.venue && <EventVenue venue={props.venue} />}
 
       {props.artist && <EventArtist artist={props.artist} />}
@@ -17,7 +17,7 @@ const EventInfo = (props) => {
       )}
 
       {props.eventDates && <EventDates eventDates={props.eventDates} />}
-    </article>
+    </div>
   );
 };
 

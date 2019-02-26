@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 const EventPrices = (props) => {
   return (
-    // TODO: I don't think this should be an article. It seems like more of an attribute of a larger article, such as the event itself. The things it holds don't seem like paragraphs either.
-    <article className="eventInfo-prices">
+    <div className="eventInfo-prices">
       <h2>Event tickets</h2>
       {props.price.map((data, index) => {
         return (
@@ -22,12 +21,17 @@ const EventPrices = (props) => {
         </a>
       </p>
       <br />
-    </article>
+    </div>
   );
 };
 
 EventPrices.propTypes = {
-  price: PropTypes.array,
+  price: PropTypes.arrayOf(
+    PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      description: PropTypes.string
+    })
+  ),
   ticketLink: PropTypes.string
 };
 export default EventPrices;

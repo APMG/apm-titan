@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 
 const EventDates = (props) => {
   return (
-    <article className="eventInfo-date">
+    <div className="eventInfo-date">
       <h2>Event Dates</h2>
       <ul>
-        {props.eventDates.map((data, index) => {
+        {props.eventDates.map((event, index) => {
           return (
             <div key={index}>
-              <li>{data.date}</li>
+              <li>{event.date}</li>
             </div>
           );
         })}
       </ul>
-    </article>
+    </div>
   );
 };
 
 EventDates.propTypes = {
-  eventDates: PropTypes.array
+  eventDates: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string,
+      description: PropTypes.string
+    })
+  )
 };
 export default EventDates;

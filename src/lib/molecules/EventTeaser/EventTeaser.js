@@ -7,7 +7,7 @@ import EventVenue from '../Event/EventVenue';
 
 const EventTeaser = (props) => {
   return (
-    <article className="eventTeaser">
+    <div className="eventTeaser">
       <div className="eventTeaser_header">
         {props.id && (
           <Link to={`/${props.id}`} className="event_topic link-plain">
@@ -25,7 +25,7 @@ const EventTeaser = (props) => {
 
         {props.venue && <EventVenue venue={props.venue} />}
       </div>
-    </article>
+    </div>
   );
 };
 

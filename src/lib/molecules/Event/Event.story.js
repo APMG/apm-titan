@@ -28,51 +28,65 @@ stories
           "<p>The Event body will live here. This is simplified because AmatJS will handle the rendering of the body's ProseMirror json.</p><p>However, this field will use html tags like <strong>bold formatting</strong>, paragraphs, images, and other things.</p>"
         )}
         venue={{
-          id: 133,
-          name: 'Walker Art Center ',
-          street: '1750 Hennepin Ave.',
-          city: 'Minneapolis',
-          state: 'MN',
-          zip: '55403',
-          latitude: '44.968436',
-          longitude: '-93.288541',
-          website: 'http://www.walkerart.org/',
-          facebook: 'https://www.facebook.com/walkerartcenter',
-          twitter: 'walkerartcenter',
+          id: number('Venue id', 133),
+          name: text('Name', 'Walker Art Center'),
+          street: text('Street', '1750 Hennepin Ave.'),
+          city: text('City', 'Minneapolis'),
+          state: text('State', 'MN'),
+          zip: text('zip', '55403'),
+          latitude: text('Latitude', '44.968436'),
+          longitude: text('Longitude', '-93.288541'),
+          website: text('Website URL', 'http://www.walkerart.org/'),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/walkerartcenter'
+          ),
+          twitter: text('Twitter URL', 'walkerartcenter'),
           photo_id: '',
           image_slug: null,
-          phone: '(612) 375-7600',
+          phone: text('Phone', '(612) 375-7600'),
           slug: 'walker-art-center',
           updated_at: '2016-08-11T14:09:52.000-05:00'
         }}
         artist={{
-          id: 2591,
-          name: 'Anthony Kiedis',
+          id: number('Venue id', 1233),
+          name: text('Name', 'Anthony Kiedis'),
+
           slug: 'mock-slug-the-red-hot-chili-peppers',
           photo_id: null,
           image_slug: '20180104-tba',
-          website: 'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers',
-          facebook: 'https://www.facebook.com/ChiliPeppers/',
-          twitter: 'https://twitter.com/ChiliPeppers',
+          website: text(
+            'Website URL',
+            'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers'
+          ),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/ChiliPeppers/'
+          ),
+          twitter: text('https://twitter.com/ChiliPeppers'),
+
           is_local: false,
           updated_at: '2018-01-04T14:16:28.000-06:00'
         }}
-        price={[
+        eventPrices={[
           {
-            price: '70.0',
-            description: 'Member price general admission'
+            price: text('Event Price 1', '70.0'),
+            description: text(
+              'Event Price Description 1',
+              'Member price general admission'
+            )
           },
           {
-            price: '300.0',
-            description: 'VIP Member'
+            price: text('Event Price 2', '300.0'),
+            description: text('Event Price Description 2', 'VIP member')
           }
         ]}
         eventDates={[
           {
-            date: 'August 5th, 2019'
+            date: text('Event Date 1', 'August 5th, 2019')
           },
           {
-            date: 'August 10th, 2019'
+            date: text('Event Date 2', 'August 23th, 2019')
           }
         ]}
       />
@@ -91,41 +105,52 @@ stories
           'Eam velit legimus accommodare ne, no sint euismod meliore vis.'
         )}
         venue={{
-          id: 133,
-          name: 'Walker Art Center ',
-          street: '1750 Hennepin Ave.',
-          city: 'Minneapolis',
-          state: 'MN',
-          zip: '55403',
-          latitude: '44.968436',
-          longitude: '-93.288541',
-          website: 'http://www.walkerart.org/',
-          facebook: 'https://www.facebook.com/walkerartcenter',
-          twitter: 'walkerartcenter',
+          id: number('Venue id', 133),
+          name: text('Name', 'Walker Art Center'),
+          street: text('Street', '1750 Hennepin Ave.'),
+          city: text('City', 'Minneapolis'),
+          state: text('State', 'MN'),
+          zip: text('zip', '55403'),
+          latitude: text('Latitude', '44.968436'),
+          longitude: text('Longitude', '-93.288541'),
+          website: text('Website URL', 'http://www.walkerart.org/'),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/walkerartcenter'
+          ),
+          twitter: text('Twitter URL', 'walkerartcenter'),
           photo_id: '',
           image_slug: null,
-          phone: '(612) 375-7600',
+          phone: text('Phone', '(612) 375-7600'),
           slug: 'walker-art-center',
           updated_at: '2016-08-11T14:09:52.000-05:00'
         }}
         artist={{
-          id: 2591,
-          name: 'Anthony Kiedis',
+          id: number('Venue id', 1233),
+          name: text('Name', 'Anthony Kiedis'),
+
           slug: 'mock-slug-the-red-hot-chili-peppers',
           photo_id: null,
           image_slug: '20180104-tba',
-          website: 'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers',
-          facebook: 'https://www.facebook.com/ChiliPeppers/',
-          twitter: 'https://twitter.com/ChiliPeppers',
+          website: text(
+            'Website URL',
+            'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers'
+          ),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/ChiliPeppers/'
+          ),
+          twitter: text('https://twitter.com/ChiliPeppers'),
+
           is_local: false,
           updated_at: '2018-01-04T14:16:28.000-06:00'
         }}
         eventDates={[
           {
-            date: 'August 5th, 2019'
+            date: text('Event Date 1', 'August 5th, 2019')
           },
           {
-            date: 'August 10th, 2019'
+            date: text('Event Date 2', 'August 23th, 2019')
           }
         ]}
       />
@@ -154,22 +179,25 @@ stories
     return (
       <Event
         venue={{
-          id: 413,
-          name: 'Keller Auditorium',
-          street: '222 SW Clay St.',
-          city: 'Portland',
-          state: 'OR',
-          zip: '97201',
-          latitude: '45.512469',
-          longitude: '-122.678113',
-          website: 'http://www.portland5.com/keller-auditorium',
-          facebook: 'https://www.facebook.com/portland5/',
-          twitter: 'portland_5',
-          photo_id: null,
-          imageSlug: 'keller-auditorium-portland',
-          phone: '(503) 248-4335',
-          slug: 'keller-auditorium',
-          updatedAt: '2017-08-15T11:26:48.000-05:00'
+          id: number('Venue id', 133),
+          name: text('Name', 'Walker Art Center'),
+          street: text('Street', '1750 Hennepin Ave.'),
+          city: text('City', 'Minneapolis'),
+          state: text('State', 'MN'),
+          zip: text('zip', '55403'),
+          latitude: text('Latitude', '44.968436'),
+          longitude: text('Longitude', '-93.288541'),
+          website: text('Website URL', 'http://www.walkerart.org/'),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/walkerartcenter'
+          ),
+          twitter: text('Twitter URL', 'walkerartcenter'),
+          photo_id: '',
+          image_slug: null,
+          phone: text('Phone', '(612) 375-7600'),
+          slug: 'walker-art-center',
+          updated_at: '2016-08-11T14:09:52.000-05:00'
         }}
       />
     );
@@ -179,10 +207,10 @@ stories
       <Event
         eventDates={[
           {
-            date: 'August 5th, 2019'
+            date: text('Event Date 1', 'August 5th, 2019')
           },
           {
-            date: 'August 10th, 2019'
+            date: text('Event Date 2', 'August 23th, 2019')
           }
         ]}
       />
@@ -192,14 +220,22 @@ stories
     return (
       <Event
         artist={{
-          id: 2591,
-          name: 'Anthony Kiedis',
+          id: number('Venue id', 1233),
+          name: text('Name', 'Anthony Kiedis'),
+
           slug: 'mock-slug-the-red-hot-chili-peppers',
           photo_id: null,
           image_slug: '20180104-tba',
-          website: 'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers',
-          facebook: 'https://www.facebook.com/ChiliPeppers/',
-          twitter: 'https://twitter.com/ChiliPeppers',
+          website: text(
+            'Website URL',
+            'https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers'
+          ),
+          facebook: text(
+            'Facebook URL',
+            'https://www.facebook.com/ChiliPeppers/'
+          ),
+          twitter: text('https://twitter.com/ChiliPeppers'),
+
           is_local: false,
           updated_at: '2018-01-04T14:16:28.000-06:00'
         }}
@@ -209,16 +245,22 @@ stories
   .add('Event prices', () => {
     const eventPrices = [
       {
-        price: '69.0',
-        description: 'Member price general admission'
+        price: text('Event Price 1', '70.0'),
+        description: text(
+          'Event Price Description 1',
+          'Member price general admission'
+        )
       },
       {
-        price: '300.0',
-        description: 'VIP Member'
+        price: text('Event Price 1', '300.0'),
+        description: text('Event Price Description 1', 'VIP member')
       }
     ];
 
     return (
-      <Event price={eventPrices} website={{ ticketLink: 'ticket/link/url' }} />
+      <Event
+        eventPrices={eventPrices}
+        website={{ ticketLink: 'ticket/link/url' }}
+      />
     );
   });

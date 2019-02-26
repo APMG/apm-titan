@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TagLink from '../../atoms/TagLink/TagLink';
 
 const EventVenue = (props) => {
   return (
-    // TODO: I don't think this should be an article. It seems like more of an attribute of a larger article, such as the event itself or eventInfo. The things it holds don't seem like paragraphs either.
-    <article className="eventInfo-venue">
+    <div className="eventInfo-venue">
       <h2>Location</h2>
-      <TagLink
+      <a
         href={props.venue.website}
-        title={props.venue.name}
-        elementClass="link-plain"
-      />
+        target="_blank"
+        rel="noopener noreferrer"
+        className="link-plain"
+      >
+        <p>{props.venue.name}</p>
+      </a>
       <p>
         {props.venue.street} {props.venue.city}, {props.venue.state}{' '}
         {props.venue.zip}
       </p>
+
       <p>{props.venue.phone}</p>
       <p>
         {props.venue.latitude && props.venue.longitude && (
@@ -32,7 +34,7 @@ const EventVenue = (props) => {
         )}
       </p>
       <br />
-    </article>
+    </div>
   );
 };
 
