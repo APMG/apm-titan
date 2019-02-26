@@ -11,29 +11,28 @@ const EventVenue = (props) => {
         rel="noopener noreferrer"
         className="link-plain"
       >
-        <p>{props.venue.name}</p>
+        {props.venue.name}
       </a>
-      <p>
-        {props.venue.street} {props.venue.city}, {props.venue.state}{' '}
+      <address>
+        {props.venue.street} {props.venue.city}, {props.venue.state}
+        <br />
         {props.venue.zip}
-      </p>
+        <br />
+        {props.venue.phone}
+      </address>
 
-      <p>{props.venue.phone}</p>
-      <p>
-        {props.venue.latitude && props.venue.longitude && (
-          <a
-            href={`https://www.google.com/maps/?q=${props.venue.latitude},${
-              props.venue.longitude
-            }`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            View Map
-          </a>
-        )}
-      </p>
-      <br />
+      {props.venue.latitude && props.venue.longitude && (
+        <a
+          href={`https://www.google.com/maps/?q=${props.venue.latitude},${
+            props.venue.longitude
+          }`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link"
+        >
+          View Map
+        </a>
+      )}
     </div>
   );
 };

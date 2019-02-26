@@ -8,16 +8,14 @@ const EventArtist = (props) => {
       <a target={'_blank'} href={props.artist.website}>
         <div className="link-plain">{props.artist.name}</div>
       </a>
-      <p>
-        <a target={'_blank'} href={props.artist.facebook} className="link">
-          Facebook
-        </a>{' '}
-        <a target={'_blank'} href={props.artist.twitter} className="link">
-          Twitter
-        </a>
-      </p>
-
       <br />
+      <a target={'_blank'} href={props.artist.facebook} className="link">
+        Facebook
+      </a>
+      <br />
+      <a target={'_blank'} href={props.artist.twitter} className="link">
+        Twitter
+      </a>
     </div>
   );
 };

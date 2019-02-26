@@ -8,19 +8,14 @@ const EventPrices = (props) => {
       {props.price.map((data, index) => {
         return (
           <div key={index}>
-            <p>
-              {data.description}: ${data.price}
-            </p>
+            {data.description}: ${data.price}
           </div>
         );
       })}
-
-      <p>
-        <a target={'_blank'} href={props.ticketLink} className="link">
-          Buy Tickets here
-        </a>
-      </p>
       <br />
+      <a target={'_blank'} href={props.ticketLink} className="link">
+        Buy Tickets here
+      </a>
     </div>
   );
 };
