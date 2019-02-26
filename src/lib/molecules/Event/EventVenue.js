@@ -1,38 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TagLink from '../../atoms/TagLink/TagLink';
 
 const EventVenue = (props) => {
   return (
-    // TODO: I don't think this should be an article. It seems like more of an attribute of a larger article, such as the event itself or eventInfo. The things it holds don't seem like paragraphs either.
-    <article className="eventInfo-venue">
+    <div className="eventInfo-venue">
       <h2>Location</h2>
-      <TagLink
+      <a
         href={props.venue.website}
-        title={props.venue.name}
-        elementClass="link-plain"
-      />
-      <p>
-        {props.venue.street} {props.venue.city}, {props.venue.state}{' '}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="link-plain"
+      >
+        {props.venue.name}
+      </a>
+      <address>
+        {props.venue.street} {props.venue.city}, {props.venue.state}
+        <br />
         {props.venue.zip}
-      </p>
-      <p>{props.venue.phone}</p>
-      <p>
-        {props.venue.latitude && props.venue.longitude && (
-          <a
-            href={`https://www.google.com/maps/?q=${props.venue.latitude},${
-              props.venue.longitude
-            }`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            View Map
-          </a>
-        )}
-      </p>
-      <br />
-    </article>
+        <br />
+        {props.venue.phone}
+      </address>
+
+      {props.venue.latitude && props.venue.longitude && (
+        <a
+          href={`https://www.google.com/maps/?q=${props.venue.latitude},${
+            props.venue.longitude
+          }`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link"
+        >
+          View Map
+        </a>
+      )}
+    </div>
   );
 };
 
