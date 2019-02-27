@@ -6,15 +6,16 @@ import Taglink from './TagLink';
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';
 
-const stories = storiesOf('TagLink', module);
+const stories = storiesOf('Atoms/TagLink', module);
 
 stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
 
 stories.add('TagLink All Props', () => {
   return (
     <Taglink
-      title={text('Taglink', 'Taglink title')}
-      href={text('href', 'url/path/')}
+      title={text('Title', 'TOPIC')}
+      href={text('Link', 'url/path/')}
+      elementClass={text('elementClass', 'event_topic')}
     />
   );
 });
