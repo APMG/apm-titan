@@ -9,9 +9,6 @@ import './index.css';
 //load all stories within stories folder
 const req = require.context('../src', true, /(\.|\/)story\.js$/);
 
-//load all stories within stories folder
-const req = require.context('../src', true, /(\.|\/)story\.js$/);
-
 function loadStories() {
   require('./index.js');
   req.keys().forEach((filename) => req(filename));
