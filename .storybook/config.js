@@ -1,14 +1,37 @@
-import { configure } from '@storybook/react';
+import React from 'react';
+import { configure, addDecorator } from '@storybook/react';
+import StoryRouter from 'storybook-react-router';
+import { withOptions } from '@storybook/addon-options';
+import { withInfo } from '@storybook/addon-info';
+
 import './index.css';
-import './table.css';
-import '../src/styles/index.scss';
+
+//load all stories within stories folder
+const req = require.context('../src', true, /(\.|\/)story\.js$/);
 
 function loadStories() {
-  require('../src/lib/atoms/Button/Button.story');
-  require('../src/lib/molecules/Content/Content.story');
-  require('../src/lib/molecules/Event/Event.story');
-  require('../src/lib/molecules/Hero/Hero.story');
-  require('../src/lib/molecules/Teaser/Teaser.story');
+  require('./index.js');
+  req.keys().forEach((filename) => req(filename));
 }
+
+addDecorator(
+  withInfo({
+    inline: true,
+    header: false,
+    source: true,
+    maxPropsIntoLine: 1
+  })
+);
+
+addDecorator(
+  withOptions({
+    goFullScreen: false,
+    showStoriesPanel: true,
+    showAddonPanel: true,
+    showSearchBox: false,
+    addonPanelInRight: true,
+    sortStoriesByKind: true
+  })
+);
 
 configure(loadStories, module);
