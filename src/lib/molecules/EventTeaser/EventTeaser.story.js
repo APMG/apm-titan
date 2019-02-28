@@ -5,12 +5,12 @@ import EventTeaser from './EventTeaser';
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';
 
-const stories = storiesOf('Event/Event Teaser', module);
+const stories = storiesOf('Event Teaser', module);
 stories
   .addDecorator(withKnobs({ escapeHTML: false }))
   .addDecorator(withReadme([readme]));
 
-stories.add('Event Teaser', () => {
+stories.add('Event Teaser All Props', () => {
   return (
     <EventTeaser
       id={number('id', 2323)}

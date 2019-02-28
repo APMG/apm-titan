@@ -11,7 +11,7 @@ stories
   .addDecorator(withReadme([readme]));
 
 stories
-  .add('Event All', () => {
+  .add('Event All props', () => {
     return (
       <Event
         title={text('Title', 'Event Title')}
