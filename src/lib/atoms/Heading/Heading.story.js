@@ -16,7 +16,7 @@ stories.add('Heading All Props', () => {
       className={text('ClassName', 'hdg hdg-1')}
       level={number('Heading Level', 1)}
     >
-      children
+      {text('Children', 'children')}
     </Heading>
   );
 });
