@@ -3,12 +3,11 @@ import './index.css';
 import './table.css';
 import '../src/styles/index.scss';
 
+//load all stories within stories folder
+const req = require.context('../src', true, /(\.|\/)story\.js$/);
+
 function loadStories() {
-  require('../src/lib/atoms/Button/Button.story');
-  require('../src/lib/molecules/Content/Content.story');
-  require('../src/lib/molecules/Event/Event.story');
-  require('../src/lib/molecules/Hero/Hero.story');
-  require('../src/lib/molecules/Teaser/Teaser.story');
+  req.keys().forEach((filename) => req(filename));
 }
 
 configure(loadStories, module);
