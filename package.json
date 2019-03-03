@@ -1,7 +1,7 @@
 {
   "name": "apm-titan",
   "description": "A number of React components that can be used as a starting point to create APM websites",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -31,11 +31,14 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "apm-html5-player": "git+ssh://git@gitlab.mpr.org:js-libraries/apm-html5-player.git#0.3.1",
     "apm-react-image": "^0.1.3",
+    "classnames": "^2.2.6",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5",
-    "sass-lint": "^1.12.1"
+    "sass-lint": "^1.12.1",
+    "webpack-zepto": "0.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
