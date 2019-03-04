@@ -36,7 +36,6 @@ class AudioPlayer extends Component {
       audioElementRef: (el) => (this.audioElement = el)
     };
   }
-
   componentDidMount() {
     this.checkForAudio();
     const trackAudioAnalytics = document.getElementById('main-audio');
@@ -46,7 +45,6 @@ class AudioPlayer extends Component {
     this.audioElement.onplay = this.onAudioPlay;
     this.audioElement.onpause = this.onAudioPause;
   }
-
   checkForAudio() {
     this.setState({
       audio: {
@@ -59,7 +57,6 @@ class AudioPlayer extends Component {
       audiolabel: this.props.audiolabel
     });
   }
-
   // Handle Audio Change if Multiple Players on Site
   onAudioPlayerChange = (shouldPlay, audioPlaying, audio) => {
     if (shouldPlay) {
@@ -79,7 +76,7 @@ class AudioPlayer extends Component {
       this.audioElement.pause(audio);
     }
   };
-
+  //Audio player event handler play
   onAudioPlay = (audio) => {
     if (audio) {
       this.setState({
@@ -89,7 +86,6 @@ class AudioPlayer extends Component {
       });
     }
   };
-
   //Audio player event handler pause
   onAudioPause = (audio) => {
     if (audio) {
@@ -98,7 +94,6 @@ class AudioPlayer extends Component {
   };
   // TO DO: Check for playlist
   // if playlist show skip and forward buttons
-
   render() {
     const { audioElementRef } = this.state;
     const {
@@ -130,7 +125,6 @@ class AudioPlayer extends Component {
           src={audio.source}
           ref={audioElementRef}
         />
-
         <div className="player_wrapper">
           <div className="player_wrapper_content">
             <div className="player_content">
@@ -228,7 +222,6 @@ class AudioPlayer extends Component {
               </span>
             </button>
           </div>
-
           <div
             className={`player_controls player_controlsSecondary ${
               audioVolume || audioActiveBars ? '' : 'invisible'
@@ -251,7 +244,6 @@ class AudioPlayer extends Component {
                 <span className="invisible">Mute Sound</span>
               </span>
             </button>
-
             <div
               className={`player-wave player_btn-medium ${
                 audioActiveBars ? '' : 'invisible'

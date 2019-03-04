@@ -10,7 +10,7 @@
   ],
   "rules": {
     "jsx-a11y/media-has-caption": 0,
-    "react/no-unused-prop-types": 0
+    "react/no-unused-prop-types": 1
   },
   "plugins": ["react", "import", "jsx-a11y"],
   "settings": {

@@ -23,10 +23,10 @@ stories.add('AudioPlayer All', () => {
   return (
     <AudioPlayer
       audio={audioAudioPlayer}
-      audiolabel={'Listen'}
-      audioSubhead={'Brains On'}
-      forward={10}
-      replay={10}
+      audiolabel={text('Audio Label', 'Listen')}
+      audioSubhead={text('Audio Subhead', 'Terrible Thanks For Asking')}
+      forward={text('Foward Seconds', '10')}
+      replay={text('Replay Seconds', '10')}
       audioPlaylist={true}
       audioActiveBars={true}
       audioVolume={true}
