@@ -1,21 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { Image } from 'apm-react-image';
 
 const Figure = (props) => {
+  const classes = classNames({
+    figure: true,
+    [`figure-${props.position}`]: props.position,
+    [`figure-${props.size}`]: props.size,
+    [props.elementClass]: props.elementClass
+  });
+
+  function captionCredit() {
+    if (props.credit && props.creditHref) {
+      return (
+        <a href={props.creditHref} className="figure_credit">
+          {props.credit}
+        </a>
+      );
+    } else if (props.credit) {
+      return <div className="figure_credit">{props.credit}</div>;
+    }
+  }
+
   return (
-    <figure className={`figure figure-${props.layout ? props.layout : 'full'}`}>
-      {/* TODO: Use Image component/atom for this img so it can include srcset */}
-      <img src={props.image.src} alt={props.image.alt} />
+    <figure className={classes}>
+      <Image {...props.image} />
       {props.caption || props.credit ? (
         <figcaption className="figure_caption">
           {props.caption && <div className="figure_text">{props.caption}</div>}
-          {props.credit && props.creditHref ? (
-            <a href={props.creditHref} className="figure_credit">
-              {props.credit}
-            </a>
-          ) : (
-            <div className="figure_credit">{props.credit}</div>
-          )}
+          {captionCredit()}
         </figcaption>
       ) : (
         ''
@@ -24,15 +38,18 @@ const Figure = (props) => {
   );
 };
 
+Figure.defaultProps = {
+  size: 'full'
+};
+
 Figure.propTypes = {
-  layout: PropTypes.string, // Default "full"
+  size: PropTypes.string, // Default "full"
+  position: PropTypes.string,
   caption: PropTypes.string,
   credit: PropTypes.string,
   creditHref: PropTypes.string,
-  image: PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string
-  })
+  elementClass: PropTypes.string,
+  image: PropTypes.object.isRequired
 };
 
 export default Figure;

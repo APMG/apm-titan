@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 // Use this object for props that get reused
 const testProps = {
-  image: { src: 'http://example.com/img.jpg', alt: 'img alt text' }
+  image: { fallbackSrc: 'http://example.com/img.jpg', alt: 'img alt text' }
 };
 
 describe('ContentFigure component', () => {
@@ -16,7 +16,7 @@ describe('ContentFigure component', () => {
     const { getByAltText } = render(<ContentFigure image={testProps.image} />);
     const node = getByAltText(testProps.image.alt);
     expect(node).toBeDefined();
-    expect(node.getAttribute('src')).toBe(testProps.image.src);
+    expect(node.getAttribute('src')).toBe(testProps.image.fallbackSrc);
   });
 
   test('does not render Figure component if image prop is empty', () => {
