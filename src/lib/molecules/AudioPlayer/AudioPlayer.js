@@ -119,7 +119,7 @@ class AudioPlayer extends Component {
         <audio
           id="main-audio"
           preload="metadata"
-          onLoadedMetadata={(e) => {
+          onLoadedMetadata={() => {
             this.apmPlayer.playAudio();
           }}
           src={audio.source}
