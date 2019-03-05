@@ -9,7 +9,7 @@ import Event from './molecules/Event/Event';
 import EventTeaser from './molecules/Event/Event';
 import Header from './molecules/Header/Header';
 import Hero from './molecules/Hero/Hero';
-import Player from './molecules/Player/Player';
+import AudioPlayer from './molecules/AudioPlayer/AudioPlayer';
 import Teaser from './molecules/Teaser/Teaser';
 import Pagination from './molecules/Pagination/Pagination';
 
@@ -24,6 +24,6 @@ export { Event };
 export { EventTeaser };
 export { Header };
 export { Hero };
-export { Player };
+export { AudioPlayer };
 export { Teaser };
 export { Pagination };
