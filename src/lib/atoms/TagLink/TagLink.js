@@ -6,7 +6,7 @@ const TagLink = (props) => {
   return (
     <Link
       className={`tag ${props.elementClass ? props.elementClass : ''}`}
-      to={`${props.href}`}
+      to={props.href}
     >
       {props.title}
     </Link>

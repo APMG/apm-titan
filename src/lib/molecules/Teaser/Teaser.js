@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '../../atoms/Link/Link';
-import { to_sentence } from '../../utils/index';
+import Link from '../../atoms/Link/Link';
 import Heading from '../../atoms/Heading/Heading';
+import TagLink from '../../atoms/TagLink/TagLink';
+import { to_sentence } from '../../utils/index';
 import { Image } from 'apm-react-image';
 
 const Teaser = (props) => {
   return (
     <div className="teaser">
-      {props.tag && (
-        <Link className="tag" to={`/${props.tag.href}`}>
-          {props.tag.title}
-        </Link>
-      )}
+      {props.tag && <TagLink href={props.tag.href} title={props.tag.title} />}
       <Link to={props.href}>
         {props.image && <Image image={props.image} />}
         <div className="item_content">
@@ -53,7 +50,10 @@ Teaser.propTypes = {
   href: PropTypes.string.isRequired,
   image: PropTypes.object,
   publishDate: PropTypes.string,
-  tag: PropTypes.object,
+  tag: PropTypes.shape({
+    href: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  }),
   title: PropTypes.string.isRequired
 };
 

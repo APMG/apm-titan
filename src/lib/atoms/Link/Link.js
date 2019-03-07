@@ -59,3 +59,5 @@ Link.propTypes = {
   children: PropTypes.any.isRequired,
   to: PropTypes.string.isRequired
 };
+
+export default Link;
