@@ -14,12 +14,13 @@ const Teaser = (props) => {
         </Link>
       )}
       <Link to={props.href}>
-        {props.image && (
-          <Image image={props.image} />
-        )}
+        {props.image && <Image image={props.image} />}
         <div className="item_content">
           <div className="item_content_header">
-            <Heading level={props.headingLevel} className={`hdg hdg-${props.headingLevel}`}>
+            <Heading
+              level={props.headingLevel}
+              className={`hdg hdg-${props.headingLevel}`}
+            >
               {props.title}
             </Heading>
           </div>

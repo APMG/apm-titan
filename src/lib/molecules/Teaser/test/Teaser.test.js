@@ -18,12 +18,7 @@ const headingLevel = 3;
 
 test('Always renders a root div', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-    />
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
   );
 
   expect(container.querySelectorAll('.teaser')).toHaveLength(1);
@@ -41,12 +36,12 @@ test('Contributors string is rendered correctly when contributors array prop is 
       description={description}
       headingLevel={headingLevel}
     />
-  )
+  );
 
   expect(
     container.querySelector('.item_content_contributors').textContent
   ).toEqual(contributorsText);
-})
+});
 
 test('Image component is rendered correctly when image prop is provided', () => {
   const { container } = render(
@@ -62,12 +57,12 @@ test('Image component is rendered correctly when image prop is provided', () => 
     />
   );
 
-  expect(
-    container.querySelector('img').getAttribute('src')
-  ).toEqual('https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg')
-  expect(
-    container.querySelector('img').getAttribute('srcset')
-  ).toEqual('https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w')
+  expect(container.querySelector('img').getAttribute('src')).toEqual(
+    'https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg'
+  );
+  expect(container.querySelector('img').getAttribute('srcset')).toEqual(
+    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
+  );
 });
 
 test('Date and time are rendered correctly if publishDate prop has been provided', () => {
@@ -89,16 +84,11 @@ test('Date and time are rendered correctly if publishDate prop has been provided
     publishDate
   );
   expect(timeEle.textContent).toEqual(publishDate);
-})
+});
 
 test('The external link is rendered correctly if href prop has been provided', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      href={href}
-      title={title}
-      headingLevel={headingLevel}
-    />
+    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
   );
 
   expect(
@@ -108,12 +98,7 @@ test('The external link is rendered correctly if href prop has been provided', (
 
 test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      href={href}
-      title={title}
-      headingLevel={headingLevel}
-    />
+    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
   );
   expect(container.querySelectorAll('h3').length).toBe(1);
 });
@@ -121,12 +106,7 @@ test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
 test('The heading has class hdg-2 if the headingLevel prop passed in is 2', () => {
   const level = 2;
   const { container } = render(
-    <Teaser
-      id="1234"
-      href={href}
-      title={title}
-      headingLevel={level}
-    />
+    <Teaser id="1234" href={href} title={title} headingLevel={level} />
   );
   // console.log(prettyDOM(container))
   expect(container.querySelector('h2').classList.contains('hdg-2')).toBe(true);
@@ -195,12 +175,7 @@ test('Teaser description is not rendered when the description prop is not provid
 
 test('Teaser image is not rendered when the image prop is not provided', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-    />
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
   );
   expect(container.querySelectorAll('image')).toHaveLength(0);
   expect(container.querySelectorAll('figure')).toHaveLength(0);
@@ -208,12 +183,7 @@ test('Teaser image is not rendered when the image prop is not provided', () => {
 
 test('Teaser tag is not rendered when the tag prop is not provided', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-    />
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
   );
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
 });
