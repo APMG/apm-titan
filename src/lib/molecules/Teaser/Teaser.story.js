@@ -5,7 +5,6 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import Teaser from './Teaser';
 import { withReadme } from 'storybook-readme'; // eslint-disable-line
 import readme from './README.md';
-import { teaser } from './test/data/teaser';
 
 const stories = storiesOf('Teaser', module);
 stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
@@ -13,22 +12,12 @@ stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
 stories
   .add('Teaser default', () => (
     <Teaser
-      id={teaser.id}
-      key={teaser.id}
-      publishDate={teaser.publishDate}
-      href={text('Link', teaser.canonicalSlug)}
-      headingLevel={3}
-      description={text('Description', teaser.descriptionText)}
-      title={text('Title', teaser.title)}
+      href={text('Link', 'https://www.mpr.org')}
+      headingLevel={2}
+      publishDate={text('Publish Date', '01/01/19')}
+      description={text('Description', 'Enter description text here')}
+      title={text('Title', 'Enter title text here')}
     />
-    // <Teaser
-    //   key={data.id}
-    //   id={data.id}
-    //   title={data.title}
-    //   href={data.canonicalSlug}
-    //   headingLevel={3}
-    //   description={data.descriptionText}
-    // />
   ))
   .add('Teaser with contributors', () => {
     const contributors = [
