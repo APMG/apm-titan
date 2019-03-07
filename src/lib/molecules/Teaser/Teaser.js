@@ -1,46 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
-import { to_sentence, linkFromType } from '../../utils/index';
+import { Link } from '../../atoms/Link/Link';
+import { to_sentence } from '../../utils/index';
+import Heading from '../../atoms/Heading/Heading';
+import { Image } from 'apm-react-image';
 
 const Teaser = (props) => {
-  const CustomHeader = `h${props.headingLevel}`;
   return (
-    <article className="teaser">
-      {/* top level article element is always rendered */}
-      {/* Tag is rendered if its prop is passed in. Tag may get its own component */}
+    <div className="teaser">
       {props.tag && (
         <Link className="tag" to={`/${props.tag.href}`}>
           {props.tag.title}
         </Link>
       )}
-      <Link to={`${linkFromType(props)}`}>
-        {/* image renders if the prop is passed in */}
-        {/* image will be made into another component */}
+      <Link to={props.href}>
         {props.image && (
-          <figure className="item_figure">
-            <picture>
-              <source
-                sizes="(max-width: 840px) 100vw, 66vw"
-                srcSet={props.image.srcset}
-              />
-              <img alt={props.image.alt} src={props.image.src} />
-            </picture>
-          </figure>
+          <Image image={props.image} />
         )}
         <div className="item_content">
           <div className="item_content_header">
-            {/* Custom header just renders h1, h2, h3, h4 with the proper hdg-number class depending on heading level prop */}
-            <CustomHeader className={`hdg hdg-${props.headingLevel}`}>
+            <Heading level={props.headingLevel} className={`hdg hdg-${props.headingLevel}`}>
               {props.title}
-            </CustomHeader>
+            </Heading>
           </div>
           <div className="item_content_meta">
-            {/* publishDate renders if the prop is passed in */}
             {props.publishDate && (
               <time dateTime={props.publishDate}>{props.publishDate}</time>
             )}
-            {/* contributors renders if the prop is passed in */}
             {props.contributors && (
               <div className="item_content_contributors">
                 By {to_sentence(props.contributors)}
@@ -55,22 +41,11 @@ const Teaser = (props) => {
           )}
         </div>
       </Link>
-    </article>
+    </div>
   );
 };
 
-Teaser.displayName = 'Teaser';
-Teaser.defaultProps = {
-  context: 'default',
-  type: 'button',
-  isGroup: false,
-  group: false,
-  isBlock: false,
-  onClick: null,
-  style: {}
-};
 Teaser.propTypes = {
-  /** use utility 'to_sentence' */
   contributors: PropTypes.array,
   description: PropTypes.string,
   headingLevel: PropTypes.number.isRequired,
@@ -79,8 +54,6 @@ Teaser.propTypes = {
   publishDate: PropTypes.string,
   tag: PropTypes.object,
   title: PropTypes.string.isRequired
-  // resourceType: PropTypes.string.isRequired,
-  // id: PropTypes.string.isRequired
 };
 
 export default Teaser;

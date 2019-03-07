@@ -4,10 +4,11 @@ export function to_sentence(arr) {
   }
   if (arr.length === 1) {
     return arr[0];
+  } else if (arr.length === 2) {
+    return `${arr[0]} and ${arr[1]}`
   }
   const last = arr.pop();
-  const ret = `${arr.join(', ')}, and ${last}`;
-  return ret;
+  return `${arr.join(', ')}, and ${last}`;
 }
 
 /* Throttles an eventListener function to prevent it from being called too often */

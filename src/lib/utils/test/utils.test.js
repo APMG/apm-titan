@@ -2,7 +2,7 @@ import { to_sentence, linkFromType, markup } from '../index';
 
 test('It returns an author sentence', () => {
   const arr = ['Opie Schmuck', 'Opiette Schmuck'];
-  const expectedResult = 'Opie Schmuck, and Opiette Schmuck';
+  const expectedResult = 'Opie Schmuck and Opiette Schmuck';
   const testVal = to_sentence(arr);
   expect(testVal).toEqual(expectedResult);
 });
@@ -13,6 +13,8 @@ test('It returns an author sentence with single author', () => {
   const testVal = to_sentence(arr);
   expect(testVal).toEqual(expectedResult);
 });
+
+// FIXME: Will we even need linkFromType for every project? Won't the types vary too much per project for this function to be useful in the library?
 
 test('Episode linkFromType', () => {
   const data = {

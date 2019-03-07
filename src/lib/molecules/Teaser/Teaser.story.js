@@ -12,7 +12,7 @@ stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
 stories
   .add('Teaser default', () => (
     <Teaser
-      href={text('Link', 'www.mpr.org')}
+      href={text('Link', 'https://www.mpr.org')}
       headingLevel={2}
       publishDate={text('Publish Date', '01/01/19')}
       description={text('Description', 'Enter description text here')}
@@ -28,7 +28,7 @@ stories
     return (
       <Teaser
         contributors={contributors}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
         publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
@@ -39,12 +39,12 @@ stories
   .add('Teaser with tag', () => {
     const tag = {
       title: text('title', 'Teaser text example'),
-      href: text('Link', 'www.mpr.org')
+      href: text('Link', 'https://www.mpr.org')
     };
     return (
       <Teaser
         tag={tag}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
         publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
@@ -65,7 +65,7 @@ stories
     return (
       <Teaser
         image={imageTeaser}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
         publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
@@ -85,7 +85,7 @@ stories
     };
     const tag = {
       title: text('title', 'Teaser text example'),
-      href: text('Link', 'www.mpr.org')
+      href: text('Link', 'https://www.mpr.org')
     };
     const contributors = [
       text('Contributor one name', 'Sally TacoPants'),
@@ -96,7 +96,7 @@ stories
         image={imageTeaser}
         tag={tag}
         contributors={contributors}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
         publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}

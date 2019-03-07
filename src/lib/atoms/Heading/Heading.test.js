@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup, prettyDOM } from 'react-testing-library';
 import Heading from './Heading';
 import 'jest-prop-type-error';
 
@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe('Heading tests', () => {
   test('Heading level props "2", matches as expected', () => {
-    const { getByText } = render(
+    const { getByText, container } = render(
       <Heading title={'this is a title'} level={2}>
         children
       </Heading>

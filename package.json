@@ -38,6 +38,7 @@
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5",
     "sass-lint": "^1.12.1",
+    "storybook": "^1.0.0",
     "webpack-zepto": "0.0.1"
   },
   "devDependencies": {
