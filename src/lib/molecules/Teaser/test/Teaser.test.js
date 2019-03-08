@@ -1,43 +1,125 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
+import { image } from '../test/data/image';
 import Teaser from '../Teaser';
 import 'jest-prop-type-error';
 
 afterEach(cleanup);
 
 const href = '/the/url/path';
-const image = {
-  src:
-    'https://img.apmcdn.org/05999f8278d68f786d78d322e71230a0ada20054/normal/810ee9-20181126-an-artist-s-depiction-of-insight.jpg',
-  srcset:
-    'https://img.apmcdn.org/05999f8278d68f786d78d322e71230a0ada20054/normal/021a06-20181126-an-artist-s-depiction-of-insight.jpg 400w,https://img.apmcdn.org/05999f8278d68f786d78d322e71230a0ada20054/normal/810ee9-20181126-an-artist-s-depiction-of-insight.jpg 600w',
-  alt: "An artist's depiction of InSight"
-};
 const title = 'This Here Is the Title';
-const publishDate = 'August 26, 2000';
+const publishDate = '2019-02-26T11:48:40+00:00';
+const prettyDate = 'February 26, 2019';
 const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
+const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
 const description = 'This here is the description.';
 const headingLevel = 3;
 
-test('Always renders an article div', () => {
+// SUCCESSES
+
+test('Always renders a root div', () => {
+  const { container } = render(
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
+  );
+
+  expect(container.querySelectorAll('.teaser')).toHaveLength(1);
+});
+
+test('Contributors string is rendered correctly when contributors array prop is provided', () => {
   const { container } = render(
     <Teaser
       id="1234"
-      resourceType="story"
-      headingLevel={headingLevel}
       href={href}
+      image={image}
       title={title}
+      publishDate={publishDate}
+      contributors={contributors}
+      description={description}
+      headingLevel={headingLevel}
     />
   );
-  expect(container.querySelectorAll('article')).toHaveLength(1);
+
+  expect(
+    container.querySelector('.item_content_contributors').textContent
+  ).toEqual(contributorsText);
 });
 
-test('Throws an error when a required value is missing ', () => {
+test('Image component is rendered correctly when image prop is provided', () => {
+  const { container } = render(
+    <Teaser
+      id="1234"
+      href={href}
+      image={image}
+      title={title}
+      publishDate={publishDate}
+      contributors={contributors}
+      description={description}
+      headingLevel={headingLevel}
+    />
+  );
+
+  expect(container.querySelector('img').getAttribute('src')).toEqual(
+    'https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg'
+  );
+  expect(container.querySelector('img').getAttribute('srcset')).toEqual(
+    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
+  );
+});
+
+test('Date and time are rendered correctly if publishDate prop has been provided', () => {
+  const { container } = render(
+    <Teaser
+      id="1234"
+      href={href}
+      image={image}
+      title={title}
+      publishDate={publishDate}
+      contributors={contributors}
+      description={description}
+      headingLevel={headingLevel}
+    />
+  );
+  const timeEle = container.querySelector('time');
+
+  expect(timeEle.attributes.getNamedItem('dateTime').value).toEqual(
+    publishDate
+  );
+  expect(timeEle.textContent).toEqual(prettyDate);
+});
+
+test('The external link is rendered correctly if href prop has been provided', () => {
+  const { container } = render(
+    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
+  );
+
+  expect(
+    container.querySelector('a').attributes.getNamedItem('href').value
+  ).toEqual(href);
+});
+
+test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
+  const { container } = render(
+    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
+  );
+  expect(container.querySelectorAll('h3').length).toBe(1);
+});
+
+test('The heading has class hdg-2 if the headingLevel prop passed in is 2', () => {
+  const level = 2;
+  const { container } = render(
+    <Teaser id="1234" href={href} title={title} headingLevel={level} />
+  );
+  // console.log(prettyDOM(container))
+  expect(container.querySelector('h2').classList.contains('hdg-2')).toBe(true);
+});
+
+// FALURES
+
+test('Throws an error when required value is missing', () => {
   expect(() => {
     render(
       <Teaser
         id="1234"
-        resourceType="story"
         contributors={contributors}
         headingLevel={headingLevel}
         image={image}
@@ -47,11 +129,10 @@ test('Throws an error when a required value is missing ', () => {
   }).toThrow();
 });
 
-test('Teaser optional publishing date value is not rendered when a value is not passed in.', () => {
+test('Teaser date is not rendered when the publishDate prop is not provided', () => {
   const { container } = render(
     <Teaser
       id="1234"
-      resourceType="story"
       description={description}
       headingLevel={headingLevel}
       href={href}
@@ -62,11 +143,10 @@ test('Teaser optional publishing date value is not rendered when a value is not 
   expect(container.querySelectorAll('time')).toHaveLength(0);
 });
 
-test('Teaser optional contributors value is not rendered when a value is not passed in.', () => {
+test('Teaser contributors are not rendered when the contributors prop is not provided', () => {
   const { container } = render(
     <Teaser
       id="1234"
-      resourceType="story"
       description={description}
       headingLevel={headingLevel}
       href={href}
@@ -79,11 +159,10 @@ test('Teaser optional contributors value is not rendered when a value is not pas
   );
 });
 
-test('Teaser optional description value is not rendered when a value is not passed in.', () => {
+test('Teaser description is not rendered when the description prop is not provided', () => {
   const { container } = render(
     <Teaser
       id="1234"
-      resourceType="story"
       headingLevel={headingLevel}
       href={href}
       image={image}
@@ -95,29 +174,17 @@ test('Teaser optional description value is not rendered when a value is not pass
   ).toHaveLength(0);
 });
 
-test('Teaser optional image value is not rendered when a value is not passed in.', () => {
+test('Teaser image is not rendered when the image prop is not provided', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      resourceType="story"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-    />
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
   );
   expect(container.querySelectorAll('image')).toHaveLength(0);
   expect(container.querySelectorAll('figure')).toHaveLength(0);
 });
 
-test('Teaser optional tag value is not rendered when a value is not passed in.', () => {
+test('Teaser tag is not rendered when the tag prop is not provided', () => {
   const { container } = render(
-    <Teaser
-      id="1234"
-      resourceType="story"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-    />
+    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
   );
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
 });

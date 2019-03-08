@@ -79,7 +79,6 @@ $_timeline-mobile-width: 12em;
 
 .player_btn {
   padding: 0;
-  margin: 0;
   border: 0;
   cursor: pointer;
   background: none;
@@ -308,14 +307,11 @@ $_timeline-mobile-width: 12em;
   .player_pause {
     display: block;
   }
-}
 
-.is-playing {
-
- //move bars
- .player-wave span {
-  animation: sound1 1000ms -800ms linear infinite normal;
-  opacity: .8;
+  //move bars
+  .player-wave span {
+    animation: sound1 1000ms -800ms linear infinite normal;
+    opacity: .8;
 
     &:nth-child(1) {
       animation-duration: 780ms;
@@ -351,6 +347,7 @@ $_timeline-mobile-width: 12em;
   .player_volume {
     display: none;
   }
+
   .player_mute {
     display: block;
   }
@@ -397,10 +394,10 @@ $_timeline-mobile-width: 12em;
       left: 0;
       z-index: $z-player-loading;
       background-image: repeating-linear-gradient(-45deg,
-      $color-grey-10,
-      $color-grey-10 11px,
-      $color-grey-80 10px,
-      $color-grey-80 20px);
+        $color-grey-10,
+        $color-grey-10 11px,
+        $color-grey-80 10px,
+        $color-grey-80 20px);
       background-size: 28px 28px;
       animation: loading .5s linear infinite;
     }
@@ -438,7 +435,7 @@ $_timeline-mobile-width: 12em;
   }
 
   .player_play {
-    &:before {
+    &::before {
       content: '';
       box-sizing: border-box;
       position: absolute;

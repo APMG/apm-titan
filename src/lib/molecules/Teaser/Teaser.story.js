@@ -5,6 +5,8 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import Teaser from './Teaser';
 import { withReadme } from 'storybook-readme'; // eslint-disable-line
 import readme from './README.md';
+import { teaser } from './test/data/teaser';
+import { image } from './test/data/image';
 
 const stories = storiesOf('Teaser', module);
 stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
@@ -12,9 +14,8 @@ stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
 stories
   .add('Teaser default', () => (
     <Teaser
-      href={text('Link', 'www.mpr.org')}
+      href={text('Link', 'https://www.mpr.org')}
       headingLevel={2}
-      publishDate={text('Publish Date', '01/01/19')}
       description={text('Description', 'Enter description text here')}
       title={text('Title', 'Enter title text here')}
     />
@@ -28,9 +29,8 @@ stories
     return (
       <Teaser
         contributors={contributors}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
-        publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
         title={text('Title', 'Enter title text here')}
       />
@@ -39,14 +39,13 @@ stories
   .add('Teaser with tag', () => {
     const tag = {
       title: text('title', 'Teaser text example'),
-      href: text('Link', 'www.mpr.org')
+      href: text('Link', 'https://www.mpr.org')
     };
     return (
       <Teaser
         tag={tag}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
-        publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
         title={text('Title', 'Enter title text here')}
       />
@@ -54,22 +53,38 @@ stories
   })
 
   .add('Teaser with image', () => {
-    const imageTeaser = {
-      alt: text('Image alt tag', 'Image alt tag goes here'),
-      src: text('Image source url', 'https://source.unsplash.com/weekly?water'),
-      srcset: text(
-        'Image url for srcset',
-        'https://source.unsplash.com/weekly?water'
-      )
-    };
     return (
       <Teaser
-        image={imageTeaser}
-        href={text('Link', 'www.mpr.org')}
+        image={image}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
-        publishDate={text('Publish Date', '01/01/19')}
         description={text('Description', 'Enter description text here')}
         title={text('Title', 'Enter title text here')}
+      />
+    );
+  })
+
+  .add('Teaser with audio', () => {
+    return (
+      <Teaser
+        audio={teaser.audio}
+        href={text('Link', teaser.canonicalSlug)}
+        headingLevel={2}
+        description={text('Description', teaser.descriptionText)}
+        title={text('Title', teaser.title)}
+      />
+    );
+  })
+
+  .add('Teaser with publishDate', () => {
+    return (
+      <Teaser
+        audio={teaser.audio}
+        href={text('Link', teaser.canonicalSlug)}
+        headingLevel={2}
+        publishDate={teaser.publishDate}
+        description={text('Description', teaser.descriptionText)}
+        title={text('Title', teaser.title)}
       />
     );
   })
@@ -85,7 +100,7 @@ stories
     };
     const tag = {
       title: text('title', 'Teaser text example'),
-      href: text('Link', 'www.mpr.org')
+      href: text('Link', 'https://www.mpr.org')
     };
     const contributors = [
       text('Contributor one name', 'Sally TacoPants'),
@@ -93,12 +108,13 @@ stories
     ];
     return (
       <Teaser
+        audio={teaser.audio}
         image={imageTeaser}
         tag={tag}
         contributors={contributors}
-        href={text('Link', 'www.mpr.org')}
+        href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
-        publishDate={text('Publish Date', '01/01/19')}
+        publishDate={teaser.publishDate}
         description={text('Description', 'Enter description text here')}
         title={text('Title', 'Enter title text here')}
       />
