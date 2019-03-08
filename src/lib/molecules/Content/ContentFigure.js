@@ -5,7 +5,6 @@ import Figure from '../../atoms/Figure/Figure';
 const ContentFigure = (props) => {
   return (
     <>
-      {/* TODO: finish the props for the image/figure when image component is ready */}
       {props.image && (
         <Figure
           caption={props.imageCaption}
