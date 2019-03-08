@@ -8,7 +8,8 @@ afterEach(cleanup);
 
 const href = '/the/url/path';
 const title = 'This Here Is the Title';
-const publishDate = 'August 26, 2000';
+const publishDate = '2019-02-26T11:48:40+00:00';
+const prettyDate = 'February 26, 2019';
 const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
 const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
 const description = 'This here is the description.';
@@ -83,7 +84,7 @@ test('Date and time are rendered correctly if publishDate prop has been provided
   expect(timeEle.attributes.getNamedItem('dateTime').value).toEqual(
     publishDate
   );
-  expect(timeEle.textContent).toEqual(publishDate);
+  expect(timeEle.textContent).toEqual(prettyDate);
 });
 
 test('The external link is rendered correctly if href prop has been provided', () => {
