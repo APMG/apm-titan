@@ -11,7 +11,13 @@ import { format } from 'date-fns';
 const Teaser = (props) => {
   return (
     <div className="teaser">
-      {props.tag && <TagLink href={props.tag.href} title={props.tag.title} />}
+      {props.tag && (
+        <TagLink
+          elementClass="teaser_tagLink"
+          href={props.tag.href}
+          title={props.tag.title}
+        />
+      )}
 
       {props.audio && (
         <Button size="small" type="primary">
@@ -20,10 +26,12 @@ const Teaser = (props) => {
       )}
 
       <Link to={props.href}>
-        {props.image && <Image image={props.image} />}
+        <div className="teaser_image">
+          {props.image && <Image image={props.image} aspectRatio="thumbnail" />}
+        </div>
 
-        <div className="item_content">
-          <div className="item_content_header">
+        <div className="teaser_content">
+          <div className="teaser_header">
             <Heading
               level={props.headingLevel}
               className={`hdg hdg-${props.headingLevel}`}
@@ -31,22 +39,20 @@ const Teaser = (props) => {
               {props.title}
             </Heading>
           </div>
-          <div className="item_content_meta">
+          <div className="teaser_meta">
             {props.publishDate && (
-              <time dateTime={props.publishDate}>
+              <time className="teaser_time" dateTime={props.publishDate}>
                 {format(props.publishDate, 'MMMM D, YYYY')}
               </time>
             )}
             {props.contributors && (
-              <div className="item_content_contributors">
+              <div className="teaser_contributors">
                 By {to_sentence(props.contributors)}
               </div>
             )}
           </div>
           {props.description && (
-            <div className="item_content_body userContent">
-              {props.description}
-            </div>
+            <div className="teaser_body userContent">{props.description}</div>
           )}
         </div>
       </Link>
