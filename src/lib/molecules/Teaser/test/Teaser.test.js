@@ -39,9 +39,9 @@ test('Contributors string is rendered correctly when contributors array prop is 
     />
   );
 
-  expect(
-    container.querySelector('.item_content_contributors').textContent
-  ).toEqual(contributorsText);
+  expect(container.querySelector('.teaser_contributors').textContent).toEqual(
+    contributorsText
+  );
 });
 
 test('Image component is rendered correctly when image prop is provided', () => {
@@ -62,7 +62,7 @@ test('Image component is rendered correctly when image prop is provided', () => 
     'https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg'
   );
   expect(container.querySelector('img').getAttribute('srcset')).toEqual(
-    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
+    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/thumbnail/e8796f-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 120w,https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/thumbnail/dfad0f-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 300w'
   );
 });
 
@@ -154,9 +154,7 @@ test('Teaser contributors are not rendered when the contributors prop is not pro
       title={title}
     />
   );
-  expect(container.querySelectorAll('.item_content_contributors')).toHaveLength(
-    0
-  );
+  expect(container.querySelectorAll('.teaser_contributors')).toHaveLength(0);
 });
 
 test('Teaser description is not rendered when the description prop is not provided', () => {
@@ -169,9 +167,9 @@ test('Teaser description is not rendered when the description prop is not provid
       title={title}
     />
   );
-  expect(
-    container.querySelectorAll('.item_content_body.UserContent')
-  ).toHaveLength(0);
+  expect(container.querySelectorAll('.teaser_body.UserContent')).toHaveLength(
+    0
+  );
 });
 
 test('Teaser image is not rendered when the image prop is not provided', () => {
