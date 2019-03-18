@@ -6,8 +6,8 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.resolve(__dirname, '../'),
-      },
-    ],
-  },
+        include: path.resolve(__dirname, '../')
+      }
+    ]
+  }
 };
