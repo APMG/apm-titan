@@ -4,6 +4,9 @@ import Figure from '../Figure';
 import { Image } from 'apm-mimas';
 import { image } from '../../../testdata/image';
 
+// automatically unmount and cleanup DOM after the test is finished
+afterEach(cleanup);
+
 const apiImage = <Image image={image} />;
 const fallbackImage = (
   <Image
@@ -17,9 +20,6 @@ const testProps = {
   credit: 'Credit Name',
   creditHref: 'https://www.test.url'
 };
-
-// automatically unmount and cleanup DOM after the test is finished
-afterEach(cleanup);
 
 describe('Figure', () => {
   test('renders an image if the image object exists', () => {
