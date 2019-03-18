@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './Link'; // eslint-disable-line
+import Link from './Link';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import { withReadme } from 'storybook-readme';
