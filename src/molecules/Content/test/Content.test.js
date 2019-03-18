@@ -32,7 +32,7 @@ describe('Content component', () => {
   });
 
   test('renders ContentFigure if image prop exists', () => {
-    const { getByAltText, container } = render(
+    const { getByAltText } = render(
       <Content title={props.title} image={apmImage} />
     );
 

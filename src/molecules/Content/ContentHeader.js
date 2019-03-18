@@ -64,8 +64,8 @@ ContentHeader.propTypes = {
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,
   tag: PropTypes.shape({
-    href: PropTypes.string,
-    title: PropTypes.string
+    to: PropTypes.string,
+    tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired
 };

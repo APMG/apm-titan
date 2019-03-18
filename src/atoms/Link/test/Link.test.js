@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import { Link } from '../Link';
+import Link from '../Link';
 
 // automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);

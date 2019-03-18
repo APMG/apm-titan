@@ -21,7 +21,7 @@ const EventPrices = (props) => {
 };
 
 EventPrices.propTypes = {
-  price: PropTypes.arrayOf(
+  prices: PropTypes.arrayOf(
     PropTypes.shape({
       price: PropTypes.string.isRequired,
       description: PropTypes.string

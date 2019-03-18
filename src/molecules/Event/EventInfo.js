@@ -24,7 +24,7 @@ const EventInfo = (props) => {
 EventInfo.propTypes = {
   artist: PropTypes.object,
   venue: PropTypes.object,
-  price: PropTypes.array,
+  prices: PropTypes.array,
   ticketLink: PropTypes.string,
   eventDates: PropTypes.array
 };
