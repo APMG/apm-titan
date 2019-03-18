@@ -1,91 +1,68 @@
 {
   "name": "apm-titan",
-  "description": "A number of React components that can be used as a starting point to create APM websites",
-  "version": "0.1.12",
-  "private": false,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "version": "0.2.0",
+  "description": "A collection of React components used to build American Public Media's websites",
+  "author": "Kim Thompson",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/APMG/apm-titan"
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "main": "dist/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore 'src/**/*.story.js','src/**/*.test.js'",
-    "test": "react-scripts test",
-    "jest": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "webpack --mode production",
+    "start": "webpack --mode development",
+    "test": "jest --watch",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
-    "sasslint:watch": "esw -w src/**",
     "prettier": "prettier --check '**/**.js'",
     "prettier:fix": "prettier --check '**/**.js' --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run sasslint && npm run eslint",
-      "pre-push": "npm run sasslint && npm run eslint && npm run prettier"
-    }
-  },
   "dependencies": {
-    "@reach/router": "^1.2.1",
-    "apm-html5-player": "^0.4.1",
-    "apm-react-image": "^0.1.3",
-    "classnames": "^2.2.6",
+    "apm-mimas": "^0.1.1",
     "date-fns": "^1.30.1",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-scripts": "^2.1.8",
-    "sass-lint": "^1.12.1",
-    "storybook": "^1.0.0",
-    "webpack-zepto": "0.0.1"
+    "storybook-readme": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^4.1.13",
-    "@storybook/addon-graphql": "^4.1.13",
-    "@storybook/addon-info": "^4.1.13",
-    "@storybook/addon-knobs": "^4.1.13",
-    "@storybook/addon-links": "^4.1.13",
-    "@storybook/addon-options": "^4.1.13",
-    "@storybook/react": "^4.1.13",
+    "@babel/runtime": "^7.3.4",
+    "@reach/router": "^1.2.1",
+    "@storybook/addon-actions": "^5.0.3",
+    "@storybook/addon-info": "^5.0.3",
+    "@storybook/addon-knobs": "^5.0.3",
+    "@storybook/addon-options": "^5.0.3",
+    "@storybook/react": "^5.0.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
-    "eslint": "^5.12.0",
-    "eslint-config-prettier": "^3.5.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "classnames": "^2.2.6",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.3",
-    "eslint-watch": "^4.0.2",
+    "eslint-plugin-react": "^7.12.4",
     "husky": "^1.3.1",
+    "jest": "^24.5.0",
     "jest-prop-type-error": "^1.1.0",
     "node-sass": "^4.11.0",
-    "node-sass-glob-importer": "^5.3.0",
-    "prettier": "1.16.4",
-    "react-router-dom": "^4.3.1",
-    "react-testing-library": "^5.8.0",
-    "sass": "^1.17.2",
-    "storybook-react-router": "^1.0.2",
-    "storybook-readme": "^4.0.5"
+    "prettier": "^1.16.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-router": "^5.0.0",
+    "react-testing-library": "^6.0.0",
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^7.1.0",
+    "storybook-react-router": "^1.0.3",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run sasslint",
+      "pre-push": "npm run eslint && npm run sasslint && npm run prettier"
+    }
+  }
 }

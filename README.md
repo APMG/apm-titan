@@ -12,11 +12,15 @@ If you need to make a change to a component, you may do so in the usual way. You
 
 ## Available components
 
-We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that usually only appear on specifically templated pages. Our image component, Mimas, is a separate library that can be found [here](https://www.npmjs.com/package/apm-mimas).
+We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that will likely only be useful for templating out APM sites. Our image component, Mimas, is a separate library that can be found [here](https://www.npmjs.com/package/apm-mimas).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run storybook`
+
+See a demo with all of these components in action, with default APM styling.
 
 ### `npm start`
 
@@ -51,13 +55,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### `npm run storybook`
-
-See a demo with all of these components in action, with default APM styling.
-
 ## FAQ
 
-### What's with the name
+### What's with the name?
 
 Our internal website generator will be called "Saturn". Therefore, each of the component libraries that it will be able to use will be named after Saturn's moons. This is the largest library we think we're going to have, so it got its name from Saturn's largest moon.
-
