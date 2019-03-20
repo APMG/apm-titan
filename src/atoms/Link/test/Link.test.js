@@ -21,7 +21,7 @@ describe('Link component', () => {
     // Verify that the router Link component is rendered, not a plain <a> tag
     const node = getByTestId('hostnameLink');
     expect(node).toBeDefined();
-    expect(node.getAttribute('href')).toBe('/localhost/path');
+    expect(node.getAttribute('href')).toBe('/path');
   });
 
   test('uses a regular <a> tag for external urls', () => {
