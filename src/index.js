@@ -11,6 +11,20 @@ import Header from './molecules/Header/Header';
 import Hero from './molecules/Hero/Hero';
 import Pagination from './molecules/Pagination/Pagination';
 import Teaser from './molecules/Teaser/Teaser';
+export {
+  Location,
+  LocationProvider,
+  Match,
+  Redirect,
+  Router,
+  ServerLocation,
+  createHistory,
+  createMemorySource,
+  isRedirect,
+  navigate,
+  redirectTo,
+  globalHistory
+} from '@reach/router';
 
 export {
   Heading,
