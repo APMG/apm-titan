@@ -36,19 +36,19 @@ export const Link = (props) => {
 
   if (isHostnameMatch(to)) {
     return (
-      <RouterLink to={pathname(to)} {...rest}>
+      <RouterLink to={pathname(to)} {...rest} data-testid="hostnameLink">
         {children}
       </RouterLink>
     );
   } else if (isExternalUrl(to)) {
     return (
-      <a href={to} {...rest}>
+      <a href={to} {...rest} data-testid="externalLink">
         {children}
       </a>
     );
   } else {
     return (
-      <RouterLink to={to} {...rest}>
+      <RouterLink to={to} {...rest} data-testid="relativeLink">
         {children}
       </RouterLink>
     );
