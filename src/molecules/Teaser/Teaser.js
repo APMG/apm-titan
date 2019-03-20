@@ -5,7 +5,6 @@ import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import Button from '../../atoms/Button/Button';
 import { toSentence } from '../../utils/index';
-import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
 
 const Teaser = (props) => {
@@ -26,9 +25,7 @@ const Teaser = (props) => {
       )}
 
       <Link to={props.href}>
-        <div className="teaser_image">
-          {props.image && <Image image={props.image} aspectRatio="thumbnail" />}
-        </div>
+        <div className="teaser_image">{props.image}</div>
 
         <div className="teaser_content">
           <div className="teaser_header">
@@ -61,16 +58,18 @@ const Teaser = (props) => {
 };
 
 Teaser.propTypes = {
-  audio: PropTypes.shape({
-    title: PropTypes.string,
-    credit: PropTypes.string,
-    durationHms: PropTypes.any,
-    encodings: {
-      mediaType: PropTypes.string.isRequired,
-      filename: PropTypes.string,
-      httpFilePath: PropTypes.string.isRequired
-    }
-  }),
+  audio: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      credit: PropTypes.string,
+      durationHms: PropTypes.any,
+      encodings: {
+        mediaType: PropTypes.string.isRequired,
+        filename: PropTypes.string,
+        httpFilePath: PropTypes.string.isRequired
+      }
+    })
+  ),
   audioButtonSymbol: PropTypes.any,
   contributors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
