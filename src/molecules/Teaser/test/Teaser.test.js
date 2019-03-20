@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { image } from '../test/data/image';
+import { Image } from 'apm-mimas';
 import Teaser from '../Teaser';
 import 'jest-prop-type-error';
 
@@ -14,6 +15,7 @@ const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
 const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
 const description = 'This here is the description.';
 const headingLevel = 3;
+const TestImage = <Image image={image} />;
 
 // SUCCESSES
 
@@ -30,7 +32,7 @@ test('Contributors string is rendered correctly when contributors array prop is 
     <Teaser
       id="1234"
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
       publishDate={publishDate}
       contributors={contributors}
@@ -49,7 +51,7 @@ test('Image component is rendered correctly when image prop is provided', () => 
     <Teaser
       id="1234"
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
       publishDate={publishDate}
       contributors={contributors}
@@ -62,7 +64,7 @@ test('Image component is rendered correctly when image prop is provided', () => 
     'https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg'
   );
   expect(container.querySelector('img').getAttribute('srcset')).toEqual(
-    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/thumbnail/e8796f-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 120w,https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/thumbnail/dfad0f-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 300w'
+    'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
   );
 });
 
@@ -71,7 +73,7 @@ test('Date and time are rendered correctly if publishDate prop has been provided
     <Teaser
       id="1234"
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
       publishDate={publishDate}
       contributors={contributors}
@@ -122,7 +124,7 @@ test('Throws an error when required value is missing', () => {
         id="1234"
         contributors={contributors}
         headingLevel={headingLevel}
-        image={image}
+        image={TestImage}
         publishDate={publishDate}
       />
     );
@@ -136,7 +138,7 @@ test('Teaser date is not rendered when the publishDate prop is not provided', ()
       description={description}
       headingLevel={headingLevel}
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
     />
   );
@@ -150,7 +152,7 @@ test('Teaser contributors are not rendered when the contributors prop is not pro
       description={description}
       headingLevel={headingLevel}
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
     />
   );
@@ -163,7 +165,7 @@ test('Teaser description is not rendered when the description prop is not provid
       id="1234"
       headingLevel={headingLevel}
       href={href}
-      image={image}
+      image={TestImage}
       title={title}
     />
   );
