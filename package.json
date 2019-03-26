@@ -1,10 +1,14 @@
 {
   "name": "apm-titan",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A collection of React components used to build American Public Media's websites",
   "author": "Kim Thompson",
   "license": "MIT",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/APMG/apm-titan.git"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack --mode development",

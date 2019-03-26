@@ -63,11 +63,11 @@ Teaser.propTypes = {
       title: PropTypes.string,
       credit: PropTypes.string,
       durationHms: PropTypes.any,
-      encodings: {
+      encodings: PropTypes.shape({
         mediaType: PropTypes.string.isRequired,
         filename: PropTypes.string,
         httpFilePath: PropTypes.string.isRequired
-      }
+      })
     })
   ),
   audioButtonSymbol: PropTypes.any,
