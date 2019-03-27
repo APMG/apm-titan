@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import Link from '../../atoms/Link/Link';
 
 const Pagination = (props) => {
   const { total_pages, page, link_prefix, links_to_show } = props;
