@@ -1,6 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
+import { Link } from '@reach/router';
 
 const Pagination = (props) => {
   const { total_pages, page, link_prefix, links_to_show } = props;
@@ -56,13 +57,13 @@ const Pagination = (props) => {
     const mergedListItemClasses = ['pagination_page'].concat(listItemClasses);
     return (
       <li className={mergedListItemClasses.join(' ')} key={uuid()}>
-        <a
+        <Link
           className={mergedAnchorClasses.join(' ')}
           rel={rel ? rel : undefined}
-          href={`/${link_prefix}/${currentPage}`}
+          to={`/${link_prefix}/${currentPage}`}
         >
           {overrideText || currentPage}
-        </a>
+        </Link>
       </li>
     );
   }
