@@ -4,14 +4,7 @@ import $ from 'webpack-zepto';
 import Player from 'apm-html5-player';
 import FormatTime from 'apm-html5-player/dist/FormatTime';
 import AudioAnalytics from 'apm-html5-player/dist/AudioAnalytics';
-import IconPlay from '../../atoms/svg/IconPlay.js';
-import IconPause from '../../atoms/svg/IconPause.js';
-import IconPrevious from '../../atoms/svg/IconPrevious.js';
-import IconNext from '../../atoms/svg/IconNext.js';
-import IconReplay from '../../atoms/svg/IconReplay.js';
-import IconForward from '../../atoms/svg/IconForward.js';
-import IconVolume from '../../atoms/svg/IconVolume.js';
-import IconMute from '../../atoms/svg/IconMute.js';
+import Icon from '../../atoms/Icon/Icon';
 
 class AudioPlayer extends Component {
   constructor(props) {
