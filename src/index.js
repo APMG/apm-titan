@@ -4,6 +4,7 @@ import Figure from './atoms/Figure/Figure';
 import Link from './atoms/Link/Link';
 import Loading from './atoms/Loading/Loading';
 import TagLink from './atoms/TagLink/TagLink';
+import AudioPlayer from './molecules/AudioPlayer/AudioPlayer';
 import Content from './molecules/Content/Content';
 import Event from './molecules/Event/Event';
 import EventTeaser from './molecules/EventTeaser/EventTeaser';
@@ -33,6 +34,7 @@ export {
   Link,
   Loading,
   TagLink,
+  AudioPlayer,
   Content,
   Event,
   EventTeaser,

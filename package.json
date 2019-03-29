@@ -2,7 +2,13 @@
   "name": "apm-titan",
   "version": "0.2.5",
   "description": "A collection of React components used to build American Public Media's websites",
-  "author": "Kim Thompson",
+  "contributors": [
+    "Andrea Edstrom",
+    "Geoff Hankerson",
+    "Jason Phan",
+    "Kim Thompson",
+    "Matt Aho"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
@@ -40,6 +46,7 @@
     "@storybook/addon-knobs": "^5.0.3",
     "@storybook/addon-options": "^5.0.3",
     "@storybook/react": "^5.0.3",
+    "apm-html5-player": "^0.4.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
@@ -62,7 +69,8 @@
     "storybook-react-router": "^1.0.3",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-zepto": "0.0.1"
   },
   "husky": {
     "hooks": {
