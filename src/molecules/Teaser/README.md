@@ -2,24 +2,9 @@
 
 ## Properties
 
-### audio
+### audioPlayButton
 
-Accepts a data object with the following shape:
-
-```
-title: [String],
-credit: [String],
-durationHms: [any],
-encodings: {
-  mediaType: [String] (required),
-  filename: [String],
-  httpFilePath: [String] (required)
-}
-```
-
-### audioButtonSymbol
-
-Accepts anything and puts it on the audio button. It'll usually either be a word (like "Play") or an svg "Play" symbol.
+Accepts a React node which controls the audio. This is necessary so that the play button can use the state of the site it's used on. This could be the local state of the Teaser's parent component, React Context, or Redux depending on the implementation.
 
 ### contributors
 
@@ -29,11 +14,11 @@ Takes an array of strings. Uses the utility function "toSentence" to chain array
 
 Accepts a string, which will be the description of whatever is being teased.
 
-### headingLevel*
+### headingLevel\*
 
 Accepts a number between 1 and 6, which will determine whether the teaser's title is an `<h1>`, and `<h6>` or somewhere in between.
 
-### href*
+### href\*
 
 Accepts a URL string. Turns the whole Teaser container into a link to its story, event or whatever.
 
@@ -56,6 +41,6 @@ Accepts an object with the following shape:
 }
 ```
 
-### title*
+### title\*
 
 Accepts a string, which becomes the main title of this Teaser.
