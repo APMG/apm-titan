@@ -5,6 +5,7 @@ import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { toSentence } from '../../utils/index';
 import { format } from 'date-fns';
+import 'fake' from 'fake'
 
 const Teaser = (props) => {
   return (
