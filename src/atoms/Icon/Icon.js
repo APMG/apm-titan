@@ -14,6 +14,7 @@ import IconPrevious from './IconPrevious';
 import IconReplay from './IconReplay';
 import IconSlack from './IconSlack';
 import IconTwitter from './IconTwitter';
+import IconVolume from './IconVolume';
 
 const icons = {
   empty: IconEmpty,
@@ -28,7 +29,8 @@ const icons = {
   previous: IconPrevious,
   replay: IconReplay,
   slack: IconSlack,
-  twitter: IconTwitter
+  twitter: IconTwitter,
+  volume: IconVolume
 };
 
 const Icon = (props) => {
