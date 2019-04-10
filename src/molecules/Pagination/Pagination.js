@@ -6,7 +6,6 @@ import Link from '../../atoms/Link/Link';
 
 const Pagination = (props) => {
   const classes = classNames({
-    icon: true,
     pagination: true,
     [props.elementClass]: props.elementClass
   });
@@ -61,7 +60,7 @@ const Pagination = (props) => {
       items.push(generateListItem(totalPages, [], ['last'], lastSymbol));
   }
 
-  return <div className={classes}>{items}</div>;
+  return <nav><ul className={classes}>{items}</ul></nav>;
 
   function generateListItem(
     currentPage,
@@ -73,7 +72,7 @@ const Pagination = (props) => {
     const mergedListItemClasses = ['pagination_page'].concat(listItemClasses);
     const mergedAnchorClasses = ['pagination_pageLink'].concat(anchorClasses);
     return (
-      <div className={mergedListItemClasses.join(' ')} key={uuid()}>
+      <li className={mergedListItemClasses.join(' ')} key={uuid()}>
         <Link
           className={mergedAnchorClasses.join(' ')}
           rel={rel ? rel : undefined}
@@ -81,7 +80,7 @@ const Pagination = (props) => {
         >
           {overrideText || currentPage}
         </Link>
-      </div>
+      </li>
     );
   }
 };
