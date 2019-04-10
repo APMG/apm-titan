@@ -60,7 +60,11 @@ const Pagination = (props) => {
       items.push(generateListItem(totalPages, [], ['last'], lastSymbol));
   }
 
-  return <nav><ul className={classes}>{items}</ul></nav>;
+  return (
+    <nav>
+      <ul className={classes}>{items}</ul>
+    </nav>
+  );
 
   function generateListItem(
     currentPage,
