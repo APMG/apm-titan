@@ -1,254 +1,275 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import last from './data/last.json';
+import data from './data/data.json';
 import Pagination from '../Pagination';
 
 afterEach(cleanup);
 
-const expected = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page">
-        <a class="pagination_page_link active" data-testid="relativeLink" href="/listen/1">1</a>
-      </li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/2">2</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/3">3</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/2">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>`;
-let { page, next_page, previous_page } = last;
+const testPropsSmall = {
+  hasFirstAndLast: false,
+  linksToShow: 1,
+  linkPrefix: 'episodes',
+  currentPage: data.episodesList.results.currentPage,
+  elementsPerPage: data.episodesList.results.items.length,
+  totalElements: data.episodesList.results.totalItems
+};
 
-const { total, count, page_size, total_pages } = last;
+const testPropsMedium = {
+  hasFirstAndLast: false,
+  linksToShow: 3,
+  linkPrefix: 'episodes',
+  currentPage: data.episodesList.results.currentPage,
+  elementsPerPage: data.episodesList.results.items.length,
+  totalElements: data.episodesList.results.totalItems
+};
 
-it('Renders a paginator when we are on page 1 of 7', () => {
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
+const testPropsLarge = {
+  hasFirstAndLast: true,
+  linksToShow: 5,
+  linkPrefix: 'episodes',
+  currentPage: data.episodesList.results.currentPage,
+  elementsPerPage: data.episodesList.results.items.length,
+  totalElements: data.episodesList.results.totalItems
+};
+
+describe('Small Pagination', () => {
+  test('renders', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsSmall.hasFirstAndLast}
+        linksToShow={testPropsSmall.linksToShow}
+        linkPrefix={testPropsSmall.linkPrefix}
+        currentPage={testPropsSmall.currentPage}
+        elementsPerPage={testPropsSmall.elementsPerPage}
+        totalElements={testPropsSmall.totalElements}
+      />
+    );
+
+    expect(container.getElementsByClassName('pagination_page').length).toBe(3);
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('1').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+  });
+
+  test('links correctly', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsSmall.hasFirstAndLast}
+        linksToShow={testPropsSmall.linksToShow}
+        linkPrefix={testPropsSmall.linkPrefix}
+        currentPage={testPropsSmall.currentPage}
+        elementsPerPage={testPropsSmall.elementsPerPage}
+        totalElements={testPropsSmall.totalElements}
+      />
+    );
+
+    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/2');
+  });
+
+  test('renders with current page 4', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsSmall.hasFirstAndLast}
+        linksToShow={testPropsSmall.linksToShow}
+        linkPrefix={testPropsSmall.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsSmall.elementsPerPage}
+        totalElements={testPropsSmall.totalElements}
+      />
+    );
+
+    expect(container.getElementsByClassName('pagination_page').length).toBe(3);
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('4').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+  });
+
+  test('links correctly from current page 4', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsSmall.hasFirstAndLast}
+        linksToShow={testPropsSmall.linksToShow}
+        linkPrefix={testPropsSmall.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsSmall.elementsPerPage}
+        totalElements={testPropsSmall.totalElements}
+      />
+    );
+
+    expect(getByText('〈').href).toBe('http://localhost/episodes/3');
+    expect(getByText('4').href).toBe('http://localhost/episodes/4');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/5');
+  });
 });
 
-const expected2 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/1">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">1</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/2">2</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/3">3</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/3">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>
-  `;
+describe('Medium Pagination', () => {
+  test('renders', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsMedium.hasFirstAndLast}
+        linksToShow={testPropsMedium.linksToShow}
+        linkPrefix={testPropsMedium.linkPrefix}
+        currentPage={testPropsMedium.currentPage}
+        elementsPerPage={testPropsMedium.elementsPerPage}
+        totalElements={testPropsMedium.totalElements}
+      />
+    );
 
-it('Renders a paginator when we are on page 2 of 7', () => {
-  page = 2;
-  previous_page = 1;
-  next_page = 3;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected2.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
+    expect(container.getElementsByClassName('pagination_page').length).toBe(4);
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('1').tagName).toBe('A');
+    expect(getByText('2').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+  });
+
+  test('links correctly', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsMedium.hasFirstAndLast}
+        linksToShow={testPropsMedium.linksToShow}
+        linkPrefix={testPropsMedium.linkPrefix}
+        currentPage={testPropsMedium.currentPage}
+        elementsPerPage={testPropsMedium.elementsPerPage}
+        totalElements={testPropsMedium.totalElements}
+      />
+    );
+
+    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('2').href).toBe('http://localhost/episodes/2');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/2');
+  });
+
+  test('renders with current page 4', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsMedium.hasFirstAndLast}
+        linksToShow={testPropsMedium.linksToShow}
+        linkPrefix={testPropsMedium.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsMedium.elementsPerPage}
+        totalElements={testPropsMedium.totalElements}
+      />
+    );
+
+    expect(container.getElementsByClassName('pagination_page').length).toBe(5);
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('3').tagName).toBe('A');
+    expect(getByText('4').tagName).toBe('A');
+    expect(getByText('5').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+  });
+
+  test('links correctly from current page 4', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsMedium.hasFirstAndLast}
+        linksToShow={testPropsMedium.linksToShow}
+        linkPrefix={testPropsMedium.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsMedium.elementsPerPage}
+        totalElements={testPropsMedium.totalElements}
+      />
+    );
+
+    expect(getByText('〈').href).toBe('http://localhost/episodes/3');
+    expect(getByText('3').href).toBe('http://localhost/episodes/3');
+    expect(getByText('4').href).toBe('http://localhost/episodes/4');
+    expect(getByText('5').href).toBe('http://localhost/episodes/5');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/5');
+  });
 });
 
-const expected3 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/2">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/2">2</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/3">3</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/4">4</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/4">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>
-  `;
+describe('Large Pagination', () => {
+  test('renders', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsLarge.hasFirstAndLast}
+        linksToShow={testPropsLarge.linksToShow}
+        linkPrefix={testPropsLarge.linkPrefix}
+        currentPage={testPropsLarge.currentPage}
+        elementsPerPage={testPropsLarge.elementsPerPage}
+        totalElements={testPropsLarge.totalElements}
+      />
+    );
 
-it('Renders a paginator when we are on page 3 of 7', () => {
-  page = 3;
-  previous_page = 2;
-  next_page = 4;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected3.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
-});
+    expect(container.getElementsByClassName('pagination_page').length).toBe(7);
+    expect(getByText('《').tagName).toBe('A');
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('1').tagName).toBe('A');
+    expect(getByText('2').tagName).toBe('A');
+    expect(getByText('3').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+    expect(getByText('》').tagName).toBe('A');
+  });
 
-const expected4 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/3">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/3">3</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/4">4</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/5">5</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/5">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>
-  `;
+  test('links correctly', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsLarge.hasFirstAndLast}
+        linksToShow={testPropsLarge.linksToShow}
+        linkPrefix={testPropsLarge.linkPrefix}
+        currentPage={testPropsLarge.currentPage}
+        elementsPerPage={testPropsLarge.elementsPerPage}
+        totalElements={testPropsLarge.totalElements}
+      />
+    );
 
-it('Renders a paginator when we are on page 4 of 7', () => {
-  page = 4;
-  previous_page = 3;
-  next_page = 5;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected4.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
-});
+    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('2').href).toBe('http://localhost/episodes/2');
+    expect(getByText('3').href).toBe('http://localhost/episodes/3');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/2');
+    expect(getByText('》').href).toBe('http://localhost/episodes/8');
+  });
 
-const expected5 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/4">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/4">4</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/5">5</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/6">6</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/6">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>
-  `;
+  test('renders with current page 4', () => {
+    const { container, getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsLarge.hasFirstAndLast}
+        linksToShow={testPropsLarge.linksToShow}
+        linkPrefix={testPropsLarge.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsLarge.elementsPerPage}
+        totalElements={testPropsLarge.totalElements}
+      />
+    );
 
-it('Renders a paginator when we are on page 5 of 7', () => {
-  page = 5;
-  previous_page = 4;
-  next_page = 6;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected5.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
-});
+    expect(container.getElementsByClassName('pagination_page').length).toBe(9);
+    expect(getByText('《').tagName).toBe('A');
+    expect(getByText('〈').tagName).toBe('A');
+    expect(getByText('2').tagName).toBe('A');
+    expect(getByText('3').tagName).toBe('A');
+    expect(getByText('4').tagName).toBe('A');
+    expect(getByText('5').tagName).toBe('A');
+    expect(getByText('6').tagName).toBe('A');
+    expect(getByText('〉').tagName).toBe('A');
+    expect(getByText('》').tagName).toBe('A');
+  });
 
-const expected6 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/5">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/5">5</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/6">6</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">7</a></li>
-      <li class="pagination_page next"><a class="pagination_page_link" rel="next" data-testid="relativeLink" href="/listen/7">Next ›</a></li>
-      <li class="pagination_page last"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/7">Last »</a></li>
-    </ul>
-  </nav>
-  `;
+  test('links correctly from current page 4', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsLarge.hasFirstAndLast}
+        linksToShow={testPropsLarge.linksToShow}
+        linkPrefix={testPropsLarge.linkPrefix}
+        currentPage={4}
+        elementsPerPage={testPropsLarge.elementsPerPage}
+        totalElements={testPropsLarge.totalElements}
+      />
+    );
 
-it('Renders a paginator when we are on page 6 of 7', () => {
-  page = 6;
-  previous_page = 5;
-  next_page = 7;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected6.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
-});
-
-const expected7 = `
-  <nav class="pagination">
-    <ul class="pagination_list">
-      <li class="pagination_page first"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/1">« First</a></li>
-      <li class="pagination_page prev"><a class="pagination_page_link" rel="prev" data-testid="relativeLink" href="/listen/6">‹ Prev</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/5">5</a></li>
-      <li class="pagination_page"><a class="pagination_page_link" data-testid="relativeLink" href="/listen/6">6</a></li>
-      <li class="pagination_page"><a class="pagination_page_link active" data-testid="relativeLink" href="/listen/7">7</a></li>
-    </ul>
-  </nav>`;
-
-it('Renders a paginator when we are on page 7 of 7', () => {
-  page = 7;
-  previous_page = 6;
-  next_page = null;
-  const { container } = render(
-    <Pagination
-      total={total}
-      count={count}
-      page_size={page_size}
-      total_pages={total_pages}
-      page={page}
-      next_page={next_page}
-      previous_page={previous_page}
-      link_prefix="listen"
-      links_to_show={3}
-    />
-  );
-  expect(container.innerHTML).toEqual(
-    expected7.replace(/\s{2,}/g, '').replace(/>\s</, '><')
-  );
+    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('〈').href).toBe('http://localhost/episodes/3');
+    expect(getByText('2').href).toBe('http://localhost/episodes/2');
+    expect(getByText('3').href).toBe('http://localhost/episodes/3');
+    expect(getByText('4').href).toBe('http://localhost/episodes/4');
+    expect(getByText('5').href).toBe('http://localhost/episodes/5');
+    expect(getByText('6').href).toBe('http://localhost/episodes/6');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/5');
+    expect(getByText('》').href).toBe('http://localhost/episodes/8');
+  });
 });

@@ -1,81 +1,89 @@
 import React from 'react';
 import uuid from 'uuid';
-import PropTypes from 'prop-types';
 import Link from '../../atoms/Link/Link';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { prevIndex, nextIndex } from '../../utils';
 
 const Pagination = (props) => {
-  const { total_pages, page, link_prefix, links_to_show } = props;
-  let { next_page, previous_page } = props;
-  let items = [];
-  let startpage;
-  let endpage;
+  const classes = classNames({
+    pagination: true,
+    [props.elementClass]: props.elementClass
+  });
 
-  if (page === 1) {
-    startpage = page;
-    endpage = page + links_to_show - 1;
-  } else if (page > 1 && page < total_pages) {
-    startpage = page - 1;
-    endpage = page + links_to_show - 2;
-  } else {
-    startpage = total_pages - links_to_show + 1;
-    endpage = total_pages;
-  }
+  const numberOfPages = Math.ceil(props.totalElements / props.elementsPerPage);
+  const middleIndex = Math.floor(props.linksToShow / 2);
+  const paginationArray = [];
 
-  if (page > 1) {
-    items.push(generateListItem(1, [], ['first'], '« First'));
-    items.push(generateListItem(previous_page, [], ['prev'], '‹ Prev', 'prev'));
-  }
-
-  while (startpage <= endpage) {
-    if (page === startpage) {
-      items.push(generateListItem(startpage, ['active']));
-    } else {
-      items.push(generateListItem(startpage));
-    }
-    ++startpage;
-  }
-
-  if (page < total_pages) {
-    items.push(generateListItem(next_page, [], ['next'], 'Next ›', 'next'));
-    items.push(generateListItem(total_pages, [], ['last'], 'Last »'));
-  }
+  Array(props.linksToShow)
+    .fill(0)
+    .forEach((val, i) => {
+      let value = i + props.currentPage - middleIndex;
+      if (value > 0 && value <= numberOfPages) paginationArray.push(value);
+    });
 
   return (
-    <nav className="pagination">
-      <ul className="pagination_list">{items}</ul>
+    <nav>
+      <ul className={classes}>
+        {props.hasFirstAndLast && (
+          <li className="pagination_page pagination_page-first">
+            <Link to={`/${props.linkPrefix}`}>{props.firstSymbol}</Link>
+          </li>
+        )}
+        <li className="pagination_page pagination_page-prev">
+          <Link to={`/${props.linkPrefix}/${prevIndex(props.currentPage)}`}>
+            {props.prevSymbol}
+          </Link>
+        </li>
+        {paginationArray.map((value) => {
+          return (
+            <li key={uuid()} className="pagination_page pagination_page-number">
+              <Link to={`/${props.linkPrefix}/${value}`}>{value}</Link>
+            </li>
+          );
+        })}
+        <li className="pagination_page pagination_page-next">
+          <Link
+            to={`/${props.linkPrefix}/${nextIndex(
+              props.currentPage,
+              numberOfPages
+            )}`}
+          >
+            {props.nextSymbol}
+          </Link>
+        </li>
+        {props.hasFirstAndLast && (
+          <li className="pagination_page pagination_page-last">
+            <Link to={`/${props.linkPrefix}/${numberOfPages}`}>
+              {props.lastSymbol}
+            </Link>
+          </li>
+        )}
+      </ul>
     </nav>
   );
-
-  function generateListItem(
-    currentPage,
-    anchorClasses = [],
-    listItemClasses = [],
-    overrideText = '',
-    rel = ''
-  ) {
-    const mergedAnchorClasses = ['pagination_page_link'].concat(anchorClasses);
-    const mergedListItemClasses = ['pagination_page'].concat(listItemClasses);
-    return (
-      <li className={mergedListItemClasses.join(' ')} key={uuid()}>
-        <Link
-          className={mergedAnchorClasses.join(' ')}
-          rel={rel ? rel : undefined}
-          to={`/${link_prefix}/${currentPage}`}
-        >
-          {overrideText || currentPage}
-        </Link>
-      </li>
-    );
-  }
 };
 
 Pagination.propTypes = {
-  total_pages: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  next_page: PropTypes.number,
-  previous_page: PropTypes.number,
-  link_prefix: PropTypes.string.isRequired,
-  links_to_show: PropTypes.number.isRequired
+  elementClass: PropTypes.string,
+  elementsPerPage: PropTypes.number.isRequired,
+  totalElements: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  linkPrefix: PropTypes.string.isRequired,
+  linksToShow: PropTypes.number.isRequired,
+  hasFirstAndLast: PropTypes.bool,
+  prevSymbol: PropTypes.any,
+  nextSymbol: PropTypes.any,
+  firstSymbol: PropTypes.any,
+  lastSymbol: PropTypes.any
+};
+
+Pagination.defaultProps = {
+  hasFirstAndLast: true,
+  prevSymbol: '〈',
+  nextSymbol: '〉',
+  firstSymbol: '《',
+  lastSymbol: '》'
 };
 
 export default Pagination;
