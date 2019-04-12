@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from '@reach/router';
+import Link from '../Link/Link';
 
 const Button = (props) => {
   const classes = classNames({
@@ -20,14 +20,23 @@ const Button = (props) => {
       );
     } else {
       return (
-        <Link className={classes} disabled={props.disabled} to={props.href}>
+        <Link
+          className={classes}
+          disabled={props.disabled}
+          to={props.href}
+          target={props.newWindow ? '_blank' : null}
+        >
           {props.children}
         </Link>
       );
     }
   } else {
     return (
-      <button className={classes} disabled={props.disabled}>
+      <button
+        className={classes}
+        disabled={props.disabled}
+        type={props.submitForm ? 'submit' : 'button'}
+      >
         {props.children}
       </button>
     );
@@ -39,7 +48,11 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   elementClass: PropTypes.string,
   href: PropTypes.string,
+  /** newWindow only applies to Link buttons, adds target="_blank" */
+  newWindow: PropTypes.bool,
   size: PropTypes.oneOf(['large', 'small']),
+  /** if submitForm == true, adds type="submit" to <button> */
+  submitForm: PropTypes.bool,
   type: PropTypes.oneOf(['primary', 'secondary', 'destructive'])
 };
 
