@@ -23,6 +23,8 @@ stories
         size={select('Size', [null, 'large', 'small'], null)}
         disabled={select('Disabled', [null, true, false], null)}
         elementClass={text('Custom Class', '')}
+        newWindow={select('New window?', [null, true, false], null)}
+        submitForm={select('Submit form?', [null, true, false], null)}
       >
         {text('Inner Text', 'Button Text')}
       </Button>

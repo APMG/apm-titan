@@ -31,10 +31,31 @@ describe('ContentHeader component', () => {
     expect(node.tagName).toBe('A');
   });
 
-  test('renders <button> tag if href is null', () => {
+  test('adds target="_blank" if newWindow prop is true and href is passed in', () => {
+    const { getByText } = render(
+      <Button href={testProps.href} newWindow={true}>
+        {testProps.children}
+      </Button>
+    );
+    const node = getByText(testProps.children);
+    expect(node.tagName).toBe('A');
+    expect(node.getAttribute('target')).toBe('_blank');
+  });
+
+  test('renders <button type="button"> tag if href is null', () => {
     const { getByText } = render(<Button>{testProps.children}</Button>);
     const node = getByText(testProps.children);
     expect(node.tagName).toBe('BUTTON');
+    expect(node.getAttribute('type')).toBe('button');
+  });
+
+  test('uses type="submit" if submitForm is true', () => {
+    const { getByText } = render(
+      <Button submitForm={true}>{testProps.children}</Button>
+    );
+    const node = getByText(testProps.children);
+    expect(node.tagName).toBe('BUTTON');
+    expect(node.getAttribute('type')).toBe('submit');
   });
 
   test('renders <span> tag if both href is passed in and disabled=true', () => {
