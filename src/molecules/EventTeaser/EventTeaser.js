@@ -14,7 +14,7 @@ const EventTeaser = (props) => {
             {props.title && (
               <Heading
                 level={props.headingLevel ? props.headingLevel : 1}
-                className="hdg hdg-4"
+                elementClass="hdg hdg-4"
               >
                 {props.title}
               </Heading>

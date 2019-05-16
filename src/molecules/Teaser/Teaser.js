@@ -28,7 +28,7 @@ const Teaser = (props) => {
           <div className="teaser_header">
             <Heading
               level={props.headingLevel}
-              className={`hdg hdg-${props.headingLevel}`}
+              elementClass={`hdg hdg-${props.headingLevel}`}
             >
               {props.title}
             </Heading>
