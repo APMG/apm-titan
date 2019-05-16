@@ -75,12 +75,11 @@ describe('EventTeaser component', () => {
     expect(container.getElementsByClassName('eventInfo-venue').length).toBe(0);
   });
 
-  test('renders Heading if h1 prop exists', () => {
-    const { getByText, container } = render(
+  test('renders an h1 when prop headingLevel={1}', () => {
+    const { getByText } = render(
       <EventTeaser title={testProps.title} id={324} headingLevel={1} />
     );
     expect(getByText('this is a title').tagName).toBe('H1');
-    expect(container.getElementsByClassName('hdg-1').length).toBe(1);
   });
 
   test('throws an error when required `title` and` id` prop is missing', () => {

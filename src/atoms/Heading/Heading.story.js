@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
 import Heading from './Heading';
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';
@@ -13,10 +12,11 @@ stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
 stories.add('Heading All Props', () => {
   return (
     <Heading
-      className={text('ClassName', 'hdg hdg-1')}
-      level={number('Heading Level', 1)}
+      className={text('className', '')}
+      elementClass={text('Element Class', '')}
+      level={select('Level', [1, 2, 3, 4, 5, 6], 1)}
     >
-      {text('Children', 'children')}
+      {text('Children', 'Heading Inner Text')}
     </Heading>
   );
 });
