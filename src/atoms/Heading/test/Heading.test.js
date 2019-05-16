@@ -33,12 +33,30 @@ describe('Heading', () => {
     expect(getByText('children').className).toBe('hdg hdg-3');
   });
 
+  test('replaces the default class when a `className` prop is passed in', () => {
+    const { getByText } = render(
+      <Heading level={3} className="custom classes">
+        children
+      </Heading>
+    );
+    expect(getByText('children').className).toBe('custom classes');
+  });
+
   test('adds a class to the element when an `elementClass` prop is passed in', () => {
     const { getByText } = render(
       <Heading level={3} elementClass="custom classes">
         children
       </Heading>
     );
-    expect(getByText('children').className).toBe('custom classes');
+    expect(getByText('children').className).toBe('hdg hdg-3 custom classes');
+  });
+
+  test('allows both `className` replacement and appended `elementClass`', () => {
+    const { getByText } = render(
+      <Heading level={3} className="lots of" elementClass="custom classes">
+        children
+      </Heading>
+    );
+    expect(getByText('children').className).toBe('lots of custom classes');
   });
 });
