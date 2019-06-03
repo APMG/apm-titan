@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Link from '../Link/Link';
+// import Link from '../Link/Link';
+import Link from 'next/link';
 
 const Button = (props) => {
   const classes = classNames({
@@ -20,13 +21,15 @@ const Button = (props) => {
       );
     } else {
       return (
-        <Link
-          className={classes}
-          disabled={props.disabled}
-          to={props.href}
-          target={props.newWindow ? '_blank' : null}
-        >
-          {props.children}
+        <Link href={props.href}>
+          <a
+            href={props.href}
+            className={classes}
+            disabled={props.disabled}
+            target={props.newWindow ? '_blank' : null}
+          >
+            {props.children}
+          </a>
         </Link>
       );
     }

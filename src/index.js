@@ -1,7 +1,7 @@
 import Heading from './atoms/Heading/Heading';
 import Button from './atoms/Button/Button';
 import Figure from './atoms/Figure/Figure';
-import Link from './atoms/Link/Link';
+// import Link from './atoms/Link/Link';
 import Loading from './atoms/Loading/Loading';
 import TagLink from './atoms/TagLink/TagLink';
 // import AudioPlayer from './molecules/AudioPlayer/AudioPlayer';
@@ -32,7 +32,7 @@ export {
   Heading,
   Button,
   Figure,
-  Link,
+  // Link,
   Loading,
   TagLink,
   // AudioPlayer,
