@@ -1,6 +1,6 @@
 {
-  "name": "apm-titan",
-  "version": "0.4.0",
+  "name": "@apmg/titan",
+  "version": "0.1.0",
   "description": "A collection of React components used to build American Public Media's websites",
   "contributors": [
     "Andrea Edstrom",
