@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { format } from 'date-fns';
@@ -35,8 +35,8 @@ const ContentHeader = (props) => {
             By{' '}
             {props.authors.map((author) => {
               return (
-                <Link to={author.href} key={author.href}>
-                  {`${author.name} `}
+                <Link href={author.href} key={author.href}>
+                  <a>{`${author.name}`}</a>
                 </Link>
               );
             })}

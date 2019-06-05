@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Inner from './Inner';
-import { Link } from '@reach/router';
 
 const Hero = (props) => {
   return (
@@ -9,10 +9,12 @@ const Hero = (props) => {
       <div className="item_content_hero">
         <div className="item_content_header">
           {props.tag && (
-            <Link className="tag" to={`/${props.tag.href}`}>
-              {props.tag.title && (
-                <div className="item_content_title"> {props.tag.title}</div>
-              )}
+            <Link href={`/${props.tag.href}`}>
+              <a className="tag">
+                {props.tag.title && (
+                  <div className="item_content_title"> {props.tag.title}</div>
+                )}
+              </a>
             </Link>
           )}
 
@@ -30,12 +32,14 @@ const Hero = (props) => {
         </div>
       </div>
       {props.href && (
-        <Link to={`/${props.href}`}>
-          <Inner
-            image={props.image}
-            button={props.button}
-            publishDate={props.publishDate}
-          />
+        <Link href={`/${props.href}`}>
+          <a>
+            <Inner
+              image={props.image}
+              button={props.button}
+              publishDate={props.publishDate}
+            />
+          </a>
         </Link>
       )}
       {!props.href && (

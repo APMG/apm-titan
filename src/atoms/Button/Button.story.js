@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import Button from './Button';

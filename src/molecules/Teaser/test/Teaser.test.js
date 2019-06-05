@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import { image } from '../test/data/image';
 import { Image } from 'apm-mimas';
 import Teaser from '../Teaser';
@@ -60,9 +60,6 @@ test('Image component is rendered correctly when image prop is provided', () => 
     />
   );
 
-  expect(container.querySelector('img').getAttribute('src')).toEqual(
-    'https://img.publicradio.org/images/20181220-serena-brook-opens-our-show-at-the-town-hall.jpg'
-  );
   expect(container.querySelector('img').getAttribute('srcset')).toEqual(
     'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
   );
@@ -111,7 +108,7 @@ test('The heading has class hdg-2 if the headingLevel prop passed in is 2', () =
   const { container } = render(
     <Teaser id="1234" href={href} title={title} headingLevel={level} />
   );
-  // console.log(prettyDOM(container))
+
   expect(container.querySelector('h2').classList.contains('hdg-2')).toBe(true);
 });
 

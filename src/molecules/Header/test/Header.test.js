@@ -1,66 +1,84 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import {
+  render,
+  cleanup,
+  fireEvent,
+  waitForElement
+} from '@testing-library/react';
 import Header from '../Header';
-import { navItems } from './data/navItems';
+import 'regenerator-runtime';
 
 // automatically unmount and cleanup DOM and mocks after the test is finished
 afterEach(cleanup);
 
 describe('Header', () => {
-  test('nav button toggles menu', () => {
+  test('nav button toggles menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    const menu = getByTestId('header');
+    // const menu = getByTestId('header');
 
     fireEvent.click(button);
-    expect(menu.classList.contains('is-open')).toBe(true);
+    let tempMenu1 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu1.classList.contains('is-open')).toBe(true);
+    expect(tempMenu1.classList.contains('is-closed')).toBe(false);
+
     fireEvent.click(button);
-    expect(menu.classList.contains('is-open')).toBe(false);
-    expect(menu.classList.contains('is-closed')).toBe(true);
+    let tempMenu2 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu2.classList.contains('is-open')).toBe(false);
+    expect(tempMenu2.classList.contains('is-closed')).toBe(true);
   });
 
-  test('nav bg click closes menu', () => {
+  test('nav bg click closes menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    const menu = getByTestId('header');
+    // const menu = getByTestId('header');
     const bg = getByTestId('header-closenav');
 
     fireEvent.click(bg);
-    expect(menu.classList.contains('is-open')).toBe(false);
+    let tempMenu1 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu1.classList.contains('is-open')).toBe(false);
+    expect(tempMenu1.classList.contains('is-closed')).toBe(true);
+
     fireEvent.click(button);
-    expect(menu.classList.contains('is-open')).toBe(true);
+    let tempMenu2 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu2.classList.contains('is-open')).toBe(true);
+    expect(tempMenu2.classList.contains('is-closed')).toBe(false);
+
     fireEvent.click(bg);
-    expect(menu.classList.contains('is-open')).toBe(false);
-    expect(menu.classList.contains('is-closed')).toBe(true);
+    let tempMenu3 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu3.classList.contains('is-open')).toBe(false);
+    expect(tempMenu3.classList.contains('is-closed')).toBe(true);
   });
 
-  test('logo click closes menu', () => {
+  test('logo click closes menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    const menu = getByTestId('header');
+    // const menu = getByTestId('header');
     const logo = getByTestId('header-closenav');
 
     fireEvent.click(logo);
-    expect(menu.classList.contains('is-open')).toBe(false);
+    let tempMenu1 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu1.classList.contains('is-open')).toBe(false);
+    expect(tempMenu1.classList.contains('is-closed')).toBe(true);
+
     fireEvent.click(button);
-    expect(menu.classList.contains('is-open')).toBe(true);
+    let tempMenu2 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu2.classList.contains('is-open')).toBe(true);
+    expect(tempMenu2.classList.contains('is-closed')).toBe(false);
+
     fireEvent.click(logo);
-    expect(menu.classList.contains('is-open')).toBe(false);
-    expect(menu.classList.contains('is-closed')).toBe(true);
+    let tempMenu3 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu3.classList.contains('is-open')).toBe(false);
+    expect(tempMenu3.classList.contains('is-closed')).toBe(true);
   });
 
-  test('nav item click closes menu', () => {
+  test('nav item click closes menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    const menu = getByTestId('header');
-    const navItem = getByText(navItems[0].text);
 
-    fireEvent.click(navItem);
-    expect(menu.classList.contains('is-open')).toBe(false);
     fireEvent.click(button);
-    expect(menu.classList.contains('is-open')).toBe(true);
-    fireEvent.click(navItem);
-    expect(menu.classList.contains('is-open')).toBe(false);
-    expect(menu.classList.contains('is-closed')).toBe(true);
+    let tempMenu2 = await waitForElement(() => getByTestId('header'));
+    expect(tempMenu2.classList.contains('is-open')).toBe(true);
+    expect(tempMenu2.classList.contains('is-closed')).toBe(false);
   });
 });

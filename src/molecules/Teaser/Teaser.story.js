@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
+import { Image } from 'apm-mimas';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import Teaser from './Teaser';
-import { withReadme } from 'storybook-readme'; // eslint-disable-line
+import { withReadme } from 'storybook-readme';
 import readme from './README.md';
 import { teaser } from './test/data/teaser';
 import { image } from './test/data/image';
@@ -53,9 +53,10 @@ stories
   })
 
   .add('Teaser with image', () => {
+    const tempImage = <Image image={image} />;
     return (
       <Teaser
-        image={image}
+        image={tempImage}
         href={text('Link', 'https://www.mpr.org')}
         headingLevel={2}
         description={text('Description', 'Enter description text here')}
@@ -90,14 +91,7 @@ stories
   })
 
   .add('Teaser with everything', () => {
-    const imageTeaser = {
-      alt: text('Image alt tag', 'Image alt tag goes here'),
-      src: text('Image source url', 'https://source.unsplash.com/weekly?water'),
-      srcset: text(
-        'Image url for srcset',
-        'https://source.unsplash.com/weekly?water'
-      )
-    };
+    const tempImage = <Image image={image} />;
     const tag = {
       title: text('title', 'Teaser text example'),
       href: text('Link', 'https://www.mpr.org')
@@ -109,7 +103,7 @@ stories
     return (
       <Teaser
         audio={teaser.audio}
-        image={imageTeaser}
+        image={tempImage}
         tag={tag}
         contributors={contributors}
         href={text('Link', 'https://www.mpr.org')}

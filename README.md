@@ -1,6 +1,6 @@
 # Titan - APM's React Base Component Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and followed [Aakash N S's article](APM's React Base Component Library) on how to create a library of React components.
+This is a collection of React components that are frequently needed in American Public Media's website. It will work with any website set up with Next.js.
 
 ## How to use
 

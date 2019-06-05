@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import EventHeader from '../EventHeader';
 
 // automatically unmount and cleanup DOM after the test is finished

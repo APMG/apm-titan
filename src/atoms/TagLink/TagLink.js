@@ -1,6 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
 import classNames from 'classnames';
 
 const TagLink = (props) => {
@@ -10,8 +10,8 @@ const TagLink = (props) => {
   });
 
   return (
-    <Link className={classes} to={props.to}>
-      {props.tagName}
+    <Link href={props.to}>
+      <a className={classes}>{props.tagName}</a>
     </Link>
   );
 };

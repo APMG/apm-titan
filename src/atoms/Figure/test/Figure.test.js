@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import Figure from '../Figure';
 import { Image } from 'apm-mimas';
 import { image } from '../../../testdata/image';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const Nav = (props) => {
@@ -8,8 +8,8 @@ const Nav = (props) => {
       <ul className="nav_list">
         {props.items.map((item, index) => (
           <li key={index} className="nav_item">
-            <Link to={item.to} className="nav_link" onClick={props.closeMenu}>
-              {item.text}
+            <Link href={item.to}>
+              <a className="nav_link">{item.text}</a>
             </Link>
           </li>
         ))}
@@ -19,7 +19,6 @@ const Nav = (props) => {
 };
 
 Nav.propTypes = {
-  closeMenu: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
