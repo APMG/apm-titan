@@ -1,6 +1,11 @@
 {
-  "name": "apm-titan",
+  "name": "@apmg/titan",
   "version": "0.4.0",
+  "authors": [
+    "Geoff Hankerson",
+    "Kim Thompson",
+    "Matt Aho"
+  ],
   "description": "A collection of React components used to build American Public Media's websites",
   "contributors": [
     "Andrea Edstrom",
@@ -13,7 +18,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/APMG/apm-titan.git"
+    "url": "git+https://github.com/APMG/apm-titan.git"
   },
   "scripts": {
     "build": "webpack --mode production",
@@ -79,5 +84,9 @@
       "pre-commit": "npm run eslint && npm run sasslint",
       "pre-push": "npm run eslint && npm run sasslint && npm run prettier"
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/APMG/apm-titan/issues"
+  },
+  "homepage": "https://github.com/APMG/apm-titan#readme"
 }
