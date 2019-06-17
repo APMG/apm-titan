@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import data from './data/data.json';
 import Pagination from '../Pagination';
+import Link from 'next/link';
 
 afterEach(cleanup);
 
@@ -42,6 +43,7 @@ describe('Small Pagination', () => {
         currentPage={testPropsSmall.currentPage}
         elementsPerPage={testPropsSmall.elementsPerPage}
         totalElements={testPropsSmall.totalElements}
+        Link={Link}
       />
     );
 
@@ -60,6 +62,7 @@ describe('Small Pagination', () => {
         currentPage={testPropsSmall.currentPage}
         elementsPerPage={testPropsSmall.elementsPerPage}
         totalElements={testPropsSmall.totalElements}
+        Link={Link}
       />
     );
 
@@ -77,6 +80,7 @@ describe('Small Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsSmall.elementsPerPage}
         totalElements={testPropsSmall.totalElements}
+        Link={Link}
       />
     );
 
@@ -95,6 +99,7 @@ describe('Small Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsSmall.elementsPerPage}
         totalElements={testPropsSmall.totalElements}
+        Link={Link}
       />
     );
 
@@ -114,6 +119,7 @@ describe('Medium Pagination', () => {
         currentPage={testPropsMedium.currentPage}
         elementsPerPage={testPropsMedium.elementsPerPage}
         totalElements={testPropsMedium.totalElements}
+        Link={Link}
       />
     );
 
@@ -133,6 +139,7 @@ describe('Medium Pagination', () => {
         currentPage={testPropsMedium.currentPage}
         elementsPerPage={testPropsMedium.elementsPerPage}
         totalElements={testPropsMedium.totalElements}
+        Link={Link}
       />
     );
 
@@ -151,6 +158,7 @@ describe('Medium Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsMedium.elementsPerPage}
         totalElements={testPropsMedium.totalElements}
+        Link={Link}
       />
     );
 
@@ -171,6 +179,7 @@ describe('Medium Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsMedium.elementsPerPage}
         totalElements={testPropsMedium.totalElements}
+        Link={Link}
       />
     );
 
@@ -192,6 +201,7 @@ describe('Large Pagination', () => {
         currentPage={testPropsLarge.currentPage}
         elementsPerPage={testPropsLarge.elementsPerPage}
         totalElements={testPropsLarge.totalElements}
+        Link={Link}
       />
     );
 
@@ -214,6 +224,7 @@ describe('Large Pagination', () => {
         currentPage={testPropsLarge.currentPage}
         elementsPerPage={testPropsLarge.elementsPerPage}
         totalElements={testPropsLarge.totalElements}
+        Link={Link}
       />
     );
 
@@ -235,6 +246,7 @@ describe('Large Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsLarge.elementsPerPage}
         totalElements={testPropsLarge.totalElements}
+        Link={Link}
       />
     );
 
@@ -259,6 +271,7 @@ describe('Large Pagination', () => {
         currentPage={4}
         elementsPerPage={testPropsLarge.elementsPerPage}
         totalElements={testPropsLarge.totalElements}
+        Link={Link}
       />
     );
 

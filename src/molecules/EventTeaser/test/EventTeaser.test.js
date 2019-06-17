@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import EventTeaser from '../EventTeaser';
+import Link from 'next/link';
 
 // automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
@@ -33,7 +34,12 @@ const testProps = {
 describe('EventTeaser component', () => {
   test('renders title link if props exisit', () => {
     const { getByText } = render(
-      <EventTeaser id={324} title={testProps.title} headingLevel={2} />
+      <EventTeaser
+        id={324}
+        title={testProps.title}
+        headingLevel={2}
+        Link={Link}
+      />
     );
     expect(getByText(testProps.title)).toBeDefined();
     expect(getByText(testProps.title).innerHTML).toBe('this is a title');
@@ -45,6 +51,7 @@ describe('EventTeaser component', () => {
         id={324}
         title={testProps.title}
         eventDates={testProps.events[0].eventDates}
+        Link={Link}
       />
     );
     expect(getByText('February 17, 2019')).toBeDefined();
@@ -52,7 +59,7 @@ describe('EventTeaser component', () => {
 
   test('does not render EventDates if prop is empty', () => {
     const { container } = render(
-      <EventTeaser title={testProps.title} id={324} />
+      <EventTeaser title={testProps.title} id={324} Link={Link} />
     );
     expect(container.getElementsByClassName('eventInfo-date').length).toBe(0);
   });
@@ -63,6 +70,7 @@ describe('EventTeaser component', () => {
         id={324}
         title={testProps.title}
         venue={testProps.events[0].venue}
+        Link={Link}
       />
     );
     expect(container.getElementsByClassName('eventInfo-venue').length).toBe(1);
@@ -70,14 +78,19 @@ describe('EventTeaser component', () => {
 
   test('does not render EventVenue if prop is empty', () => {
     const { container } = render(
-      <EventTeaser title={testProps.title} id={324} />
+      <EventTeaser title={testProps.title} id={324} Link={Link} />
     );
     expect(container.getElementsByClassName('eventInfo-venue').length).toBe(0);
   });
 
   test('renders an h1 when prop headingLevel={1}', () => {
     const { getByText } = render(
-      <EventTeaser title={testProps.title} id={324} headingLevel={1} />
+      <EventTeaser
+        title={testProps.title}
+        id={324}
+        headingLevel={1}
+        Link={Link}
+      />
     );
     expect(getByText('this is a title').tagName).toBe('H1');
   });

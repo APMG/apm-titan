@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Link from '../Link/Link';
 
 const Button = (props) => {
+  const { Link } = props;
   const classes = classNames({
     btn: true,
     [`btn-${props.type}`]: props.type,
@@ -19,14 +19,11 @@ const Button = (props) => {
         </span>
       );
     } else {
+      const newWindow = props.newWindow ? '_blank' : null;
       return (
-        <Link
-          className={classes}
-          disabled={props.disabled}
-          to={props.href}
-          target={props.newWindow ? '_blank' : null}
-        >
-          {props.children}
+        <Link className={classes} disabled={props.disabled} href={props.href}>
+          {/* eslint-disable-next-line */}
+          <a target={newWindow}>{props.children}</a>
         </Link>
       );
     }

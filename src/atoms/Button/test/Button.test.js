@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import Button from '../Button';
+import Link from 'next/link';
 
 // automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
@@ -13,19 +14,23 @@ const testProps = {
 
 describe('ContentHeader component', () => {
   test('renders children', () => {
-    const { getByText } = render(<Button>{testProps.children}</Button>);
+    const { getByText } = render(
+      <Button Link={Link}>{testProps.children}</Button>
+    );
     expect(getByText(testProps.children)).toBeDefined();
   });
 
   test('throws an error when component has no children', () => {
     expect(() => {
-      render(<Button />);
+      render(<Button Link={Link} />);
     }).toThrow();
   });
 
   test('renders <a> tag if href passed in', () => {
     const { getByText } = render(
-      <Button href={testProps.href}>{testProps.children}</Button>
+      <Button Link={Link} href={testProps.href}>
+        {testProps.children}
+      </Button>
     );
     const node = getByText(testProps.children);
     expect(node.tagName).toBe('A');
@@ -33,7 +38,7 @@ describe('ContentHeader component', () => {
 
   test('adds target="_blank" if newWindow prop is true and href is passed in', () => {
     const { getByText } = render(
-      <Button href={testProps.href} newWindow={true}>
+      <Button Link={Link} href={testProps.href} newWindow={true}>
         {testProps.children}
       </Button>
     );
@@ -43,7 +48,9 @@ describe('ContentHeader component', () => {
   });
 
   test('renders <button type="button"> tag if href is null', () => {
-    const { getByText } = render(<Button>{testProps.children}</Button>);
+    const { getByText } = render(
+      <Button Link={Link}>{testProps.children}</Button>
+    );
     const node = getByText(testProps.children);
     expect(node.tagName).toBe('BUTTON');
     expect(node.getAttribute('type')).toBe('button');
@@ -60,7 +67,7 @@ describe('ContentHeader component', () => {
 
   test('renders <span> tag if both href is passed in and disabled=true', () => {
     const { getByText } = render(
-      <Button href={testProps.href} disabled={true}>
+      <Button Link={Link} href={testProps.href} disabled={true}>
         {testProps.children}
       </Button>
     );

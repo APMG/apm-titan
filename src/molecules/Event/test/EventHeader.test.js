@@ -11,7 +11,7 @@ const testProps = {
   headingLevel: 1,
   publishDate: 'Feb 11, 2019',
   subtitle: 'Sponsored by Minnesota Public Radio',
-  tag: { to: '/taglink', tagName: 'tag' }
+  tag: { href: '/taglink', tagName: 'tag' }
 };
 
 describe('EventHeader component', () => {
@@ -73,7 +73,7 @@ describe('EventHeader component', () => {
     const node = getByText(testProps.tag.tagName);
     expect(node).toBeDefined();
     expect(node.innerHTML).toBe('tag');
-    expect(node.getAttribute('href')).toBe(testProps.tag.to);
+    expect(node.getAttribute('href')).toBe(testProps.tag.href);
   });
 
   test('does not render TagLink component if tag prop is empty', () => {
