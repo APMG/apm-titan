@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { format } from 'date-fns';
 
 const ContentHeader = (props) => {
+  const { Link } = props;
   return (
     <header className="content_header">
       {props.tag && (
         <TagLink
-          to={props.tag.to}
+          href={props.tag.href}
           tagName={props.tag.tagName}
           elementClass="content_topic"
+          Link={Link}
         />
       )}
 
@@ -35,8 +36,9 @@ const ContentHeader = (props) => {
             By{' '}
             {props.authors.map((author) => {
               return (
-                <Link to={author.href} key={author.href}>
-                  {`${author.name} `}
+                <Link href={author.href} key={author.href}>
+                  {/* eslint-disable-next-line */}
+                  <a>{`${author.name} `}</a>
                 </Link>
               );
             })}
@@ -60,11 +62,12 @@ ContentHeader.propTypes = {
       href: PropTypes.string
     })
   ),
+  Link: PropTypes.func,
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,
   tag: PropTypes.shape({
-    to: PropTypes.string,
+    href: PropTypes.string,
     tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired

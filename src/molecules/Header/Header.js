@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from '@reach/router';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from '../../svg/Logo';
 import { navItems } from './test/data/navItems';
+import PropTypes from 'prop-types';
 
 class Header extends React.Component {
   constructor(props) {
@@ -27,6 +27,7 @@ class Header extends React.Component {
   };
 
   render() {
+    const { Link } = this.props;
     const headerClasses = classNames('header', {
       'is-open': this.state.menuOpen,
       'is-closed': !this.state.menuOpen
@@ -35,24 +36,27 @@ class Header extends React.Component {
     return (
       <header className={headerClasses} data-testid="header">
         <Link
-          to="/"
+          href="/"
           className="header_logo"
           data-testid="header-logo"
           onClick={this.closeMenu}
         >
-          <div className="header_logoImg">
-            <Logo />
-          </div>
-          <div
-            style={{
-              fontSize: '16px',
-              fontWeight: 600,
-              lineHeight: 1,
-              textTransform: 'uppercase'
-            }}
-          >
-            APM Components
-          </div>
+          {/* eslint-disable-next-line */}
+          <a>
+            <div className="header_logoImg">
+              <Logo />
+            </div>
+            <div
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                lineHeight: 1,
+                textTransform: 'uppercase'
+              }}
+            >
+              APM Components
+            </div>
+          </a>
         </Link>
 
         <button className="header_navButton" onClick={this.toggleMenu}>
@@ -79,5 +83,9 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  Link: PropTypes.func
+};
 
 export default Header;

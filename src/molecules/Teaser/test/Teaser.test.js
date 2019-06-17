@@ -4,6 +4,7 @@ import { image } from '../test/data/image';
 import { Image } from 'apm-mimas';
 import Teaser from '../Teaser';
 import 'jest-prop-type-error';
+import Link from 'next/link';
 
 afterEach(cleanup);
 
@@ -21,7 +22,13 @@ const TestImage = <Image image={image} />;
 
 test('Always renders a root div', () => {
   const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
+    <Teaser
+      id="1234"
+      headingLevel={headingLevel}
+      href={href}
+      title={title}
+      Link={Link}
+    />
   );
 
   expect(container.querySelectorAll('.teaser')).toHaveLength(1);
@@ -38,6 +45,7 @@ test('Contributors string is rendered correctly when contributors array prop is 
       contributors={contributors}
       description={description}
       headingLevel={headingLevel}
+      Link={Link}
     />
   );
 
@@ -57,6 +65,7 @@ test('Image component is rendered correctly when image prop is provided', () => 
       contributors={contributors}
       description={description}
       headingLevel={headingLevel}
+      Link={Link}
     />
   );
 
@@ -79,6 +88,7 @@ test('Date and time are rendered correctly if publishDate prop has been provided
       contributors={contributors}
       description={description}
       headingLevel={headingLevel}
+      Link={Link}
     />
   );
   const timeEle = container.querySelector('time');
@@ -91,7 +101,13 @@ test('Date and time are rendered correctly if publishDate prop has been provided
 
 test('The external link is rendered correctly if href prop has been provided', () => {
   const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
+    <Teaser
+      id="1234"
+      href={href}
+      title={title}
+      headingLevel={headingLevel}
+      Link={Link}
+    />
   );
 
   expect(
@@ -101,7 +117,13 @@ test('The external link is rendered correctly if href prop has been provided', (
 
 test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
   const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
+    <Teaser
+      id="1234"
+      href={href}
+      title={title}
+      headingLevel={headingLevel}
+      Link={Link}
+    />
   );
   expect(container.querySelectorAll('h3').length).toBe(1);
 });
@@ -109,7 +131,13 @@ test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
 test('The heading has class hdg-2 if the headingLevel prop passed in is 2', () => {
   const level = 2;
   const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={level} />
+    <Teaser
+      id="1234"
+      href={href}
+      title={title}
+      headingLevel={level}
+      Link={Link}
+    />
   );
   // console.log(prettyDOM(container))
   expect(container.querySelector('h2').classList.contains('hdg-2')).toBe(true);
@@ -126,6 +154,7 @@ test('Throws an error when required value is missing', () => {
         headingLevel={headingLevel}
         image={TestImage}
         publishDate={publishDate}
+        Link={Link}
       />
     );
   }).toThrow();
@@ -140,6 +169,7 @@ test('Teaser date is not rendered when the publishDate prop is not provided', ()
       href={href}
       image={TestImage}
       title={title}
+      Link={Link}
     />
   );
   expect(container.querySelectorAll('time')).toHaveLength(0);
@@ -154,6 +184,7 @@ test('Teaser contributors are not rendered when the contributors prop is not pro
       href={href}
       image={TestImage}
       title={title}
+      Link={Link}
     />
   );
   expect(container.querySelectorAll('.teaser_contributors')).toHaveLength(0);
@@ -167,6 +198,7 @@ test('Teaser description is not rendered when the description prop is not provid
       href={href}
       image={TestImage}
       title={title}
+      Link={Link}
     />
   );
   expect(container.querySelectorAll('.teaser_body.UserContent')).toHaveLength(
@@ -176,7 +208,13 @@ test('Teaser description is not rendered when the description prop is not provid
 
 test('Teaser image is not rendered when the image prop is not provided', () => {
   const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
+    <Teaser
+      id="1234"
+      headingLevel={headingLevel}
+      href={href}
+      title={title}
+      Link={Link}
+    />
   );
   expect(container.querySelectorAll('image')).toHaveLength(0);
   expect(container.querySelectorAll('figure')).toHaveLength(0);
@@ -184,7 +222,13 @@ test('Teaser image is not rendered when the image prop is not provided', () => {
 
 test('Teaser tag is not rendered when the tag prop is not provided', () => {
   const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
+    <Teaser
+      id="1234"
+      headingLevel={headingLevel}
+      href={href}
+      title={title}
+      Link={Link}
+    />
   );
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
 });

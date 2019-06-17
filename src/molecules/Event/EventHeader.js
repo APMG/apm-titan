@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
+import Link from 'next/link';
 
 const EventHeader = (props) => {
   return (
     <header className="event_header">
       {props.tag && (
         <TagLink
-          to={props.tag.to}
+          href={props.tag.href}
           tagName={props.tag.tagName}
           elementClass="event_topic"
+          Link={Link}
         />
       )}
 
@@ -41,7 +43,7 @@ EventHeader.propTypes = {
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   tag: PropTypes.shape({
-    to: PropTypes.string,
+    href: PropTypes.string,
     tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired

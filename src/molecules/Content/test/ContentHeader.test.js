@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import ContentHeader from '../ContentHeader';
+import Link from 'next/link';
 
 // automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
@@ -15,7 +16,7 @@ const testProps = {
   headingLevel: 1,
   publishDate: 'Jan 12, 2018',
   subtitle: 'this is a subtitle',
-  tag: { to: '/taglink', tagName: 'tag' }
+  tag: { href: '/taglink', tagName: 'tag' }
 };
 
 describe('ContentHeader component', () => {
@@ -32,7 +33,11 @@ describe('ContentHeader component', () => {
 
   test('renders authors with correct href if prop exists', () => {
     const { getByText } = render(
-      <ContentHeader title={testProps.title} authors={testProps.authors} />
+      <ContentHeader
+        title={testProps.title}
+        authors={testProps.authors}
+        Link={Link}
+      />
     );
     const node0 = getByText(testProps.authors[0].name);
     const node1 = getByText(testProps.authors[1].name);
@@ -85,17 +90,19 @@ describe('ContentHeader component', () => {
   });
 
   test('does not render subtitle if subtitle prop is empty', () => {
-    const { container } = render(<ContentHeader title={testProps.title} />);
+    const { container } = render(
+      <ContentHeader title={testProps.title} Link={Link} />
+    );
     expect(container.getElementsByClassName('content_subtitle').length).toBe(0);
   });
 
   test('renders tag if prop exists', () => {
     const { getByText } = render(
-      <ContentHeader title={testProps.title} tag={testProps.tag} />
+      <ContentHeader title={testProps.title} tag={testProps.tag} Link={Link} />
     );
     const node = getByText(testProps.tag.tagName);
     expect(node).toBeDefined();
-    expect(node.getAttribute('href')).toBe(testProps.tag.to);
+    expect(node.getAttribute('href')).toBe(testProps.tag.href);
   });
 
   test('does not render TagLink component if tag prop is empty', () => {

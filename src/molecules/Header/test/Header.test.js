@@ -2,13 +2,14 @@ import React from 'react';
 import { render, cleanup, fireEvent } from 'react-testing-library';
 import Header from '../Header';
 import { navItems } from './data/navItems';
+import Link from 'next/link';
 
 // automatically unmount and cleanup DOM and mocks after the test is finished
 afterEach(cleanup);
 
 describe('Header', () => {
   test('nav button toggles menu', () => {
-    const { getByText, getByTestId } = render(<Header />);
+    const { getByText, getByTestId } = render(<Header Link={Link} />);
     const button = getByText('Menu');
     const menu = getByTestId('header');
 
@@ -20,7 +21,7 @@ describe('Header', () => {
   });
 
   test('nav bg click closes menu', () => {
-    const { getByText, getByTestId } = render(<Header />);
+    const { getByText, getByTestId } = render(<Header Link={Link} />);
     const button = getByText('Menu');
     const menu = getByTestId('header');
     const bg = getByTestId('header-closenav');
@@ -35,7 +36,7 @@ describe('Header', () => {
   });
 
   test('logo click closes menu', () => {
-    const { getByText, getByTestId } = render(<Header />);
+    const { getByText, getByTestId } = render(<Header Link={Link} />);
     const button = getByText('Menu');
     const menu = getByTestId('header');
     const logo = getByTestId('header-closenav');
@@ -50,7 +51,7 @@ describe('Header', () => {
   });
 
   test('nav item click closes menu', () => {
-    const { getByText, getByTestId } = render(<Header />);
+    const { getByText, getByTestId } = render(<Header Link={Link} />);
     const button = getByText('Menu');
     const menu = getByTestId('header');
     const navItem = getByText(navItems[0].text);

@@ -1,11 +1,11 @@
 import React from 'react';
 import uuid from 'uuid';
-import Link from '../../atoms/Link/Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { prevIndex, nextIndex } from '../../utils';
 
 const Pagination = (props) => {
+  const { Link } = props;
   const classes = classNames({
     pagination: true,
     [props.elementClass]: props.elementClass
@@ -27,24 +27,31 @@ const Pagination = (props) => {
       <ul className={classes}>
         {props.hasFirstAndLast && (
           <li className="pagination_page pagination_page-first">
-            <Link to={`/${props.linkPrefix}`}>{props.firstSymbol}</Link>
+            <Link href={`/${props.linkPrefix}`}>
+              {/* eslint-disable-next-line */}
+              <a>{props.firstSymbol}</a>
+            </Link>
           </li>
         )}
         <li className="pagination_page pagination_page-prev">
-          <Link to={`/${props.linkPrefix}/${prevIndex(props.currentPage)}`}>
-            {props.prevSymbol}
+          <Link href={`/${props.linkPrefix}/${prevIndex(props.currentPage)}`}>
+            {/* eslint-disable-next-line */}
+            <a>{props.prevSymbol}</a>
           </Link>
         </li>
         {paginationArray.map((value) => {
           return (
             <li key={uuid()} className="pagination_page pagination_page-number">
-              <Link to={`/${props.linkPrefix}/${value}`}>{value}</Link>
+              <Link href={`/${props.linkPrefix}/${value}`}>
+                {/* eslint-disable-next-line */}
+                <a>{value}</a>
+              </Link>
             </li>
           );
         })}
         <li className="pagination_page pagination_page-next">
           <Link
-            to={`/${props.linkPrefix}/${nextIndex(
+            href={`/${props.linkPrefix}/${nextIndex(
               props.currentPage,
               numberOfPages
             )}`}
@@ -54,7 +61,7 @@ const Pagination = (props) => {
         </li>
         {props.hasFirstAndLast && (
           <li className="pagination_page pagination_page-last">
-            <Link to={`/${props.linkPrefix}/${numberOfPages}`}>
+            <Link href={`/${props.linkPrefix}/${numberOfPages}`}>
               {props.lastSymbol}
             </Link>
           </li>
@@ -75,7 +82,8 @@ Pagination.propTypes = {
   prevSymbol: PropTypes.any,
   nextSymbol: PropTypes.any,
   firstSymbol: PropTypes.any,
-  lastSymbol: PropTypes.any
+  lastSymbol: PropTypes.any,
+  Link: PropTypes.func
 };
 
 Pagination.defaultProps = {

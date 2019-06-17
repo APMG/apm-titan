@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
 import Heading from '../../atoms/Heading/Heading';
 import EventDates from '../Event/EventDates';
 import EventVenue from '../Event/EventVenue';
 
 const EventTeaser = (props) => {
+  const { Link } = props;
   return (
     <div className="eventTeaser">
       <div className="eventTeaser_header">
         {props.id && (
-          <Link to={`/${props.id}`} className="event_topic link-plain">
-            {props.title && (
-              <Heading
-                level={props.headingLevel ? props.headingLevel : 1}
-                elementClass="hdg hdg-4"
-              >
-                {props.title}
-              </Heading>
-            )}
+          <Link href={`/${props.id}`} className="event_topic link-plain">
+            {/* eslint-disable */}
+            <a>
+              {/* eslint-enable */}
+              {props.title && (
+                <Heading
+                  level={props.headingLevel ? props.headingLevel : 1}
+                  elementClass="hdg hdg-4"
+                >
+                  {props.title}
+                </Heading>
+              )}
+            </a>
           </Link>
         )}
         {props.eventDates && <EventDates eventDates={props.eventDates} />}
@@ -38,6 +42,7 @@ EventTeaser.propTypes = {
   ),
   headingLevel: PropTypes.number,
   id: PropTypes.number.isRequired,
+  Link: PropTypes.func,
   title: PropTypes.string,
   venue: PropTypes.shape({
     id: PropTypes.number,
