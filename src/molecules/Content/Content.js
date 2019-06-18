@@ -4,33 +4,45 @@ import ContentHeader from './ContentHeader';
 import Figure from '../../atoms/Figure/Figure';
 import Body from '../Body/Body';
 
-export const Content = (props) => {
+export const Content = ({
+  title,
+  authors,
+  headingLevel,
+  publishDate,
+  subtitle,
+  tag,
+  image,
+  imageCaption,
+  imageCredit,
+  imageCreditHref,
+  bodyHtml
+}) => {
   return (
     <article className="content">
       <div className="col col-page">
         <ContentHeader
-          title={props.title}
-          authors={props.authors}
-          headingLevel={props.headingLevel}
-          publishDate={props.publishDate}
-          subtitle={props.subtitle}
-          tag={props.tag}
+          title={title}
+          authors={authors}
+          headingLevel={headingLevel}
+          publishDate={publishDate}
+          subtitle={subtitle}
+          tag={tag}
         />
       </div>
 
-      {props.image && (
+      {image && (
         <Figure
-          caption={props.imageCaption}
-          credit={props.imageCredit}
-          creditHref={props.imageCreditHref}
+          caption={imageCaption}
+          credit={imageCredit}
+          creditHref={imageCreditHref}
           elementClass={'content_figure'}
-          image={props.image}
+          image={image}
         />
       )}
 
-      {props.bodyHtml && (
+      {bodyHtml && (
         <div className="col col-content">
-          <Body elementClass="content_body" bodyHtml={props.bodyHtml} />
+          <Body elementClass="content_body" bodyHtml={bodyHtml} />
         </div>
       )}
     </article>

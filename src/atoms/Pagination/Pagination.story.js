@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
 import data from './test/data/data.json';

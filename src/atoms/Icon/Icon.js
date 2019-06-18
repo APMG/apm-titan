@@ -33,9 +33,7 @@ const icons = {
   volume: IconVolume
 };
 
-const Icon = (props) => {
-  const { name, ...rest } = props;
-
+const Icon = ({ name, ...rest }) => {
   // Check if the icon is in the list; if not, render the empty icon
   const Element = icons[name] ? icons[name] : icons.empty;
 

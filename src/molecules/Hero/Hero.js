@@ -1,49 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Inner from './Inner';
-import { Link } from '@reach/router';
 
-const Hero = (props) => {
+const Hero = ({
+  tag,
+  contributorsText,
+  subHead,
+  href,
+  image,
+  button,
+  publishDate
+}) => {
   return (
     <article className="Hero">
       <div className="item_content_hero">
         <div className="item_content_header">
-          {props.tag && (
-            <Link className="tag" to={`/${props.tag.href}`}>
-              {props.tag.title && (
-                <div className="item_content_title"> {props.tag.title}</div>
-              )}
+          {tag && (
+            <Link href={`/${tag.href}`}>
+              <a className="tag">
+                {tag.title && (
+                  <div className="item_content_title"> {tag.title}</div>
+                )}
+              </a>
             </Link>
           )}
 
-          {props.contributorsText && (
+          {contributorsText && (
             <div className="item_content_contributorsText">
-              {props.contributorsText}
+              {contributorsText}
             </div>
           )}
 
-          {props.subHead && (
+          {subHead && (
             <div className="item_content_subHead">
-              <h3>{props.subHead}</h3>
+              <h3>{subHead}</h3>
             </div>
           )}
         </div>
       </div>
-      {props.href && (
-        <Link to={`/${props.href}`}>
-          <Inner
-            image={props.image}
-            button={props.button}
-            publishDate={props.publishDate}
-          />
+      {href && (
+        <Link href={`/${href}`}>
+          <a>
+            <Inner image={image} button={button} publishDate={publishDate} />
+          </a>
         </Link>
       )}
-      {!props.href && (
-        <Inner
-          image={props.image}
-          button={props.button}
-          publishDate={props.publishDate}
-        />
+      {!href && (
+        <Inner image={image} button={button} publishDate={publishDate} />
       )}
     </article>
   );
@@ -56,8 +60,7 @@ Hero.propTypes = {
   image: PropTypes.object.isRequired,
   publishDate: PropTypes.string,
   subHead: PropTypes.string,
-  tag: PropTypes.object,
-  title: PropTypes.string.isRequired
+  tag: PropTypes.object
 };
 
 export default Hero;

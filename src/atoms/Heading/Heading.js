@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Heading = (props) => {
+const Heading = ({ elementClass, children, className, level }) => {
   // This component is for semantically providing h1 - h6
   // depending on the html document outline.
   // By default the `hdg-*` class will match the level,
@@ -10,15 +10,15 @@ const Heading = (props) => {
   // through the `className` prop
 
   const classes = classNames({
-    hdg: !props.className,
-    [`hdg-${props.level}`]: !props.className && props.level,
-    [props.className]: props.className,
-    [props.elementClass]: props.elementClass
+    hdg: !className,
+    [`hdg-${level}`]: !className && level,
+    [className]: className,
+    [elementClass]: elementClass
   });
 
-  const Hdg = `h${props.level}`;
+  const Hdg = `h${level}`;
 
-  return <Hdg className={classes}>{props.children}</Hdg>;
+  return <Hdg className={classes}>{children}</Hdg>;
 };
 
 Heading.propTypes = {

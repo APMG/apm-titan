@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import Taglink from './TagLink';
