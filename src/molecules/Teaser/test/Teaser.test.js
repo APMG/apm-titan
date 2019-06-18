@@ -86,15 +86,15 @@ test('Date and time are rendered correctly if publishDate prop has been provided
   expect(timeEle.textContent).toEqual(prettyDate);
 });
 
-test('The external link is rendered correctly if href prop has been provided', () => {
-  const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
-  );
+// test('The external link is rendered correctly if href prop has been provided', () => {
+//   const { container } = render(
+//     <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
+//   );
 
-  expect(
-    container.querySelector('a').attributes.getNamedItem('href').value
-  ).toEqual(href);
-});
+//   expect(
+//     container.querySelector('a').attributes.getNamedItem('href').value
+//   ).toEqual(href);
+// });
 
 test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
   const { container } = render(

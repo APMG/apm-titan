@@ -23,9 +23,7 @@ const EventVenue = ({ venue }) => {
 
       {venue.latitude && venue.longitude && (
         <a
-          href={`https://www.google.com/maps/?q=${venue.latitude},${
-            venue.longitude
-          }`}
+          href={`https://www.google.com/maps/?q=${venue.latitude},${venue.longitude}`}
           target="_blank"
           rel="noopener noreferrer"
           className="link"
