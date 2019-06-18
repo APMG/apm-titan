@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EventPrices = (props) => {
+const EventPrices = ({ prices, ticketLink }) => {
   return (
     <div className="eventInfo-prices">
       <h2>Event tickets</h2>
-      {props.prices.map((data, index) => {
+      {prices.map((data, index) => {
         return (
           <div key={index}>
             {data.description}: ${data.price}
@@ -13,7 +13,7 @@ const EventPrices = (props) => {
         );
       })}
       <br />
-      <a target={'_blank'} href={props.ticketLink} className="link">
+      <a target={'_blank'} href={ticketLink} className="link">
         Buy Tickets here
       </a>
     </div>

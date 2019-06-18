@@ -1,8 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const TagLink = ({ elementClass, href, tagName, Link }) => {
+const TagLink = ({ elementClass, href, tagName }) => {
   const classes = classNames({
     tag: true,
     [elementClass]: elementClass
@@ -18,8 +19,7 @@ const TagLink = ({ elementClass, href, tagName, Link }) => {
 TagLink.propTypes = {
   elementClass: PropTypes.string,
   href: PropTypes.string,
-  tagName: PropTypes.string,
-  Link: PropTypes.element
+  tagName: PropTypes.string
 };
 
 export default TagLink;

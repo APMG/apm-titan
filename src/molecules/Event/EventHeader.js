@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 
-const EventHeader = ({
-  title,
-  subtitle,
-  tag,
-  headingLevel,
-  publishDate,
-  Link
-}) => {
+const EventHeader = ({ title, subtitle, tag, headingLevel, publishDate }) => {
   return (
     <header className="event_header">
       {tag && (
@@ -18,7 +11,6 @@ const EventHeader = ({
           href={tag.href}
           tagName={tag.tagName}
           elementClass="event_topic"
-          Link={Link}
         />
       )}
 
@@ -47,8 +39,7 @@ EventHeader.propTypes = {
     href: PropTypes.string,
     tagName: PropTypes.string
   }),
-  title: PropTypes.string.isRequired,
-  Link: PropTypes.href
+  title: PropTypes.string.isRequired
 };
 
 export default EventHeader;

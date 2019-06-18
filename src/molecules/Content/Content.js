@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { format } from 'date-fns';
@@ -10,8 +11,7 @@ const ContentHeader = ({
   tag,
   headingLevel,
   authors,
-  publishDate,
-  Link
+  publishDate
 }) => {
   return (
     <header className="content_header">
@@ -20,7 +20,6 @@ const ContentHeader = ({
           href={tag.href}
           tagName={tag.tagName}
           elementClass="content_topic"
-          Link={Link}
         />
       )}
 
@@ -65,7 +64,6 @@ ContentHeader.propTypes = {
       href: PropTypes.string
     })
   ),
-  Link: PropTypes.func,
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,

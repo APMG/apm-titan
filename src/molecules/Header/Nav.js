@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-const Nav = (props) => {
+const Nav = ({ items }) => {
   return (
     <nav className="nav">
       <ul className="nav_list">
-        {props.items.map((item, index) => (
+        {items.map((item, index) => (
           <li key={index} className="nav_item">
             <Link href={item.to}>
               <a className="nav_link">{item.text}</a>

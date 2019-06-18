@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-const EventDates = (props) => {
+const EventDates = ({ eventDates }) => {
   return (
     <div className="eventInfo-date">
       <h2>Event Dates</h2>
       <ul>
-        {props.eventDates.map((event, index) => {
+        {eventDates.map((event, index) => {
           return (
             <li key={index}>
               <time dateTime={event.date}>

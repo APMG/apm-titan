@@ -5,18 +5,16 @@ import EventArtist from './EventArtist';
 import EventPrices from './EventPrices';
 import EventDates from './EventDates';
 
-const EventInfo = (props) => {
+const EventInfo = ({ venue, artist, prices, ticketLink, eventDates }) => {
   return (
     <div className="eventInfo">
-      {props.venue && <EventVenue venue={props.venue} />}
+      {venue && <EventVenue venue={venue} />}
 
-      {props.artist && <EventArtist artist={props.artist} />}
+      {artist && <EventArtist artist={artist} />}
 
-      {props.prices && (
-        <EventPrices prices={props.prices} ticketLink={props.ticketLink} />
-      )}
+      {prices && <EventPrices prices={prices} ticketLink={ticketLink} />}
 
-      {props.eventDates && <EventDates eventDates={props.eventDates} />}
+      {eventDates && <EventDates eventDates={eventDates} />}
     </div>
   );
 };

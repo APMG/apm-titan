@@ -6,34 +6,44 @@ import EventInfo from './EventInfo';
 
 // TODO: Find some way to do this without the <br/>s?
 
-const Event = (props) => {
+const Event = ({
+  title,
+  subtitle,
+  headingLevel,
+  publishDate,
+  tag,
+  bodyHtml,
+  venue,
+  artist,
+  prices,
+  website,
+  eventDates
+}) => {
   return (
     <div className="event">
       <div className="col col-page">
-        {props.title && (
+        {title && (
           <EventHeader
-            title={props.title}
-            headingLevel={props.headingLevel}
-            publishDate={props.publishDate}
-            tag={props.tag}
-            subtitle={props.subtitle}
+            title={title}
+            headingLevel={headingLevel}
+            publishDate={publishDate}
+            tag={tag}
+            subtitle={subtitle}
           />
         )}
 
         <br />
-        {props.bodyHtml && (
-          <Body elementClass="event_body" bodyHtml={props.bodyHtml} />
-        )}
+        {bodyHtml && <Body elementClass="event_body" bodyHtml={bodyHtml} />}
         <br />
         <br />
 
         <EventInfo
-          title={props.title}
-          venue={props.venue}
-          artist={props.artist}
-          prices={props.prices}
-          ticketLink={props.website}
-          eventDates={props.eventDates}
+          title={title}
+          venue={venue}
+          artist={artist}
+          prices={prices}
+          ticketLink={website}
+          eventDates={eventDates}
         />
       </div>
     </div>

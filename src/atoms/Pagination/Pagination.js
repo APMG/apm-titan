@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { prevIndex, nextIndex } from '../../utils';
@@ -15,8 +16,7 @@ const Pagination = ({
   firstSymbol,
   prevSymbol,
   nextSymbol,
-  lastSymbol,
-  Link
+  lastSymbol
 }) => {
   const classes = classNames({
     pagination: true,
@@ -88,8 +88,7 @@ Pagination.propTypes = {
   firstSymbol: PropTypes.any,
   prevSymbol: PropTypes.any,
   nextSymbol: PropTypes.any,
-  lastSymbol: PropTypes.any,
-  Link: PropTypes.func
+  lastSymbol: PropTypes.any
 };
 
 Pagination.defaultProps = {

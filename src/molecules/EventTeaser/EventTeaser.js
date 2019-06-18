@@ -5,27 +5,27 @@ import Heading from '../../atoms/Heading/Heading';
 import EventDates from '../Event/EventDates';
 import EventVenue from '../Event/EventVenue';
 
-const EventTeaser = (props) => {
+const EventTeaser = ({ id, title, headingLevel, eventDates, venue }) => {
   return (
     <div className="eventTeaser">
       <div className="eventTeaser_header">
-        {props.id && (
-          <Link href={`/${props.id}`}>
+        {id && (
+          <Link href={`/${id}`}>
             <a className="event_topic link-plain">
-              {props.title && (
+              {title && (
                 <Heading
-                  level={props.headingLevel ? props.headingLevel : 1}
+                  level={headingLevel ? headingLevel : 1}
                   elementClass="hdg hdg-4"
                 >
-                  {props.title}
+                  {title}
                 </Heading>
               )}
             </a>
           </Link>
         )}
-        {props.eventDates && <EventDates eventDates={props.eventDates} />}
+        {eventDates && <EventDates eventDates={eventDates} />}
 
-        {props.venue && <EventVenue venue={props.venue} />}
+        {venue && <EventVenue venue={venue} />}
       </div>
     </div>
   );

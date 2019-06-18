@@ -1,30 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EventVenue = (props) => {
+const EventVenue = ({ venue }) => {
   return (
     <div className="eventInfo-venue">
       <h2>Location</h2>
       <a
-        href={props.venue.website}
+        href={venue.website}
         target="_blank"
         rel="noopener noreferrer"
         className="link-plain"
       >
-        {props.venue.name}
+        {venue.name}
       </a>
       <address>
-        {props.venue.street} {props.venue.city}, {props.venue.state}
+        {venue.street} {venue.city}, {venue.state}
         <br />
-        {props.venue.zip}
+        {venue.zip}
         <br />
-        {props.venue.phone}
+        {venue.phone}
       </address>
 
-      {props.venue.latitude && props.venue.longitude && (
+      {venue.latitude && venue.longitude && (
         <a
-          href={`https://www.google.com/maps/?q=${props.venue.latitude},${
-            props.venue.longitude
+          href={`https://www.google.com/maps/?q=${venue.latitude},${
+            venue.longitude
           }`}
           target="_blank"
           rel="noopener noreferrer"
