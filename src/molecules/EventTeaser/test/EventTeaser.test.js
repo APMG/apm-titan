@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import EventTeaser from '../EventTeaser';
 import Link from 'next/link';
 

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../../atoms/Heading/Heading';
@@ -5,50 +6,60 @@ import TagLink from '../../atoms/TagLink/TagLink';
 import { toSentence } from '../../utils/index';
 import { format } from 'date-fns';
 
-const Teaser = (props) => {
-  const { Link } = props;
+const Teaser = ({
+  tag,
+  audioPlayButton,
+  href,
+  image,
+  headingLevel,
+  title,
+  publishDate,
+  contributors,
+  description,
+  Link
+}) => {
   return (
     <article className="teaser">
-      {props.tag && (
+      {tag && (
         <TagLink
           elementClass="teaser_tagLink"
-          to={props.tag.to}
-          tagName={props.tag.tagName}
+          to={tag.to}
+          tagName={tag.tagName}
         />
       )}
 
-      {props.audioPlayButton && (
-        <div className="teaser_button">{props.audioPlayButton}</div>
+      {audioPlayButton && (
+        <div className="teaser_button">{audioPlayButton}</div>
       )}
 
-      <Link href={props.href}>
+      <Link href={href}>
         {/* eslint-disable */}
         <a>
           {/* eslint-enable */}
-          <div className="teaser_image">{props.image}</div>
+          <div className="teaser_image">{image}</div>
           <div className="teaser_content">
             <div className="teaser_header">
               <Heading
-                level={props.headingLevel}
-                elementClass={`hdg hdg-${props.headingLevel}`}
+                level={headingLevel}
+                elementClass={`hdg hdg-${headingLevel}`}
               >
-                {props.title}
+                {title}
               </Heading>
             </div>
             <div className="teaser_meta">
-              {props.publishDate && (
-                <time className="teaser_time" dateTime={props.publishDate}>
-                  {format(props.publishDate, 'MMMM D, YYYY')}
+              {publishDate && (
+                <time className="teaser_time" dateTime={publishDate}>
+                  {format(publishDate, 'MMMM D, YYYY')}
                 </time>
               )}
-              {props.contributors && (
+              {contributors && (
                 <div className="teaser_contributors">
-                  By {toSentence(props.contributors)}
+                  By {toSentence(contributors)}
                 </div>
               )}
             </div>
-            {props.description && (
-              <div className="teaser_body userContent">{props.description}</div>
+            {description && (
+              <div className="teaser_body userContent">{description}</div>
             )}
           </div>
         </a>

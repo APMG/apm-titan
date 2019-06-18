@@ -4,45 +4,57 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { prevIndex, nextIndex } from '../../utils';
 
-const Pagination = (props) => {
-  const { Link } = props;
+const Pagination = ({
+  elementClass,
+  elementsPerPage,
+  totalElements,
+  currentPage,
+  linkPrefix,
+  linksToShow,
+  hasFirstAndLast,
+  firstSymbol,
+  prevSymbol,
+  nextSymbol,
+  lastSymbol,
+  Link
+}) => {
   const classes = classNames({
     pagination: true,
-    [props.elementClass]: props.elementClass
+    [elementClass]: elementClass
   });
 
-  const numberOfPages = Math.ceil(props.totalElements / props.elementsPerPage);
-  const middleIndex = Math.floor(props.linksToShow / 2);
+  const numberOfPages = Math.ceil(totalElements / elementsPerPage);
+  const middleIndex = Math.floor(linksToShow / 2);
   const paginationArray = [];
 
-  Array(props.linksToShow)
+  Array(linksToShow)
     .fill(0)
     .forEach((val, i) => {
-      let value = i + props.currentPage - middleIndex;
+      let value = i + currentPage - middleIndex;
       if (value > 0 && value <= numberOfPages) paginationArray.push(value);
     });
 
   return (
     <nav>
       <ul className={classes}>
-        {props.hasFirstAndLast && (
+        {hasFirstAndLast && (
           <li className="pagination_page pagination_page-first">
-            <Link href={`/${props.linkPrefix}`}>
+            <Link href={`/${linkPrefix}`}>
               {/* eslint-disable-next-line */}
-              <a>{props.firstSymbol}</a>
+              <a>{firstSymbol}</a>
             </Link>
           </li>
         )}
         <li className="pagination_page pagination_page-prev">
-          <Link href={`/${props.linkPrefix}/${prevIndex(props.currentPage)}`}>
+          <Link href={`/${linkPrefix}/${prevIndex(currentPage)}`}>
             {/* eslint-disable-next-line */}
-            <a>{props.prevSymbol}</a>
+            <a>{prevSymbol}</a>
           </Link>
         </li>
         {paginationArray.map((value) => {
           return (
             <li key={uuid()} className="pagination_page pagination_page-number">
-              <Link href={`/${props.linkPrefix}/${value}`}>
+              <Link href={`/${linkPrefix}/${value}`}>
                 {/* eslint-disable-next-line */}
                 <a>{value}</a>
               </Link>
@@ -51,20 +63,17 @@ const Pagination = (props) => {
         })}
         <li className="pagination_page pagination_page-next">
           <Link
-            href={`/${props.linkPrefix}/${nextIndex(
-              props.currentPage,
-              numberOfPages
-            )}`}
+            href={`/${linkPrefix}/${nextIndex(currentPage, numberOfPages)}`}
           >
-            {/* eslint-disable-next-line */}
-            <a>{props.nextSymbol}</a>
+            <a href={`/${linkPrefix}/${nextIndex(currentPage, numberOfPages)}`}>
+              {nextSymbol}
+            </a>
           </Link>
         </li>
-        {props.hasFirstAndLast && (
+        {hasFirstAndLast && (
           <li className="pagination_page pagination_page-last">
-            <Link href={`/${props.linkPrefix}/${numberOfPages}`}>
-              {/* eslint-disable-next-line */}
-              <a>{props.lastSymbol}</a>
+            <Link href={`/${linkPrefix}/${numberOfPages}`}>
+              <a>{lastSymbol}</a>
             </Link>
           </li>
         )}
@@ -81,9 +90,9 @@ Pagination.propTypes = {
   linkPrefix: PropTypes.string.isRequired,
   linksToShow: PropTypes.number.isRequired,
   hasFirstAndLast: PropTypes.bool,
+  firstSymbol: PropTypes.any,
   prevSymbol: PropTypes.any,
   nextSymbol: PropTypes.any,
-  firstSymbol: PropTypes.any,
   lastSymbol: PropTypes.any,
   Link: PropTypes.func
 };

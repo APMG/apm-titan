@@ -2,28 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Button = (props) => {
-  const { Link } = props;
+const Button = ({
+  Link,
+  type,
+  size,
+  elementClass,
+  href,
+  disabled,
+  children,
+  // eslint-disable-next-line no-unused-vars
+  newWindow,
+  submitForm
+}) => {
   const classes = classNames({
     btn: true,
-    [`btn-${props.type}`]: props.type,
-    [`btn-${props.size}`]: props.size,
-    [props.elementClass]: props.elementClass
+    [`btn-${type}`]: type,
+    [`btn-${size}`]: size,
+    [elementClass]: elementClass
   });
 
-  if (props.href) {
-    if (props.disabled) {
+  if (href) {
+    if (disabled) {
       return (
-        <span className={classes} disabled={props.disabled}>
-          {props.children}
+        <span className={classes} disabled={disabled}>
+          {children}
         </span>
       );
     } else {
-      const newWindow = props.newWindow ? '_blank' : null;
+      const newWindow = newWindow ? '_blank' : null;
       return (
-        <Link className={classes} disabled={props.disabled} href={props.href}>
+        <Link className={classes} disabled={disabled} href={href}>
           {/* eslint-disable-next-line */}
-          <a target={newWindow}>{props.children}</a>
+          <a target={newWindow}>{children}</a>
         </Link>
       );
     }
@@ -31,10 +41,10 @@ const Button = (props) => {
     return (
       <button
         className={classes}
-        disabled={props.disabled}
-        type={props.submitForm ? 'submit' : 'button'}
+        disabled={disabled}
+        type={submitForm ? 'submit' : 'button'}
       >
-        {props.children}
+        {children}
       </button>
     );
   }

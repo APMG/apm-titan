@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const TagLink = (props) => {
-  const { Link } = props;
+const TagLink = ({ elementClass, href, tagName, Link }) => {
   const classes = classNames({
     tag: true,
-    [props.elementClass]: props.elementClass
+    [elementClass]: elementClass
   });
 
   return (
-    <Link className={classes} href={props.href}>
+    <Link className={classes} href={href}>
       {/* eslint-disable-next-line */}
-      <a>{props.tagName}</a>
+      <a>{tagName}</a>
     </Link>
   );
 };

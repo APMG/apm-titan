@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router'; // eslint-disable-line
+import { Image } from 'apm-mimas';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Content from './Content.js';
@@ -14,6 +14,13 @@ stories
 
 stories
   .add('Content All', () => {
+    const testImage = (
+      <Image
+        fallbackSrc={text('Image Src', 'https://unsplash.it/1600/900')}
+        alt={text('Image Alt Text', 'Description text example')}
+      />
+    );
+
     return (
       <Content
         authors={[
@@ -24,10 +31,7 @@ stories
           'Body HTML',
           "<p>The body will live here. This is simplified because AmatJS will handle the rendering of the body's ProseMirror json.</p><p>However, this field will use html tags like <strong>bold formatting</strong>, paragraphs, images, and other things.</p>"
         )}
-        image={{
-          src: text('Image Src', 'https://unsplash.it/1600/900'),
-          alt: text('Image Alt Text', 'Description text example')
-        }}
+        image={testImage}
         imageCaption={text(
           'Image Caption',
           'Lorem Ipsum dolor sit amet consectitur sit elit'
@@ -74,20 +78,20 @@ stories
     );
   })
   .add('Content w/o Body', () => {
+    const testImage = (
+      <Image
+        fallbackSrc={text('Image Src', 'https://placekitten.com/1600/900')}
+        alt={text('Image Alt Text', 'Awwwwwww')}
+      />
+    );
     return (
       <Content
         authors={[
           { name: text('Author 1 Name', 'Jim'), href: '/bio/jim' },
           { name: text('Author 2 Name', 'Bill'), href: '/bio/bill' }
         ]}
-        image={{
-          src: text('Image Src', 'https://unsplash.it/1600/900'),
-          alt: text('Image Alt Text', 'Description text example')
-        }}
-        imageCaption={text(
-          'Image Caption',
-          'Lorem Ipsum dolor sit amet consectitur sit elit'
-        )}
+        image={testImage}
+        imageCaption={text('Image Caption', "I can't even ❤️")}
         imageCredit={text('Image Credit', 'Some Guy')}
         imageCreditHref="https://example.com"
         headingLevel={number('Heading Level', 1)}

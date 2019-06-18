@@ -1,6 +1,11 @@
 {
-  "name": "apm-titan",
-  "version": "0.3.5",
+  "name": "@apmg/titan",
+  "version": "0.4.3",
+  "authors": [
+    "Geoff Hankerson",
+    "Kim Thompson",
+    "Matt Aho"
+  ],
   "description": "A collection of React components used to build American Public Media's websites",
   "contributors": [
     "Andrea Edstrom",
@@ -13,62 +18,67 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/APMG/apm-titan.git"
+    "url": "git+https://github.com/APMG/apm-titan.git"
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack --mode development",
+    "dev": "webpack --mode development",
     "test": "jest --watch",
     "test:ci": "jest",
-    "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook": "start-storybook -p 6006",
     "eslint": "eslint .",
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "prettier": "prettier --check '**/**.js'",
-    "prettier:fix": "prettier --check '**/**.js' --write"
+    "prettier:fix": "prettier --check '**/**.js' --write",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "apm-mimas": "^0.1.1",
+    "apm-mimas": "^0.1.9",
     "date-fns": "^1.30.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "storybook-readme": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.3.4",
-    "@storybook/addon-actions": "^5.0.3",
-    "@storybook/addon-info": "^5.0.3",
-    "@storybook/addon-knobs": "^5.0.3",
-    "@storybook/addon-options": "^5.0.3",
-    "@storybook/react": "^5.0.11",
+    "@babel/runtime": "^7.4.5",
+    "@storybook/addon-actions": "^5.1.8",
+    "@storybook/addon-info": "^5.1.1",
+    "@storybook/addon-knobs": "^5.1.1",
+    "@storybook/addon-links": "^5.1.8",
+    "@storybook/addon-options": "^5.1.1",
+    "@storybook/addons": "^5.1.8",
+    "@storybook/react": "^5.1.8",
+    "@testing-library/react": "^8.0.1",
     "apm-html5-player": "^0.4.1",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
     "css-loader": "^2.1.1",
-    "eslint": "^5.15.3",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
     "husky": "^1.3.1",
-    "jest": "^24.5.0",
+    "jest": "^24.8.0",
     "jest-prop-type-error": "^1.1.0",
     "next": "^8.1.0",
     "node-sass": "^4.12.0",
-    "prettier": "^1.16.4",
+    "prettier": "^1.17.1",
     "prop-types": "^15.7.2",
-    "react-testing-library": "^6.0.0",
-    "sass-lint": "^1.12.1",
+    "react-router": "^5.0.1",
+    "regenerator-runtime": "^0.13.2",
+    "sass-lint": "^1.13.1",
     "sass-loader": "^7.1.0",
-    "storybook-react-router": "^1.0.3",
+    "storybook-react-router": "^1.0.5",
     "style-loader": "^0.23.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
     "webpack-zepto": "0.0.1"
   },
   "husky": {
@@ -76,5 +86,9 @@
       "pre-commit": "npm run eslint && npm run sasslint",
       "pre-push": "npm run eslint && npm run sasslint && npm run prettier"
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/APMG/apm-titan/issues"
+  },
+  "homepage": "https://github.com/APMG/apm-titan#readme"
 }
