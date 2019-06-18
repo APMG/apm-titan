@@ -3,34 +3,37 @@ import PropTypes from 'prop-types';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 
-const EventHeader = (props) => {
+const EventHeader = ({
+  title,
+  subtitle,
+  tag,
+  headingLevel,
+  publishDate,
+  Link
+}) => {
   return (
     <header className="event_header">
-      {props.tag && (
+      {tag && (
         <TagLink
-          to={props.tag.to}
-          tagName={props.tag.tagName}
+          href={tag.href}
+          tagName={tag.tagName}
           elementClass="event_topic"
+          Link={Link}
         />
       )}
 
-      <Heading
-        level={props.headingLevel ? props.headingLevel : 1}
-        className="hdg hdg-1"
-      >
-        {props.title}
+      <Heading level={headingLevel ? headingLevel : 1} className="hdg hdg-1">
+        {title}
       </Heading>
 
-      {props.subtitle && (
+      {subtitle && (
         <p className="event_subtitle" data-testid="eventSubtitle">
-          {props.subtitle}
+          {subtitle}
         </p>
       )}
 
       <div className="event_meta">
-        {props.publishDate && (
-          <time dateTime={props.publishDate}>{props.publishDate}</time>
-        )}
+        {publishDate && <time dateTime={publishDate}>{publishDate}</time>}
       </div>
     </header>
   );
@@ -41,10 +44,11 @@ EventHeader.propTypes = {
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   tag: PropTypes.shape({
-    to: PropTypes.string,
+    href: PropTypes.string,
     tagName: PropTypes.string
   }),
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  Link: PropTypes.href
 };
 
 export default EventHeader;

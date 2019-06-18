@@ -1,62 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentHeader from './ContentHeader';
-import Figure from '../../atoms/Figure/Figure';
-import Body from '../Body/Body';
+import Heading from '../../atoms/Heading/Heading';
+import TagLink from '../../atoms/TagLink/TagLink';
+import { format } from 'date-fns';
 
-export const Content = (props) => {
+const ContentHeader = ({
+  title,
+  subtitle,
+  tag,
+  headingLevel,
+  authors,
+  publishDate,
+  Link
+}) => {
   return (
-    <article className="content">
-      <div className="col col-page">
-        <ContentHeader
-          title={props.title}
-          authors={props.authors}
-          headingLevel={props.headingLevel}
-          publishDate={props.publishDate}
-          subtitle={props.subtitle}
-          tag={props.tag}
+    <header className="content_header">
+      {tag && (
+        <TagLink
+          href={tag.href}
+          tagName={tag.tagName}
+          elementClass="content_topic"
+          Link={Link}
         />
+      )}
+
+      <Heading level={headingLevel ? headingLevel : 1} className="hdg hdg-1">
+        {title}
+      </Heading>
+
+      {subtitle && (
+        <p className="content_subtitle" data-testid="contentSubtitle">
+          {subtitle}
+        </p>
+      )}
+
+      <div className="content_meta">
+        {authors && (
+          <div className="content_byline" data-testid="contentByline">
+            By{' '}
+            {authors.map((author) => {
+              return (
+                <Link href={author.href} key={author.href}>
+                  <a>{`${author.name} `}</a>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+
+        {publishDate && (
+          <time dateTime={publishDate}>
+            {format(publishDate, 'MMMM D, YYYY')}
+          </time>
+        )}
       </div>
-
-      {props.image && (
-        <Figure
-          caption={props.imageCaption}
-          credit={props.imageCredit}
-          creditHref={props.imageCreditHref}
-          elementClass={'content_figure'}
-          image={props.image}
-        />
-      )}
-
-      {props.bodyHtml && (
-        <div className="col col-content">
-          <Body elementClass="content_body" bodyHtml={props.bodyHtml} />
-        </div>
-      )}
-    </article>
+    </header>
   );
 };
 
-Content.propTypes = {
+ContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       href: PropTypes.string
     })
   ),
-  bodyHtml: PropTypes.string,
+  Link: PropTypes.func,
   headingLevel: PropTypes.number,
-  image: PropTypes.element,
-  imageCaption: PropTypes.string,
-  imageCredit: PropTypes.string,
-  imageCreditHref: PropTypes.string,
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,
   tag: PropTypes.shape({
-    tagName: PropTypes.string,
-    to: PropTypes.string
+    href: PropTypes.string,
+    tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired
 };
 
-export default Content;
+export default ContentHeader;

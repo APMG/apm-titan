@@ -43,12 +43,7 @@ const Teaser = (props) => {
 
         <div className="teaser_content">
           <div className="teaser_header">
-            <Heading
-              level={props.headingLevel}
-              elementClass={`hdg hdg-${props.headingLevel}`}
-            >
-              {props.title}
-            </Heading>
+            <Heading level={props.headingLevel}>{props.title}</Heading>
           </div>
           <div className="teaser_meta">
             {props.publishDate && (

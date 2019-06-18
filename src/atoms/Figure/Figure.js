@@ -2,32 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Figure = (props) => {
+const Figure = ({
+  elementClass,
+  image,
+  caption,
+  size,
+  position,
+  credit,
+  creditHref
+}) => {
   const classes = classNames({
     figure: true,
-    [`figure-${props.position}`]: props.position,
-    [`figure-${props.size}`]: props.size,
-    [props.elementClass]: props.elementClass
+    [`figure-${position}`]: position,
+    [`figure-${size}`]: size,
+    [elementClass]: elementClass
   });
 
   function captionCredit() {
-    if (props.credit && props.creditHref) {
+    if (credit && creditHref) {
       return (
-        <a href={props.creditHref} className="figure_credit">
-          {props.credit}
+        <a href={creditHref} className="figure_credit">
+          {credit}
         </a>
       );
-    } else if (props.credit) {
-      return <div className="figure_credit">{props.credit}</div>;
+    } else if (credit) {
+      return <div className="figure_credit">{credit}</div>;
     }
   }
 
   return (
     <figure className={classes}>
-      {props.image}
-      {props.caption || props.credit ? (
+      {image}
+      {caption || credit ? (
         <figcaption className="figure_caption">
-          {props.caption && <div className="figure_text">{props.caption}</div>}
+          {caption && <div className="figure_text">{caption}</div>}
           {captionCredit()}
         </figcaption>
       ) : (
@@ -42,13 +50,13 @@ Figure.defaultProps = {
 };
 
 Figure.propTypes = {
-  size: PropTypes.string, // Default "full"
-  position: PropTypes.string,
-  caption: PropTypes.string,
-  credit: PropTypes.string,
-  creditHref: PropTypes.string,
   elementClass: PropTypes.string,
-  image: PropTypes.element.isRequired
+  image: PropTypes.element.isRequired,
+  caption: PropTypes.string,
+  size: PropTypes.string,
+  position: PropTypes.string,
+  credit: PropTypes.string,
+  creditHref: PropTypes.string
 };
 
 export default Figure;

@@ -1,25 +1,25 @@
 import React from 'react';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const TagLink = (props) => {
+const TagLink = ({ elementClass, href, tagName, Link }) => {
   const classes = classNames({
     tag: true,
-    [props.elementClass]: props.elementClass
+    [elementClass]: elementClass
   });
 
   return (
-    <Link href={props.to}>
-      <a className={classes}>{props.tagName}</a>
+    <Link href={href}>
+      <a className={classes}>{tagName}</a>
     </Link>
   );
 };
 
 TagLink.propTypes = {
   elementClass: PropTypes.string,
-  to: PropTypes.string.isRequired,
-  tagName: PropTypes.string.isRequired
+  href: PropTypes.string,
+  tagName: PropTypes.string,
+  Link: PropTypes.element
 };
 
 export default TagLink;
