@@ -56,13 +56,15 @@ const Pagination = (props) => {
               numberOfPages
             )}`}
           >
-            {props.nextSymbol}
+            {/* eslint-disable-next-line */}
+            <a>{props.nextSymbol}</a>
           </Link>
         </li>
         {props.hasFirstAndLast && (
           <li className="pagination_page pagination_page-last">
             <Link href={`/${props.linkPrefix}/${numberOfPages}`}>
-              {props.lastSymbol}
+              {/* eslint-disable-next-line */}
+              <a>{props.lastSymbol}</a>
             </Link>
           </li>
         )}
