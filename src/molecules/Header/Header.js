@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from '../../svg/Logo';
-import { navItems } from './test/data/navItems';
+import { navItems } from '../../testdata/navItems';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

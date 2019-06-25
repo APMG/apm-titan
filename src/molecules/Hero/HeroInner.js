@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-const Inner = ({ image, publishDate, button }) => (
+const HeroInner = ({ image, publishDate, button }) => (
   <>
     <figure className="item_figure">
       <picture>
@@ -24,10 +24,10 @@ const Inner = ({ image, publishDate, button }) => (
   </>
 );
 
-Inner.propTypes = {
+HeroInner.propTypes = {
   button: PropTypes.string,
   image: PropTypes.object.isRequired,
   publishDate: PropTypes.string
 };
 
-export default Inner;
+export default HeroInner;

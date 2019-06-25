@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
-import { toSentence } from '../../utils/index';
+import { toSentence } from '../../utils/utils';
 import { format } from 'date-fns';
 
 const Teaser = ({
@@ -16,21 +17,8 @@ const Teaser = ({
   audioPlayButton,
   image,
   contributors,
-  description,
-  router
+  description
 }) => {
-  const navigateToItem = () => {
-    router.push(href, as);
-  };
-
-  const handleKeyDown = (e) => {
-    let code = e.which;
-    // 13 = Return, 32 = Space
-    if (code === 13 || code === 32) {
-      navigateToItem();
-    }
-  };
-
   return (
     <article className="teaser">
       {tag && (
@@ -45,35 +33,32 @@ const Teaser = ({
         <div className="teaser_button">{audioPlayButton}</div>
       )}
 
-      <a
-        role="link"
-        onClick={navigateToItem}
-        onKeyDown={handleKeyDown}
-        tabIndex="0"
-      >
-        <div className="teaser_image">{image}</div>
+      <Link href={href} as={as}>
+        <a>
+          <div className="teaser_image">{image}</div>
 
-        <div className="teaser_content">
-          <div className="teaser_header">
-            <Heading level={headingLevel}>{title}</Heading>
-          </div>
-          <div className="teaser_meta">
-            {publishDate && (
-              <time className="teaser_time" dateTime={publishDate}>
-                {format(publishDate, 'MMMM D, YYYY')}
-              </time>
+          <div className="teaser_content">
+            <div className="teaser_header">
+              <Heading level={headingLevel}>{title}</Heading>
+            </div>
+            <div className="teaser_meta">
+              {publishDate && (
+                <time className="teaser_time" dateTime={publishDate}>
+                  {format(publishDate, 'MMMM D, YYYY')}
+                </time>
+              )}
+              {contributors && (
+                <div className="teaser_contributors">
+                  By {toSentence(contributors)}
+                </div>
+              )}
+            </div>
+            {description && (
+              <div className="teaser_body userContent">{description}</div>
             )}
-            {contributors && (
-              <div className="teaser_contributors">
-                By {toSentence(contributors)}
-              </div>
-            )}
           </div>
-          {description && (
-            <div className="teaser_body userContent">{description}</div>
-          )}
-        </div>
-      </a>
+        </a>
+      </Link>
     </article>
   );
 };
@@ -91,8 +76,7 @@ Teaser.propTypes = {
     to: PropTypes.string.isRequired,
     tagName: PropTypes.string.isRequired
   }),
-  title: PropTypes.string.isRequired,
-  router: PropTypes.any
+  title: PropTypes.string.isRequired
 };
 
 export default Teaser;

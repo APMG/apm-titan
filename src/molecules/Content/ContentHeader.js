@@ -5,47 +5,51 @@ import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { format } from 'date-fns';
 
-const ContentHeader = (props) => {
+const ContentHeader = ({
+  title,
+  subtitle,
+  tag,
+  headingLevel,
+  authors,
+  publishDate
+}) => {
   return (
     <header className="content_header">
-      {props.tag && (
+      {tag && (
         <TagLink
-          to={props.tag.to}
-          tagName={props.tag.tagName}
+          href={tag.href}
+          tagName={tag.tagName}
           elementClass="content_topic"
         />
       )}
 
-      <Heading
-        level={props.headingLevel ? props.headingLevel : 1}
-        className="hdg hdg-1"
-      >
-        {props.title}
+      <Heading level={headingLevel ? headingLevel : 1} className="hdg hdg-1">
+        {title}
       </Heading>
 
-      {props.subtitle && (
+      {subtitle && (
         <p className="content_subtitle" data-testid="contentSubtitle">
-          {props.subtitle}
+          {subtitle}
         </p>
       )}
 
       <div className="content_meta">
-        {props.authors && (
+        {authors && (
           <div className="content_byline" data-testid="contentByline">
             By{' '}
-            {props.authors.map((author) => {
+            {authors.map((author) => {
               return (
                 <Link href={author.href} key={author.href}>
-                  <a>{`${author.name}`}</a>
+                  <a>{`${author.name} `}</a>
                 </Link>
               );
             })}
           </div>
         )}
 
-        {props.publishDate && (
-          <time dateTime={props.publishDate}>
-            {format(props.publishDate, 'MMMM D, YYYY')}
+        {publishDate && (
+          <time dateTime={publishDate}>
+            {format(publishDate, 'MMMM D, YYYY')}
           </time>
         )}
       </div>
@@ -64,7 +68,7 @@ ContentHeader.propTypes = {
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,
   tag: PropTypes.shape({
-    to: PropTypes.string,
+    href: PropTypes.string,
     tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired

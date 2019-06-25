@@ -15,7 +15,6 @@ describe('Header', () => {
   test('nav button toggles menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    // const menu = getByTestId('header');
 
     fireEvent.click(button);
     let tempMenu1 = await waitForElement(() => getByTestId('header'));
@@ -31,7 +30,6 @@ describe('Header', () => {
   test('nav bg click closes menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    // const menu = getByTestId('header');
     const bg = getByTestId('header-closenav');
 
     fireEvent.click(bg);
@@ -53,7 +51,6 @@ describe('Header', () => {
   test('logo click closes menu', async () => {
     const { getByText, getByTestId } = render(<Header />);
     const button = getByText('Menu');
-    // const menu = getByTestId('header');
     const logo = getByTestId('header-closenav');
 
     fireEvent.click(logo);

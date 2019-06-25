@@ -13,7 +13,7 @@ stories.add('TagLink All Props', () => {
   return (
     <Taglink
       title={text('Title', 'TOPIC')}
-      to={text('Link', 'url/path/')}
+      href={text('Link', 'url/path/')}
       tagName={text('Tag Name', 'Live from Here')}
       elementClass={text('elementClass', 'event_topic')}
     />

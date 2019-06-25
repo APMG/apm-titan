@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { prevIndex, nextIndex } from '../../utils';
+import { prevIndex, nextIndex } from '../../utils/utils';
 
 const Pagination = ({
   elementClass,

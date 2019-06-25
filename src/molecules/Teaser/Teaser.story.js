@@ -5,8 +5,8 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import Teaser from './Teaser';
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';
-import { teaser } from './test/data/teaser';
-import { image } from './test/data/image';
+import { teaser } from '../../testdata/teaser';
+import { image } from '../../testdata/image';
 
 const stories = storiesOf('Teaser', module);
 stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));

@@ -1,8 +1,8 @@
 import { cleanup } from '@testing-library/react';
-import AudioPlayer from './AudioPlayer';
+import AudioPlayer from '../AudioPlayer';
 
 //Mock the AudioPlayer component
-jest.mock('./AudioPlayer');
+jest.mock('../AudioPlayer');
 
 //Mock the AudioPlayer props
 const audioProps = {

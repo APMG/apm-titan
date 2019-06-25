@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import Hero from '../../Hero/Hero';
-import Inner from '../../Hero/Inner';
-import { data } from './data/data';
-import 'jest-prop-type-error';
+import Hero from '../Hero';
+import HeroInner from '../HeroInner';
+import { data } from '../../../testdata/hero';
 
 afterEach(cleanup);
 
@@ -59,13 +58,13 @@ test('Hero optional href value is rendered when a value is passed in.', () => {
 });
 
 test('Hero img value is always rendered.', () => {
-  const { container } = render(<Inner image={data.image} />);
+  const { container } = render(<HeroInner image={data.image} />);
   expect(container.querySelectorAll('figure.item_figure')).toHaveLength(1);
 });
 
 test('Throws an error when a required image value is missing ', () => {
   expect(() => {
-    render(<Inner image={data.image} button={true} />);
+    render(<HeroInner image={data.image} button={true} />);
   }).toThrow();
 });
 

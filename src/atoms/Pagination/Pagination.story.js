@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
-import data from './test/data/data.json';
+import data from '../../testdata/pagination.json';
 import Pagination from './Pagination';
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';

@@ -18,8 +18,8 @@ const TagLink = ({ elementClass, href, tagName }) => {
 
 TagLink.propTypes = {
   elementClass: PropTypes.string,
-  href: PropTypes.string,
-  tagName: PropTypes.string
+  href: PropTypes.string.isRequired,
+  tagName: PropTypes.string.isRequired
 };
 
 export default TagLink;

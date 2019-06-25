@@ -1,4 +1,4 @@
-import { toSentence, markup, prevIndex, nextIndex } from '../index';
+import { toSentence, markup, prevIndex, nextIndex } from '../utils';
 
 test('It returns an author sentence', () => {
   const arr = ['Opie Schmuck', 'Opiette Schmuck'];

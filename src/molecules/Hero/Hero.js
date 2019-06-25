@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import Inner from './Inner';
+import HeroInner from './HeroInner';
 
 const Hero = ({
   tag,
@@ -42,12 +42,16 @@ const Hero = ({
       {href && (
         <Link href={`/${href}`}>
           <a>
-            <Inner image={image} button={button} publishDate={publishDate} />
+            <HeroInner
+              image={image}
+              button={button}
+              publishDate={publishDate}
+            />
           </a>
         </Link>
       )}
       {!href && (
-        <Inner image={image} button={button} publishDate={publishDate} />
+        <HeroInner image={image} button={button} publishDate={publishDate} />
       )}
     </article>
   );

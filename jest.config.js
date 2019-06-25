@@ -1,4 +1,4 @@
 module.exports = {
   verbose: false,
-  setupFiles: ['jest-prop-type-error']
+  setupFiles: ['babel-polyfill', 'jest-prop-type-error']
 };
