@@ -76,8 +76,7 @@ Teaser.propTypes = {
     to: PropTypes.string.isRequired,
     tagName: PropTypes.string.isRequired
   }),
-  title: PropTypes.string.isRequired,
-  router: PropTypes.any
+  title: PropTypes.string.isRequired
 };
 
 export default Teaser;
