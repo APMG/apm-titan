@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
@@ -17,10 +18,16 @@ const Teaser = ({
   audioPlayButton,
   image,
   contributors,
-  description
+  description,
+  elementClass
 }) => {
+  const classes = classNames({
+    teaser: true,
+    [elementClass]: elementClass
+  });
+
   return (
-    <article className="teaser">
+    <article className={classes}>
       {tag && (
         <TagLink
           elementClass="teaser_tagLink"
@@ -67,6 +74,7 @@ Teaser.propTypes = {
   audioPlayButton: PropTypes.node,
   contributors: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  elementClass: PropTypes.string,
   headingLevel: PropTypes.number.isRequired,
   href: PropTypes.string.isRequired,
   as: PropTypes.string,

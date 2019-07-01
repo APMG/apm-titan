@@ -14,6 +14,10 @@ Takes an array of strings. Uses the utility function "toSentence" to chain array
 
 Accepts a string, which will be the description of whatever is being teased.
 
+### elementClass
+
+Accepts a string. Adds that string to the classList of `<Teaser />`.
+
 ### headingLevel\*
 
 Accepts a number between 1 and 6, which will determine whether the teaser's title is an `<h1>`, and `<h6>` or somewhere in between.
