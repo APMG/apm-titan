@@ -41,7 +41,7 @@ const Teaser = ({
       )}
 
       <Link href={href} as={as}>
-        <a>
+        <a className="teaser_link">
           <div className="teaser_image">{image}</div>
 
           <div className="teaser_content">
