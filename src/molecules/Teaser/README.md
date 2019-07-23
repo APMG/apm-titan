@@ -32,7 +32,7 @@ Accepts an HTML object, or alternatively a React component. It is recommended th
 
 ### publishDate
 
-Accepts a date string. If successfully parsed by `date-fns`, this date is shown on the teaser.
+Accepts a node. Ideally this should include a `<time>` element. A properly formatted `<time>` element can be created using Titan's `Time` component as a helper.
 
 ### tag
 

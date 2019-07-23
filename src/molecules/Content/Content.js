@@ -56,7 +56,7 @@ Content.propTypes = {
     })
   ),
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   subtitle: PropTypes.string,
   bodyHtml: PropTypes.string,
   image: PropTypes.object,

@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 import { toSentence } from '../../utils/utils';
-import { format } from 'date-fns';
 
 const Teaser = ({
   title,
@@ -49,11 +48,7 @@ const Teaser = ({
               <Heading level={headingLevel}>{title}</Heading>
             </div>
             <div className="teaser_meta">
-              {publishDate && (
-                <time className="teaser_time" dateTime={publishDate}>
-                  {format(publishDate, 'MMMM D, YYYY')}
-                </time>
-              )}
+              {publishDate && publishDate}
               {contributors && (
                 <div className="teaser_contributors">
                   By {toSentence(contributors)}
@@ -79,7 +74,7 @@ Teaser.propTypes = {
   href: PropTypes.string.isRequired,
   as: PropTypes.string,
   image: PropTypes.object,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   tag: PropTypes.shape({
     to: PropTypes.string.isRequired,
     tagName: PropTypes.string.isRequired

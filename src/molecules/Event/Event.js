@@ -72,7 +72,7 @@ Event.propTypes = {
       description: PropTypes.string
     })
   ),
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   tag: PropTypes.shape({
     tagName: PropTypes.string,
     to: PropTypes.string
