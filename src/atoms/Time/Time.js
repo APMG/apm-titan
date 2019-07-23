@@ -8,7 +8,7 @@ const Time = (props) => {
       <time
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
-        title={format(props.dateTime, 'MMMM D, YYYY H:mm aa')}
+        title={format(props.dateTime, 'MMMM D, YYYY h:mm aa')}
       >
         {distanceInWordsToNow(props.dateTime)}
       </time>

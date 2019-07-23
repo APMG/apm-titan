@@ -23,8 +23,15 @@ describe('Time', () => {
   });
 
   test('uses "time ago" format when prop type="distance"', () => {
+    const titleFormat = 'MMMM D, YYYY h:mm aa';
+    // Calculate dateTimes based on current test runner's time
     const dateFiveDaysAgo = format(subDays(new Date(), 5)).toString();
+    const formattedTimeFiveDaysAgo = format(dateFiveDaysAgo, titleFormat);
     const dateTwelveMinutesAgo = format(subMinutes(new Date(), 12)).toString();
+    const formattedTimeTwelveMinutesAgo = format(
+      dateTwelveMinutesAgo,
+      titleFormat
+    );
 
     const { getByText } = render(
       <>
@@ -34,10 +41,16 @@ describe('Time', () => {
     );
     const fiveDaysEl = getByText('5 days');
     const twelveMinsEl = getByText('12 minutes');
+
     expect(fiveDaysEl.innerHTML).toBe('5 days');
     expect(fiveDaysEl.getAttribute('datetime')).toBe(dateFiveDaysAgo);
+    expect(fiveDaysEl.getAttribute('title')).toBe(formattedTimeFiveDaysAgo);
+
     expect(twelveMinsEl.innerHTML).toBe('12 minutes');
     expect(twelveMinsEl.getAttribute('datetime')).toBe(dateTwelveMinutesAgo);
+    expect(twelveMinsEl.getAttribute('title')).toBe(
+      formattedTimeTwelveMinutesAgo
+    );
   });
 
   test('formats the timestamp according to the format prop', () => {
