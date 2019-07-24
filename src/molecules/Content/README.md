@@ -36,7 +36,7 @@ Accepts a URL string. Turns the credit on the `<Figure />` into a link.
 
 ### publishDate
 
-Accepts an unformatted date from the CMS endpoint. Returns a date formatted 'MMMM DD, YYYY' by [date-fns](https://date-fns.org/)
+Accepts a node. Ideally this should include a `<time>` element. A properly formatted `<time>` element can be created using Titan's `Time` component as a helper.
 
 ### subtitle
 
@@ -53,6 +53,6 @@ Accepts an object of the shape:
 }
 ```
 
-### title*
+### title\*
 
 Accepts a string. Becomes the title of the page.

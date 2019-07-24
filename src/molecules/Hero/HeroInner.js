@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 
 const HeroInner = ({ image, publishDate, button }) => (
   <>
@@ -10,13 +9,7 @@ const HeroInner = ({ image, publishDate, button }) => (
         <img alt={image.alt} src={image.src} />
       </picture>
     </figure>
-    <div className="item_content_meta">
-      {publishDate && (
-        <time dateTime={publishDate}>
-          {format(publishDate, 'MMMM D, YYYY')}
-        </time>
-      )}
-    </div>
+    {publishDate && <div className="item_content_meta">{publishDate}</div>}
 
     {/* TODO: Need to disscuss this more to determine the direction of
             what we want to do about the button */}

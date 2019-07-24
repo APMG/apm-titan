@@ -13,7 +13,7 @@ const testProps = {
     { name: 'Bill', href: '/bio/bill' }
   ],
   headingLevel: 1,
-  publishDate: 'Jan 12, 2018',
+  publishDate: 'January 12, 2018',
   subtitle: 'this is a subtitle',
   tag: { to: '/taglink', tagName: 'tag' }
 };
@@ -62,7 +62,7 @@ describe('ContentHeader component', () => {
     const { container } = render(<ContentHeader title={testProps.title} />);
     // Verify that the publish date html isn't rendered
     // expect(container.find('time').exists()).toBe(false);
-    expect(container.getElementsByTagName('date').length).toBe(0);
+    expect(container.getElementsByTagName('time').length).toBe(0);
   });
 
   test('renders the Heading component with appropriate heading level', () => {

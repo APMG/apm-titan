@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
-import { format } from 'date-fns';
 
 const ContentHeader = ({
   title,
@@ -47,11 +46,7 @@ const ContentHeader = ({
           </div>
         )}
 
-        {publishDate && (
-          <time dateTime={publishDate}>
-            {format(publishDate, 'MMMM D, YYYY')}
-          </time>
-        )}
+        {publishDate}
       </div>
     </header>
   );
@@ -65,7 +60,7 @@ ContentHeader.propTypes = {
     })
   ),
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   subtitle: PropTypes.string,
   tag: PropTypes.shape({
     href: PropTypes.string,

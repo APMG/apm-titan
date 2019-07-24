@@ -4,6 +4,7 @@ import Heading from './atoms/Heading/Heading';
 import Loading from './atoms/Loading/Loading';
 import Pagination from './atoms/Pagination/Pagination';
 import TagLink from './atoms/TagLink/TagLink';
+import Time from './atoms/Time/Time';
 
 // import AudioPlayer from './molecules/AudioPlayer/AudioPlayer';
 import Body from './molecules/Body/Body';
@@ -21,6 +22,7 @@ export {
   Loading,
   Pagination,
   TagLink,
+  Time,
   // AudioPlayer,
   Body,
   Content,

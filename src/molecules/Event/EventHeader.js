@@ -24,9 +24,7 @@ const EventHeader = ({ title, subtitle, tag, headingLevel, publishDate }) => {
         </p>
       )}
 
-      <div className="event_meta">
-        {publishDate && <time dateTime={publishDate}>{publishDate}</time>}
-      </div>
+      {publishDate && <div className="event_meta">{publishDate}</div>}
     </header>
   );
 };
@@ -34,7 +32,7 @@ const EventHeader = ({ title, subtitle, tag, headingLevel, publishDate }) => {
 EventHeader.propTypes = {
   subtitle: PropTypes.string,
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   tag: PropTypes.shape({
     href: PropTypes.string,
     tagName: PropTypes.string

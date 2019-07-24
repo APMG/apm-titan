@@ -62,7 +62,7 @@ Hero.propTypes = {
   contributorsText: PropTypes.string,
   href: PropTypes.string,
   image: PropTypes.object.isRequired,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   subHead: PropTypes.string,
   tag: PropTypes.object
 };

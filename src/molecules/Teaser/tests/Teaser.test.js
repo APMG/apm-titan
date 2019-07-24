@@ -3,13 +3,15 @@ import { render, cleanup } from '@testing-library/react';
 import { image } from '../../../testdata/image';
 import { Image } from 'apm-mimas';
 import Teaser from '../Teaser';
+import Time from '../../../atoms/Time/Time';
 
 afterEach(cleanup);
 
 const href = '/the/url/path';
 const title = 'This Here Is the Title';
-const publishDate = '2019-02-26T11:48:40+00:00';
-const prettyDate = 'February 26, 2019';
+const dateTime = '2019-02-26T11:48:40+00:00';
+const publishDate = <Time dateTime={dateTime} formatString="MMM DD, YYYY" />;
+const prettyDate = 'Feb 26, 2019';
 const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
 const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
 const description = 'This here is the description.';
@@ -79,9 +81,7 @@ test('Date and time are rendered correctly if publishDate prop has been provided
   );
   const timeEle = container.querySelector('time');
 
-  expect(timeEle.attributes.getNamedItem('dateTime').value).toEqual(
-    publishDate
-  );
+  expect(timeEle.attributes.getNamedItem('dateTime').value).toEqual(dateTime);
   expect(timeEle.textContent).toEqual(prettyDate);
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import Time from '../../atoms/Time/Time';
 
 const EventDates = ({ eventDates }) => {
   return (
@@ -10,9 +10,7 @@ const EventDates = ({ eventDates }) => {
         {eventDates.map((event, index) => {
           return (
             <li key={index}>
-              <time dateTime={event.date}>
-                {format(event.date, 'MMMM D, YYYY')}
-              </time>
+              <Time dateTime={event.date} formatString="MMMM D, YYYY" />
             </li>
           );
         })}
