@@ -11,7 +11,7 @@ const testProps = {
   href: 'https://example.com'
 };
 
-describe('ContentHeader component', () => {
+describe('Button component', () => {
   test('renders children', () => {
     const { getByText } = render(<Button>{testProps.children}</Button>);
     expect(getByText(testProps.children)).toBeDefined();
@@ -23,11 +23,31 @@ describe('ContentHeader component', () => {
     }).toThrow();
   });
 
+  test('renders <a> tag if href passed in', () => {
+    const { getByText } = render(
+      <Button href={testProps.href}>{testProps.children}</Button>
+    );
+    const node = getByText(testProps.children);
+    expect(node.tagName).toBe('A');
+  });
+
+  test('adds target="_blank" if newWindow prop is true and href is passed in', () => {
+    const { getByText } = render(
+      <Button href={testProps.href} newWindow={true}>
+        {testProps.children}
+      </Button>
+    );
+    const node = getByText(testProps.children);
+    expect(node.tagName).toBe('A');
+    expect(node.getAttribute('target')).toBe('_blank');
+  });
+
   test('renders <button type="button"> tag if href is null', () => {
     const { getByText } = render(<Button>{testProps.children}</Button>);
     const node = getByText(testProps.children);
     expect(node.tagName).toBe('BUTTON');
     expect(node.getAttribute('type')).toBe('button');
+    expect(node.classList.contains('disabled')).toBe(false);
   });
 
   test('uses type="submit" if submitForm is true', () => {
@@ -37,6 +57,17 @@ describe('ContentHeader component', () => {
     const node = getByText(testProps.children);
     expect(node.tagName).toBe('BUTTON');
     expect(node.getAttribute('type')).toBe('submit');
+  });
+
+  test('renders <span> tag if both href is passed in and disabled=true', () => {
+    const { getByText } = render(
+      <Button href={testProps.href} disabled={true}>
+        {testProps.children}
+      </Button>
+    );
+    const node = getByText(testProps.children);
+    expect(node.tagName).toBe('SPAN');
+    expect(node.classList.contains('disabled')).toBe(true);
   });
 
   test('adds `disabled` attribute if `disabled` prop is true', () => {
@@ -51,6 +82,7 @@ describe('ContentHeader component', () => {
     const { getByText } = render(<Button>{testProps.children}</Button>);
     const node = getByText(testProps.children);
     expect(node.getAttribute('disabled')).toBe(null);
+    expect(node.classList.contains('disabled')).toBe(false);
   });
 
   test('does not include `disabled` attribute if `disabled` prop is false', () => {
@@ -59,6 +91,7 @@ describe('ContentHeader component', () => {
     );
     const node = getByText(testProps.children);
     expect(node.getAttribute('disabled')).toBe(null);
+    expect(node.classList.contains('disabled')).toBe(false);
   });
 
   test('sets the css class based on `type` prop', () => {
