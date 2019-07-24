@@ -46,7 +46,7 @@ const ContentHeader = ({
           </div>
         )}
 
-        {publishDate && publishDate}
+        {publishDate}
       </div>
     </header>
   );

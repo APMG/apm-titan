@@ -48,7 +48,8 @@ const Teaser = ({
               <Heading level={headingLevel}>{title}</Heading>
             </div>
             <div className="teaser_meta">
-              {publishDate && publishDate}
+              {publishDate}
+
               {contributors && (
                 <div className="teaser_contributors">
                   By {toSentence(contributors)}
