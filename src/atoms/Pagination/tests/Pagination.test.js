@@ -8,7 +8,7 @@ afterEach(cleanup);
 const testPropsSmall = {
   hasFirstAndLast: false,
   linksToShow: 1,
-  linkPrefix: 'episodes',
+  slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
@@ -17,7 +17,7 @@ const testPropsSmall = {
 const testPropsMedium = {
   hasFirstAndLast: false,
   linksToShow: 3,
-  linkPrefix: 'episodes',
+  slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
@@ -26,7 +26,7 @@ const testPropsMedium = {
 const testPropsLarge = {
   hasFirstAndLast: true,
   linksToShow: 5,
-  linkPrefix: 'episodes',
+  slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
@@ -38,7 +38,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
-        linkPrefix={testPropsSmall.linkPrefix}
+        slug={testPropsSmall.slug}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
         totalPages={testPropsSmall.totalPages}
@@ -55,7 +55,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
-        linkPrefix={testPropsSmall.linkPrefix}
+        slug={testPropsSmall.slug}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
         totalPages={testPropsSmall.totalPages}
@@ -71,7 +71,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
-        linkPrefix={testPropsSmall.linkPrefix}
+        slug={testPropsSmall.slug}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
         totalPages={testPropsSmall.totalPages}
@@ -89,7 +89,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
-        linkPrefix={testPropsSmall.linkPrefix}
+        slug={testPropsSmall.slug}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
         totalPages={testPropsSmall.totalPages}
@@ -108,7 +108,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
-        linkPrefix={testPropsMedium.linkPrefix}
+        slug={testPropsMedium.slug}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
         totalPages={testPropsMedium.totalPages}
@@ -126,7 +126,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
-        linkPrefix={testPropsMedium.linkPrefix}
+        slug={testPropsMedium.slug}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
         totalPages={testPropsMedium.totalPages}
@@ -143,7 +143,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
-        linkPrefix={testPropsMedium.linkPrefix}
+        slug={testPropsMedium.slug}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
         totalPages={testPropsMedium.totalPages}
@@ -163,7 +163,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
-        linkPrefix={testPropsMedium.linkPrefix}
+        slug={testPropsMedium.slug}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
         totalPages={testPropsMedium.totalPages}
@@ -184,7 +184,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
-        linkPrefix={testPropsLarge.linkPrefix}
+        slug={testPropsLarge.slug}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
         totalPages={testPropsLarge.totalPages}
@@ -204,7 +204,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
-        linkPrefix={testPropsLarge.linkPrefix}
+        slug={testPropsLarge.slug}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
         totalPages={testPropsLarge.totalPages}
@@ -223,7 +223,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
-        linkPrefix={testPropsLarge.linkPrefix}
+        slug={testPropsLarge.slug}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -247,7 +247,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
-        linkPrefix={testPropsLarge.linkPrefix}
+        slug={testPropsLarge.slug}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -263,5 +263,21 @@ describe('Large Pagination', () => {
     expect(getByText('6').href).toBe('http://localhost/episodes/6');
     expect(getByText('〉').href).toBe('http://localhost/episodes/5');
     expect(getByText('》').href).toBe('http://localhost/episodes/8');
+  });
+
+  test('sets the custom css class based on `elementClass` prop', async () => {
+    const { getByTestId } = render(
+      <Pagination
+        elementClass="foo"
+        linksToShow={testPropsLarge.linksToShow}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={4}
+        totalPages={testPropsLarge.totalPages}
+      />
+    );
+    const node = getByTestId('pagination-test');
+    expect(node.classList.contains('pagination')).toBe(true);
+    expect(node.classList.contains('foo')).toBe(true);
   });
 });
