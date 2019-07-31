@@ -9,27 +9,27 @@ const testPropsSmall = {
   hasFirstAndLast: false,
   linksToShow: 1,
   linkPrefix: 'episodes',
+  resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
-  elementsPerPage: data.episodesList.results.items.length,
-  totalElements: data.episodesList.results.totalItems
+  totalPages: data.episodesList.results.totalPages
 };
 
 const testPropsMedium = {
   hasFirstAndLast: false,
   linksToShow: 3,
   linkPrefix: 'episodes',
+  resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
-  elementsPerPage: data.episodesList.results.items.length,
-  totalElements: data.episodesList.results.totalItems
+  totalPages: data.episodesList.results.totalPages
 };
 
 const testPropsLarge = {
   hasFirstAndLast: true,
   linksToShow: 5,
   linkPrefix: 'episodes',
+  resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
-  elementsPerPage: data.episodesList.results.items.length,
-  totalElements: data.episodesList.results.totalItems
+  totalPages: data.episodesList.results.totalPages
 };
 
 describe('Small Pagination', () => {
@@ -40,13 +40,12 @@ describe('Small Pagination', () => {
         linksToShow={testPropsSmall.linksToShow}
         linkPrefix={testPropsSmall.linkPrefix}
         currentPage={testPropsSmall.currentPage}
-        elementsPerPage={testPropsSmall.elementsPerPage}
-        totalElements={testPropsSmall.totalElements}
+        resourceType={testPropsSmall.resourceType}
+        totalPages={testPropsSmall.totalPages}
       />
     );
 
-    expect(container.getElementsByClassName('pagination_page').length).toBe(3);
-    expect(getByText('〈').tagName).toBe('A');
+    expect(container.getElementsByClassName('pagination_link').length).toBe(2);
     expect(getByText('1').tagName).toBe('A');
     expect(getByText('〉').tagName).toBe('A');
   });
@@ -58,12 +57,11 @@ describe('Small Pagination', () => {
         linksToShow={testPropsSmall.linksToShow}
         linkPrefix={testPropsSmall.linkPrefix}
         currentPage={testPropsSmall.currentPage}
-        elementsPerPage={testPropsSmall.elementsPerPage}
-        totalElements={testPropsSmall.totalElements}
+        resourceType={testPropsSmall.resourceType}
+        totalPages={testPropsSmall.totalPages}
       />
     );
 
-    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
     expect(getByText('1').href).toBe('http://localhost/episodes/1');
     expect(getByText('〉').href).toBe('http://localhost/episodes/2');
   });
@@ -74,9 +72,9 @@ describe('Small Pagination', () => {
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
         linkPrefix={testPropsSmall.linkPrefix}
+        resourceType={testPropsSmall.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsSmall.elementsPerPage}
-        totalElements={testPropsSmall.totalElements}
+        totalPages={testPropsSmall.totalPages}
       />
     );
 
@@ -92,9 +90,9 @@ describe('Small Pagination', () => {
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         linksToShow={testPropsSmall.linksToShow}
         linkPrefix={testPropsSmall.linkPrefix}
+        resourceType={testPropsSmall.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsSmall.elementsPerPage}
-        totalElements={testPropsSmall.totalElements}
+        totalPages={testPropsSmall.totalPages}
       />
     );
 
@@ -112,13 +110,12 @@ describe('Medium Pagination', () => {
         linksToShow={testPropsMedium.linksToShow}
         linkPrefix={testPropsMedium.linkPrefix}
         currentPage={testPropsMedium.currentPage}
-        elementsPerPage={testPropsMedium.elementsPerPage}
-        totalElements={testPropsMedium.totalElements}
+        resourceType={testPropsMedium.resourceType}
+        totalPages={testPropsMedium.totalPages}
       />
     );
 
-    expect(container.getElementsByClassName('pagination_page').length).toBe(4);
-    expect(getByText('〈').tagName).toBe('A');
+    expect(container.getElementsByClassName('pagination_page').length).toBe(3);
     expect(getByText('1').tagName).toBe('A');
     expect(getByText('2').tagName).toBe('A');
     expect(getByText('〉').tagName).toBe('A');
@@ -131,12 +128,11 @@ describe('Medium Pagination', () => {
         linksToShow={testPropsMedium.linksToShow}
         linkPrefix={testPropsMedium.linkPrefix}
         currentPage={testPropsMedium.currentPage}
-        elementsPerPage={testPropsMedium.elementsPerPage}
-        totalElements={testPropsMedium.totalElements}
+        resourceType={testPropsMedium.resourceType}
+        totalPages={testPropsMedium.totalPages}
       />
     );
 
-    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
     expect(getByText('1').href).toBe('http://localhost/episodes/1');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('〉').href).toBe('http://localhost/episodes/2');
@@ -148,9 +144,9 @@ describe('Medium Pagination', () => {
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
         linkPrefix={testPropsMedium.linkPrefix}
+        resourceType={testPropsMedium.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsMedium.elementsPerPage}
-        totalElements={testPropsMedium.totalElements}
+        totalPages={testPropsMedium.totalPages}
       />
     );
 
@@ -168,9 +164,9 @@ describe('Medium Pagination', () => {
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         linksToShow={testPropsMedium.linksToShow}
         linkPrefix={testPropsMedium.linkPrefix}
+        resourceType={testPropsMedium.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsMedium.elementsPerPage}
-        totalElements={testPropsMedium.totalElements}
+        totalPages={testPropsMedium.totalPages}
       />
     );
 
@@ -190,14 +186,12 @@ describe('Large Pagination', () => {
         linksToShow={testPropsLarge.linksToShow}
         linkPrefix={testPropsLarge.linkPrefix}
         currentPage={testPropsLarge.currentPage}
-        elementsPerPage={testPropsLarge.elementsPerPage}
-        totalElements={testPropsLarge.totalElements}
+        resourceType={testPropsLarge.resourceType}
+        totalPages={testPropsLarge.totalPages}
       />
     );
 
-    expect(container.getElementsByClassName('pagination_page').length).toBe(7);
-    expect(getByText('《').tagName).toBe('A');
-    expect(getByText('〈').tagName).toBe('A');
+    expect(container.getElementsByClassName('pagination_page').length).toBe(5);
     expect(getByText('1').tagName).toBe('A');
     expect(getByText('2').tagName).toBe('A');
     expect(getByText('3').tagName).toBe('A');
@@ -212,13 +206,11 @@ describe('Large Pagination', () => {
         linksToShow={testPropsLarge.linksToShow}
         linkPrefix={testPropsLarge.linkPrefix}
         currentPage={testPropsLarge.currentPage}
-        elementsPerPage={testPropsLarge.elementsPerPage}
-        totalElements={testPropsLarge.totalElements}
+        resourceType={testPropsLarge.resourceType}
+        totalPages={testPropsLarge.totalPages}
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes');
-    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
     expect(getByText('1').href).toBe('http://localhost/episodes/1');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
@@ -232,9 +224,9 @@ describe('Large Pagination', () => {
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
         linkPrefix={testPropsLarge.linkPrefix}
+        resourceType={testPropsLarge.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsLarge.elementsPerPage}
-        totalElements={testPropsLarge.totalElements}
+        totalPages={testPropsLarge.totalPages}
       />
     );
 
@@ -256,9 +248,9 @@ describe('Large Pagination', () => {
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         linksToShow={testPropsLarge.linksToShow}
         linkPrefix={testPropsLarge.linkPrefix}
+        resourceType={testPropsLarge.resourceType}
         currentPage={4}
-        elementsPerPage={testPropsLarge.elementsPerPage}
-        totalElements={testPropsLarge.totalElements}
+        totalPages={testPropsLarge.totalPages}
       />
     );
 
