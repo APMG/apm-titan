@@ -7,11 +7,11 @@ import { prevIndex, nextIndex } from '../../utils/utils';
 
 const Pagination = ({
   elementClass,
-  elementsPerPage,
-  totalElements,
   currentPage,
-  linkPrefix,
+  totalPages,
+  slug,
   linksToShow,
+  resourceType,
   hasFirstAndLast,
   firstSymbol,
   prevSymbol,
@@ -23,7 +23,6 @@ const Pagination = ({
     [elementClass]: elementClass
   });
 
-  const numberOfPages = Math.ceil(totalElements / elementsPerPage);
   const middleIndex = Math.floor(linksToShow / 2);
   const paginationArray = [];
 
@@ -31,44 +30,75 @@ const Pagination = ({
     .fill(0)
     .forEach((val, i) => {
       let value = i + currentPage - middleIndex;
-      if (value > 0 && value <= numberOfPages) paginationArray.push(value);
+      if (value > 0 && value <= totalPages) paginationArray.push(value);
     });
 
   return (
-    <nav>
-      <ul className={classes}>
-        {hasFirstAndLast && (
+    <nav data-testid="pagination-test" className={classes}>
+      <ul className="pagination_list">
+        {hasFirstAndLast && currentPage > 1 && (
           <li className="pagination_page pagination_page-first">
-            <Link href={`/${linkPrefix}`}>
-              <a>{firstSymbol}</a>
+            <Link href={`/${resourceType}?slug=${slug}`} as={`/${slug}`}>
+              <a className="pagination_link pagination_link-first">
+                {firstSymbol}
+              </a>
             </Link>
           </li>
         )}
-        <li className="pagination_page pagination_page-prev">
-          <Link href={`/${linkPrefix}/${prevIndex(currentPage)}`}>
-            <a>{prevSymbol}</a>
-          </Link>
-        </li>
+        {currentPage > 1 && (
+          <li className="pagination_page pagination_page-prev">
+            <Link
+              href={`/${resourceType}?slug=${slug}&pageNum=${prevIndex(
+                currentPage
+              )}`}
+              as={`/${slug}/${prevIndex(currentPage)}`}
+            >
+              <a className="pagination_link pagination_link-prev">
+                {prevSymbol}
+              </a>
+            </Link>
+          </li>
+        )}
+
         {paginationArray.map((value) => {
           return (
             <li key={uuid()} className="pagination_page pagination_page-number">
-              <Link href={`/${linkPrefix}/${value}`}>
-                <a>{value}</a>
+              <Link
+                href={`/${resourceType}?slug=${slug}&pageNum=${value}`}
+                as={`/${slug}/${value}`}
+              >
+                <a className="pagination_link pagination_link-number">
+                  {value}
+                </a>
               </Link>
             </li>
           );
         })}
-        <li className="pagination_page pagination_page-next">
-          <Link
-            href={`/${linkPrefix}/${nextIndex(currentPage, numberOfPages)}`}
-          >
-            <a>{nextSymbol}</a>
-          </Link>
-        </li>
-        {hasFirstAndLast && (
+        {currentPage < totalPages && (
+          <li className="pagination_page pagination_page-next">
+            <Link
+              href={`/${resourceType}?slug=${slug}&pageNum=${nextIndex(
+                currentPage,
+                totalPages
+              )}`}
+              as={`/${slug}/${nextIndex(currentPage, totalPages)}`}
+            >
+              <a className="pagination_link pagination_link-next">
+                {nextSymbol}
+              </a>
+            </Link>
+          </li>
+        )}
+
+        {hasFirstAndLast && currentPage < totalPages && (
           <li className="pagination_page pagination_page-last">
-            <Link href={`/${linkPrefix}/${numberOfPages}`}>
-              <a>{lastSymbol}</a>
+            <Link
+              href={`/${resourceType}?slug=${slug}&pageNum=${totalPages}`}
+              as={`/${slug}/${totalPages}`}
+            >
+              <a className="pagination_link pagination_link-last ">
+                {lastSymbol}
+              </a>
             </Link>
           </li>
         )}
@@ -79,11 +109,11 @@ const Pagination = ({
 
 Pagination.propTypes = {
   elementClass: PropTypes.string,
-  elementsPerPage: PropTypes.number.isRequired,
-  totalElements: PropTypes.number.isRequired,
+  resourceType: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
-  linkPrefix: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   linksToShow: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
   hasFirstAndLast: PropTypes.bool,
   firstSymbol: PropTypes.any,
   prevSymbol: PropTypes.any,
