@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, waitForElement } from '@testing-library/react';
 import data from '../../../testdata/pagination.json';
 import Pagination from '../Pagination';
 
