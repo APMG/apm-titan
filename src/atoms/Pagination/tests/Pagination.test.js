@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 const testPropsSmall = {
   hasFirstAndLast: false,
-  linksToShow: 1,
+  buffer: 0,
   slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
@@ -16,7 +16,7 @@ const testPropsSmall = {
 
 const testPropsMedium = {
   hasFirstAndLast: false,
-  linksToShow: 3,
+  buffer: 1,
   slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
@@ -25,7 +25,7 @@ const testPropsMedium = {
 
 const testPropsLarge = {
   hasFirstAndLast: true,
-  linksToShow: 5,
+  buffer: 2,
   slug: 'episodes',
   resourceType: 'episode',
   currentPage: data.episodesList.results.currentPage,
@@ -37,7 +37,7 @@ describe('Small Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
-        linksToShow={testPropsSmall.linksToShow}
+        buffer={testPropsSmall.buffer}
         slug={testPropsSmall.slug}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
@@ -54,7 +54,7 @@ describe('Small Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
-        linksToShow={testPropsSmall.linksToShow}
+        buffer={testPropsSmall.buffer}
         slug={testPropsSmall.slug}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
@@ -70,7 +70,7 @@ describe('Small Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
-        linksToShow={testPropsSmall.linksToShow}
+        buffer={testPropsSmall.buffer}
         slug={testPropsSmall.slug}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
@@ -88,7 +88,7 @@ describe('Small Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
-        linksToShow={testPropsSmall.linksToShow}
+        buffer={testPropsSmall.buffer}
         slug={testPropsSmall.slug}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
@@ -107,7 +107,7 @@ describe('Medium Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
-        linksToShow={testPropsMedium.linksToShow}
+        buffer={testPropsMedium.buffer}
         slug={testPropsMedium.slug}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
@@ -125,7 +125,7 @@ describe('Medium Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
-        linksToShow={testPropsMedium.linksToShow}
+        buffer={testPropsMedium.buffer}
         slug={testPropsMedium.slug}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
@@ -142,7 +142,7 @@ describe('Medium Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
-        linksToShow={testPropsMedium.linksToShow}
+        buffer={testPropsMedium.buffer}
         slug={testPropsMedium.slug}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
@@ -162,7 +162,7 @@ describe('Medium Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
-        linksToShow={testPropsMedium.linksToShow}
+        buffer={testPropsMedium.buffer}
         slug={testPropsMedium.slug}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
@@ -183,7 +183,7 @@ describe('Large Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
-        linksToShow={testPropsLarge.linksToShow}
+        buffer={testPropsLarge.buffer}
         slug={testPropsLarge.slug}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
@@ -203,7 +203,7 @@ describe('Large Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
-        linksToShow={testPropsLarge.linksToShow}
+        buffer={testPropsLarge.buffer}
         slug={testPropsLarge.slug}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
@@ -222,7 +222,7 @@ describe('Large Pagination', () => {
     const { container, getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
-        linksToShow={testPropsLarge.linksToShow}
+        buffer={testPropsLarge.buffer}
         slug={testPropsLarge.slug}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
@@ -246,7 +246,7 @@ describe('Large Pagination', () => {
     const { getByText } = render(
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
-        linksToShow={testPropsLarge.linksToShow}
+        buffer={testPropsLarge.buffer}
         slug={testPropsLarge.slug}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
@@ -265,11 +265,46 @@ describe('Large Pagination', () => {
     expect(getByText('》').href).toBe('http://localhost/episodes/8');
   });
 
+  test('gives *-current classes to current page', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={testPropsLarge.hasFirstAndLast}
+        buffer={testPropsLarge.buffer}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={4}
+        totalPages={testPropsLarge.totalPages}
+      />
+    );
+
+    var currentNode = getByText('4');
+    var prevNode = getByText('3');
+    var nextNode = getByText('5');
+
+    // Check classes on current item
+    expect(currentNode.classList.contains('pagination_link-current')).toBe(
+      true
+    );
+    expect(
+      currentNode.parentElement.classList.contains('pagination_page-current')
+    ).toBe(true);
+
+    // Expect no "current" classes on prev or next items
+    expect(prevNode.classList.contains('pagination_link-current')).toBe(false);
+    expect(
+      prevNode.parentElement.classList.contains('pagination_page-current')
+    ).toBe(false);
+    expect(nextNode.classList.contains('pagination_link-current')).toBe(false);
+    expect(
+      nextNode.parentElement.classList.contains('pagination_page-current')
+    ).toBe(false);
+  });
+
   test('sets the custom css class based on `elementClass` prop', async () => {
     const { getByTestId } = render(
       <Pagination
         elementClass="foo"
-        linksToShow={testPropsLarge.linksToShow}
+        buffer={testPropsLarge.buffer}
         slug={testPropsLarge.slug}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
@@ -279,5 +314,126 @@ describe('Large Pagination', () => {
     const node = getByTestId('pagination-test');
     expect(node.classList.contains('pagination')).toBe(true);
     expect(node.classList.contains('foo')).toBe(true);
+  });
+});
+
+describe('inclusiveFirstLast prop', () => {
+  test('shows first and last button from middle', () => {
+    const { getByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={4}
+        totalPages={7}
+        inclusiveFirstLast={true}
+      />
+    );
+
+    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('〈').href).toBe('http://localhost/episodes/3');
+    expect(getByText('3').href).toBe('http://localhost/episodes/3');
+    expect(getByText('4').href).toBe('http://localhost/episodes/4');
+    expect(getByText('5').href).toBe('http://localhost/episodes/5');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/5');
+    expect(getByText('》').href).toBe('http://localhost/episodes/7');
+  });
+
+  test('does not show first button near beginning', () => {
+    const { getByText, queryByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={2}
+        totalPages={7}
+        inclusiveFirstLast={true}
+      />
+    );
+
+    expect(queryByText('《')).toBeNull();
+    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('2').href).toBe('http://localhost/episodes/2');
+    expect(getByText('3').href).toBe('http://localhost/episodes/3');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/3');
+    expect(getByText('》').href).toBe('http://localhost/episodes/7');
+  });
+
+  test('does not show last button near end', () => {
+    const { getByText, queryByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={6}
+        totalPages={7}
+        inclusiveFirstLast={true}
+      />
+    );
+
+    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('〈').href).toBe('http://localhost/episodes/5');
+    expect(getByText('5').href).toBe('http://localhost/episodes/5');
+    expect(getByText('6').href).toBe('http://localhost/episodes/6');
+    expect(getByText('7').href).toBe('http://localhost/episodes/7');
+    expect(getByText('〉').href).toBe('http://localhost/episodes/7');
+    expect(queryByText('》')).toBeNull();
+  });
+});
+
+describe('firstLastSeparator prop', () => {
+  test('shows separators when far enough from ends', () => {
+    const { getAllByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={5}
+        totalPages={9}
+        inclusiveFirstLast={true}
+        firstLastSeparator="..."
+      />
+    );
+
+    expect(getAllByText('...').length).toBe(2);
+  });
+
+  test('does not show first separator near beginning', () => {
+    const { getAllByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={3}
+        totalPages={9}
+        inclusiveFirstLast={true}
+        firstLastSeparator="..."
+      />
+    );
+
+    expect(getAllByText('...').length).toBe(1);
+  });
+
+  test('does not show last separator near end', () => {
+    const { getAllByText } = render(
+      <Pagination
+        hasFirstAndLast={true}
+        buffer={1}
+        slug={testPropsLarge.slug}
+        resourceType={testPropsLarge.resourceType}
+        currentPage={8}
+        totalPages={9}
+        inclusiveFirstLast={true}
+        firstLastSeparator="..."
+      />
+    );
+
+    expect(getAllByText('...').length).toBe(1);
   });
 });
