@@ -13,9 +13,9 @@ const Pagination = ({
   currentNumberClass,
   currentPage,
   totalPages,
-  slug,
   buffer,
-  resourceType,
+  hrefPrefix,
+  asPrefix,
   hasFirstAndLast,
   inclusiveFirstLast,
   firstLastSeparator,
@@ -91,7 +91,7 @@ const Pagination = ({
       <ul className="pagination_list">
         {showFirst() && (
           <li className="pagination_page pagination_page-first">
-            <Link href={`/${resourceType}?slug=${slug}`} as={`/${slug}`}>
+            <Link href={`/${hrefPrefix}`} as={`/${asPrefix}`}>
               <a className={firstLinkClasses}>{firstSymbol}</a>
             </Link>
             {firstLastSeparator && currentPage > buffer + 2 && (
@@ -104,10 +104,10 @@ const Pagination = ({
         {currentPage > 1 && (
           <li className="pagination_page pagination_page-prev">
             <Link
-              href={`/${resourceType}?slug=${slug}&pageNum=${prevIndex(
+              href={`/${hrefPrefix}&pageNum=${prevIndex(
                 currentPage
               )}`}
-              as={`/${slug}/${prevIndex(currentPage)}`}
+              as={`/${asPrefix}/${prevIndex(currentPage)}`}
             >
               <a className={prevLinkClasses}>{prevSymbol}</a>
             </Link>
@@ -132,8 +132,8 @@ const Pagination = ({
           return (
             <li key={uuid()} className={pageClasses}>
               <Link
-                href={`/${resourceType}?slug=${slug}&pageNum=${value}`}
-                as={`/${slug}/${value}`}
+                href={`/${hrefPrefix}&pageNum=${value}`}
+                as={`/${asPrefix}/${value}`}
               >
                 <a className={linkClasses}>{value}</a>
               </Link>
@@ -143,11 +143,11 @@ const Pagination = ({
         {currentPage < totalPages && (
           <li className="pagination_page pagination_page-next">
             <Link
-              href={`/${resourceType}?slug=${slug}&pageNum=${nextIndex(
+              href={`/${hrefPrefix}&pageNum=${nextIndex(
                 currentPage,
                 totalPages
               )}`}
-              as={`/${slug}/${nextIndex(currentPage, totalPages)}`}
+              as={`/${asPrefix}/${nextIndex(currentPage, totalPages)}`}
             >
               <a className={nextLinkClasses}>{nextSymbol}</a>
             </Link>
@@ -162,8 +162,8 @@ const Pagination = ({
               </span>
             )}
             <Link
-              href={`/${resourceType}?slug=${slug}&pageNum=${totalPages}`}
-              as={`/${slug}/${totalPages}`}
+              href={`/${hrefPrefix}&pageNum=${totalPages}`}
+              as={`/${asPrefix}/${totalPages}`}
             >
               <a className={lastLinkClasses}>{lastSymbol}</a>
             </Link>
@@ -181,8 +181,8 @@ Pagination.propTypes = {
   numberClass: PropTypes.string,
   currentNumberClass: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
-  slug: PropTypes.string.isRequired,
-  resourceType: PropTypes.string.isRequired,
+  hrefPrefix: PropTypes.string.isRequired,
+  asPrefix: PropTypes.string.isRequired,
   buffer: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
   hasFirstAndLast: PropTypes.bool,

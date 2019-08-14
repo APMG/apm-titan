@@ -8,8 +8,8 @@ afterEach(cleanup);
 const testPropsSmall = {
   hasFirstAndLast: false,
   buffer: 0,
-  slug: 'episodes',
-  resourceType: 'episode',
+  hrefPrefix: 'episode?slug=episodes',
+  asPrefix: 'episodes',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
 };
@@ -17,8 +17,8 @@ const testPropsSmall = {
 const testPropsMedium = {
   hasFirstAndLast: false,
   buffer: 1,
-  slug: 'episodes',
-  resourceType: 'episode',
+  hrefPrefix: 'episode?slug=episodes',
+  asPrefix: 'episodes',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
 };
@@ -26,8 +26,8 @@ const testPropsMedium = {
 const testPropsLarge = {
   hasFirstAndLast: true,
   buffer: 2,
-  slug: 'episodes',
-  resourceType: 'episode',
+  hrefPrefix: 'episode?slug=episodes',
+  asPrefix: 'episodes',
   currentPage: data.episodesList.results.currentPage,
   totalPages: data.episodesList.results.totalPages
 };
@@ -38,7 +38,8 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         buffer={testPropsSmall.buffer}
-        slug={testPropsSmall.slug}
+        hrefPrefix={testPropsSmall.hrefPrefix}
+        asPrefix={testPropsSmall.asPrefix}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
         totalPages={testPropsSmall.totalPages}
@@ -55,7 +56,8 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         buffer={testPropsSmall.buffer}
-        slug={testPropsSmall.slug}
+        hrefPrefix={testPropsSmall.hrefPrefix}
+        asPrefix={testPropsSmall.asPrefix}
         currentPage={testPropsSmall.currentPage}
         resourceType={testPropsSmall.resourceType}
         totalPages={testPropsSmall.totalPages}
@@ -71,7 +73,8 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         buffer={testPropsSmall.buffer}
-        slug={testPropsSmall.slug}
+        hrefPrefix={testPropsSmall.hrefPrefix}
+        asPrefix={testPropsSmall.asPrefix}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
         totalPages={testPropsSmall.totalPages}
@@ -89,7 +92,8 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsSmall.hasFirstAndLast}
         buffer={testPropsSmall.buffer}
-        slug={testPropsSmall.slug}
+        hrefPrefix={testPropsSmall.hrefPrefix}
+        asPrefix={testPropsSmall.asPrefix}
         resourceType={testPropsSmall.resourceType}
         currentPage={4}
         totalPages={testPropsSmall.totalPages}
@@ -108,7 +112,8 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         buffer={testPropsMedium.buffer}
-        slug={testPropsMedium.slug}
+        hrefPrefix={testPropsMedium.hrefPrefix}
+        asPrefix={testPropsMedium.asPrefix}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
         totalPages={testPropsMedium.totalPages}
@@ -126,7 +131,8 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         buffer={testPropsMedium.buffer}
-        slug={testPropsMedium.slug}
+        hrefPrefix={testPropsMedium.hrefPrefix}
+        asPrefix={testPropsMedium.asPrefix}
         currentPage={testPropsMedium.currentPage}
         resourceType={testPropsMedium.resourceType}
         totalPages={testPropsMedium.totalPages}
@@ -143,7 +149,8 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         buffer={testPropsMedium.buffer}
-        slug={testPropsMedium.slug}
+        hrefPrefix={testPropsMedium.hrefPrefix}
+        asPrefix={testPropsMedium.asPrefix}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
         totalPages={testPropsMedium.totalPages}
@@ -163,7 +170,8 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsMedium.hasFirstAndLast}
         buffer={testPropsMedium.buffer}
-        slug={testPropsMedium.slug}
+        hrefPrefix={testPropsMedium.hrefPrefix}
+        asPrefix={testPropsMedium.asPrefix}
         resourceType={testPropsMedium.resourceType}
         currentPage={4}
         totalPages={testPropsMedium.totalPages}
@@ -184,7 +192,8 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
         totalPages={testPropsLarge.totalPages}
@@ -204,7 +213,8 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         currentPage={testPropsLarge.currentPage}
         resourceType={testPropsLarge.resourceType}
         totalPages={testPropsLarge.totalPages}
@@ -223,7 +233,8 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -247,7 +258,8 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -270,7 +282,8 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={testPropsLarge.hasFirstAndLast}
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -305,7 +318,8 @@ describe('Large Pagination', () => {
       <Pagination
         elementClass="foo"
         buffer={testPropsLarge.buffer}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={testPropsLarge.totalPages}
@@ -323,7 +337,8 @@ describe('inclusiveFirstLast prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={4}
         totalPages={7}
@@ -345,7 +360,8 @@ describe('inclusiveFirstLast prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={2}
         totalPages={7}
@@ -367,7 +383,8 @@ describe('inclusiveFirstLast prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={6}
         totalPages={7}
@@ -391,7 +408,8 @@ describe('firstLastSeparator prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={5}
         totalPages={9}
@@ -408,7 +426,8 @@ describe('firstLastSeparator prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={3}
         totalPages={9}
@@ -425,7 +444,8 @@ describe('firstLastSeparator prop', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        slug={testPropsLarge.slug}
+        hrefPrefix={testPropsLarge.hrefPrefix}
+        asPrefix={testPropsLarge.asPrefix}
         resourceType={testPropsLarge.resourceType}
         currentPage={8}
         totalPages={9}
