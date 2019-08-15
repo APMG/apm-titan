@@ -104,9 +104,7 @@ const Pagination = ({
         {currentPage > 1 && (
           <li className="pagination_page pagination_page-prev">
             <Link
-              href={`/${hrefPrefix}&pageNum=${prevIndex(
-                currentPage
-              )}`}
+              href={`/${hrefPrefix}&pageNum=${prevIndex(currentPage)}`}
               as={`/${asPrefix}/${prevIndex(currentPage)}`}
             >
               <a className={prevLinkClasses}>{prevSymbol}</a>
