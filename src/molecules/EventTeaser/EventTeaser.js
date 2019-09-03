@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import Link from '../../atoms/Link/Link';
 import Heading from '../../atoms/Heading/Heading';
 import EventDates from '../Event/EventDates';
 import EventVenue from '../Event/EventVenue';
@@ -10,17 +10,15 @@ const EventTeaser = ({ id, title, headingLevel, eventDates, venue }) => {
     <div className="eventTeaser">
       <div className="eventTeaser_header">
         {id && (
-          <Link href={`/${id}`}>
-            <a className="event_topic link-plain">
-              {title && (
-                <Heading
-                  level={headingLevel ? headingLevel : 1}
-                  elementClass="hdg hdg-4"
-                >
-                  {title}
-                </Heading>
-              )}
-            </a>
+          <Link href={`/${id}`} className="event_topic link-plain">
+            {title && (
+              <Heading
+                level={headingLevel ? headingLevel : 1}
+                elementClass="hdg hdg-4"
+              >
+                {title}
+              </Heading>
+            )}
           </Link>
         )}
         {eventDates && <EventDates eventDates={eventDates} />}

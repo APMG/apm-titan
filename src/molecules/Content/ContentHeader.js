@@ -39,7 +39,7 @@ const ContentHeader = ({
             {authors.map((author) => {
               return (
                 <Link href={author.href} key={author.href}>
-                  <a>{`${author.name} `}</a>
+                  {`${author.name} `}
                 </Link>
               );
             })}
