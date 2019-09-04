@@ -10,8 +10,8 @@ const TagLink = ({ elementClass, href, tagName }) => {
   });
 
   return (
-    <Link href={href}>
-      <a className={classes}>{tagName}</a>
+    <Link href={href} className={classes}>
+      {tagName}
     </Link>
   );
 };

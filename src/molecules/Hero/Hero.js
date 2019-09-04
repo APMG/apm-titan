@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import Link from '../../atoms/Link/Link';
 import HeroInner from './HeroInner';
 
 const Hero = ({
@@ -17,12 +17,10 @@ const Hero = ({
       <div className="item_content_hero">
         <div className="item_content_header">
           {tag && (
-            <Link href={`/${tag.href}`}>
-              <a className="tag">
-                {tag.title && (
-                  <div className="item_content_title"> {tag.title}</div>
-                )}
-              </a>
+            <Link href={`/${tag.href}`} className="tag">
+              {tag.title && (
+                <div className="item_content_title"> {tag.title}</div>
+              )}
             </Link>
           )}
 
@@ -41,13 +39,7 @@ const Hero = ({
       </div>
       {href && (
         <Link href={`/${href}`}>
-          <a>
-            <HeroInner
-              image={image}
-              button={button}
-              publishDate={publishDate}
-            />
-          </a>
+          <HeroInner image={image} button={button} publishDate={publishDate} />
         </Link>
       )}
       {!href && (

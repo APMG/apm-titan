@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Link from 'next/link';
+import Link from '../Link/Link';
 
 const Button = ({
   as,
@@ -32,15 +32,15 @@ const Button = ({
       );
     } else {
       return (
-        <Link href={href} as={as}>
-          <a
-            className={classes}
-            target={newWindow ? '_blank' : null}
-            rel={newWindow ? 'noopener noreferrer' : null}
-            {...rest}
-          >
-            {children}
-          </a>
+        <Link
+          href={href}
+          as={as}
+          className={classes}
+          target={newWindow ? '_blank' : null}
+          rel={newWindow ? 'noopener noreferrer' : null}
+          {...rest}
+        >
+          {children}
         </Link>
       );
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Link from '../../atoms/Link/Link';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from '../../svg/Logo';
@@ -26,27 +26,25 @@ const Header = () => {
 
   return (
     <header className={headerClasses} data-testid="header">
-      <Link href="/">
-        <a
-          href="/"
-          onClick={closeMenu}
-          className="header_logo"
-          data-testid="header-logo"
+      <Link
+        href="/"
+        onClick={closeMenu}
+        className="header_logo"
+        data-testid="header-logo"
+      >
+        <div className="header_logoImg">
+          <Logo />
+        </div>
+        <div
+          style={{
+            fontSize: '16px',
+            fontWeight: 600,
+            lineHeight: 1,
+            textTransform: 'uppercase'
+          }}
         >
-          <div className="header_logoImg">
-            <Logo />
-          </div>
-          <div
-            style={{
-              fontSize: '16px',
-              fontWeight: 600,
-              lineHeight: 1,
-              textTransform: 'uppercase'
-            }}
-          >
-            APM Components
-          </div>
-        </a>
+          APM Components
+        </div>
       </Link>
 
       <button

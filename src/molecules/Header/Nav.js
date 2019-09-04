@@ -8,8 +8,8 @@ const Nav = ({ items }) => {
       <ul className="nav_list">
         {items.map((item, index) => (
           <li key={index} className="nav_item">
-            <Link href={item.to}>
-              <a className="nav_link">{item.text}</a>
+            <Link href={item.to} className="nav_link">
+              {item.text}
             </Link>
           </li>
         ))}

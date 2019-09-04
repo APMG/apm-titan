@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
-import Link from 'next/link';
+import Link from '../Link/Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { prevIndex, nextIndex } from '../../utils/utils';
@@ -91,8 +91,12 @@ const Pagination = ({
       <ul className="pagination_list">
         {showFirst() && (
           <li className="pagination_page pagination_page-first">
-            <Link href={`/${hrefPrefix}`} as={`/${asPrefix}`}>
-              <a className={firstLinkClasses}>{firstSymbol}</a>
+            <Link
+              href={`/${hrefPrefix}`}
+              as={`/${asPrefix}`}
+              className={firstLinkClasses}
+            >
+              {firstSymbol}
             </Link>
             {firstLastSeparator && currentPage > buffer + 2 && (
               <span className="pagination_separator pagination_separator-first">
@@ -106,8 +110,9 @@ const Pagination = ({
             <Link
               href={`/${hrefPrefix}&pageNum=${prevIndex(currentPage)}`}
               as={`/${asPrefix}/${prevIndex(currentPage)}`}
+              className={prevLinkClasses}
             >
-              <a className={prevLinkClasses}>{prevSymbol}</a>
+              {prevSymbol}
             </Link>
           </li>
         )}
@@ -132,8 +137,9 @@ const Pagination = ({
               <Link
                 href={`/${hrefPrefix}&pageNum=${value}`}
                 as={`/${asPrefix}/${value}`}
+                className={linkClasses}
               >
-                <a className={linkClasses}>{value}</a>
+                {value}
               </Link>
             </li>
           );
@@ -146,8 +152,9 @@ const Pagination = ({
                 totalPages
               )}`}
               as={`/${asPrefix}/${nextIndex(currentPage, totalPages)}`}
+              className={nextLinkClasses}
             >
-              <a className={nextLinkClasses}>{nextSymbol}</a>
+              {nextSymbol}
             </Link>
           </li>
         )}
@@ -162,8 +169,9 @@ const Pagination = ({
             <Link
               href={`/${hrefPrefix}&pageNum=${totalPages}`}
               as={`/${asPrefix}/${totalPages}`}
+              className={lastLinkClasses}
             >
-              <a className={lastLinkClasses}>{lastSymbol}</a>
+              {lastSymbol}
             </Link>
           </li>
         )}
