@@ -9,12 +9,7 @@ import RouterLink from 'next/link';
 
 const Link = (props) => {
   const { href, as, children, ...rest } = props;
-  const host =
-    typeof window !== 'undefined'
-      ? window.location.host
-      : typeof global !== 'undefined'
-      ? global.location.host
-      : '';
+  const host = typeof window !== 'undefined' ? window.location.host : '';
   const hostReg = new RegExp(host);
   const protocolReg = /^(http:\/\/|https:\/\/|\/\/)/;
 
