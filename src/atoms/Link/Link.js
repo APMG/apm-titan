@@ -9,7 +9,12 @@ import RouterLink from 'next/link';
 
 const Link = (props) => {
   const { href, as, children, ...rest } = props;
-  const host = typeof window !== 'undefined' ? window.location.host : '';
+  const host =
+    typeof window !== 'undefined'
+      ? window.location.host
+      : typeof global !== 'undefined'
+      ? global.location.host
+      : '';
   const hostReg = new RegExp(host);
   const protocolReg = /^(http:\/\/|https:\/\/|\/\/)/;
 
@@ -24,8 +29,13 @@ const Link = (props) => {
   }
 
   // Determine if url's hostname matches the website's hostname
+  //
+  // Disabling this function for now;
+  // TODO: set up a global config for Titan that can pass in the hostname from the site
+  // eslint-disable-next-line
   function isHostnameMatch(url) {
-    return urlWithoutProtocol(url).substring(hostReg, host.length) === host;
+    // return urlWithoutProtocol(url).substring(hostReg, host.length) === host;
+    return false;
   }
 
   // Checks for 'http://', 'https://', or '//' at the beginning of a string

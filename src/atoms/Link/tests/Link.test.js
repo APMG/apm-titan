@@ -14,7 +14,7 @@ describe('Link component', () => {
     expect(node.getAttribute('href')).toBe('/path');
   });
 
-  test('uses a router Link component for internal absolute urls, transformed into relative path', () => {
+  test.skip('uses a router Link component for internal absolute urls, transformed into relative path', () => {
     const { getByTestId } = render(
       <Link href={`${window.location.origin}/path`}>Text</Link>
     );
