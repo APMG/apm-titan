@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format, distanceInWordsToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 
 const Time = (props) => {
   if (props.type === 'distance') {
@@ -8,9 +8,9 @@ const Time = (props) => {
       <time
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
-        title={format(props.dateTime, 'MMMM D, YYYY h:mm aa')}
+        title={format(new Date(props.dateTime), 'MMMM d, yyyy h:mm aa')}
       >
-        {distanceInWordsToNow(props.dateTime)}
+        {formatDistanceToNow(new Date(props.dateTime))}
       </time>
     );
   } else {
@@ -19,7 +19,7 @@ const Time = (props) => {
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
       >
-        {format(props.dateTime, props.formatString)}
+        {format(new Date(props.dateTime), props.formatString)}
       </time>
     );
   }
@@ -27,7 +27,7 @@ const Time = (props) => {
 
 Time.defaultProps = {
   type: 'timestamp',
-  formatString: 'MMMM D, YYYY'
+  formatString: 'MMMM d, yyyy'
 };
 
 Time.propTypes = {

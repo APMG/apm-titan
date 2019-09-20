@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -23,13 +23,14 @@
   "dependencies": {
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
+    "date-fns": "^2.2.1",
     "storybook": "^1.0.0"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "date-fns": "^1.30.1",
     "react": "^16.8.6",
     "next": "^9.0.3",
+    "date-fns": "^2.2.1",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
@@ -44,7 +45,6 @@
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
-    "date-fns": "^1.30.1",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
