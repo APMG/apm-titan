@@ -46,15 +46,21 @@ const Teaser = ({
           <div className="teaser_header">
             <Heading level={headingLevel}>{title}</Heading>
           </div>
-          <div className="teaser_meta">
-            {publishDate}
 
-            {contributors && (
-              <div className="teaser_contributors">
-                By {toSentence(contributors)}
-              </div>
-            )}
-          </div>
+          {(publishDate || contributors) && (
+            <div className="teaser_meta">
+              {publishDate && (
+                <div className="teaser_pubdate">{publishDate}</div>
+              )}
+
+              {contributors && (
+                <div className="teaser_contributors">
+                  By {toSentence(contributors)}
+                </div>
+              )}
+            </div>
+          )}
+
           {description && (
             <div className="teaser_body userContent">{description}</div>
           )}
