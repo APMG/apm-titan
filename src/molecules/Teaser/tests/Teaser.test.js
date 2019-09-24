@@ -10,7 +10,7 @@ afterEach(cleanup);
 const href = '/the/url/path';
 const title = 'This Here Is the Title';
 const dateTime = '2019-02-26T11:48:40+00:00';
-const publishDate = <Time dateTime={dateTime} formatString="MMM DD, YYYY" />;
+const publishDate = <Time dateTime={dateTime} formatString="MMM dd, yyyy" />;
 const prettyDate = 'Feb 26, 2019';
 const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
 const contributorsText = 'By Opie Schmuck and Opiette Schmuck';

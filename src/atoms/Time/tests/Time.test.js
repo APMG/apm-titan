@@ -23,11 +23,11 @@ describe('Time', () => {
   });
 
   test('uses "time ago" format when prop type="distance"', () => {
-    const titleFormat = 'MMMM D, YYYY h:mm aa';
+    const titleFormat = 'MMMM d, yyyy h:mm aa';
     // Calculate dateTimes based on current test runner's time
-    const dateFiveDaysAgo = format(subDays(new Date(), 5)).toString();
+    const dateFiveDaysAgo = subDays(new Date(), 5);
     const formattedTimeFiveDaysAgo = format(dateFiveDaysAgo, titleFormat);
-    const dateTwelveMinutesAgo = format(subMinutes(new Date(), 12)).toString();
+    const dateTwelveMinutesAgo = subMinutes(new Date(), 12);
     const formattedTimeTwelveMinutesAgo = format(
       dateTwelveMinutesAgo,
       titleFormat
@@ -35,19 +35,25 @@ describe('Time', () => {
 
     const { getByText } = render(
       <>
-        <Time dateTime={dateFiveDaysAgo} type="distance" />
-        <Time dateTime={dateTwelveMinutesAgo} type="distance" />
+        <Time dateTime={dateFiveDaysAgo.toString()} type="distance" />
+        <Time dateTime={dateTwelveMinutesAgo.toString()} type="distance" />
       </>
     );
     const fiveDaysEl = getByText('5 days');
     const twelveMinsEl = getByText('12 minutes');
 
     expect(fiveDaysEl.innerHTML).toBe('5 days');
-    expect(fiveDaysEl.getAttribute('datetime')).toBe(dateFiveDaysAgo);
-    expect(fiveDaysEl.getAttribute('title')).toBe(formattedTimeFiveDaysAgo);
+    expect(fiveDaysEl.getAttribute('datetime')).toBe(
+      dateFiveDaysAgo.toString()
+    );
+    expect(fiveDaysEl.getAttribute('title')).toBe(
+      formattedTimeFiveDaysAgo.toString()
+    );
 
     expect(twelveMinsEl.innerHTML).toBe('12 minutes');
-    expect(twelveMinsEl.getAttribute('datetime')).toBe(dateTwelveMinutesAgo);
+    expect(twelveMinsEl.getAttribute('datetime')).toBe(
+      dateTwelveMinutesAgo.toString()
+    );
     expect(twelveMinsEl.getAttribute('title')).toBe(
       formattedTimeTwelveMinutesAgo
     );
@@ -55,7 +61,7 @@ describe('Time', () => {
 
   test('formats the timestamp according to the format prop', () => {
     const { getByText } = render(
-      <Time dateTime="2019-07-18T04:00:00-05:00" formatString="MM-DD-YYYY" />
+      <Time dateTime="2019-07-18T04:00:00-05:00" formatString="MM-dd-yyyy" />
     );
     const timeEl = getByText('07-18-2019');
     expect(timeEl.innerHTML).toBe('07-18-2019');
