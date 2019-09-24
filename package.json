@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "0.7.2",
+  "version": "0.7.2-beta.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
