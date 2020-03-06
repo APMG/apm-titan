@@ -92,8 +92,8 @@ const Pagination = ({
         {showFirst() && (
           <li className="pagination_page pagination_page-first">
             <Link
-              href={`/${hrefPrefix}`}
-              as={`/${asPrefix}`}
+              href={`/${hrefPrefix}/[pageNum]`}
+              as={`/${asPrefix}/1`}
               className={firstLinkClasses}
             >
               {firstSymbol}
@@ -108,7 +108,7 @@ const Pagination = ({
         {currentPage > 1 && (
           <li className="pagination_page pagination_page-prev">
             <Link
-              href={`/${hrefPrefix}&pageNum=${prevIndex(currentPage)}`}
+              href={`/${hrefPrefix}/[pageNum]`}
               as={`/${asPrefix}/${prevIndex(currentPage)}`}
               className={prevLinkClasses}
             >
@@ -135,7 +135,7 @@ const Pagination = ({
           return (
             <li key={uuid()} className={pageClasses}>
               <Link
-                href={`/${hrefPrefix}&pageNum=${value}`}
+                href={`/${hrefPrefix}/[pageNum]`}
                 as={`/${asPrefix}/${value}`}
                 className={linkClasses}
               >
@@ -147,10 +147,7 @@ const Pagination = ({
         {currentPage < totalPages && (
           <li className="pagination_page pagination_page-next">
             <Link
-              href={`/${hrefPrefix}&pageNum=${nextIndex(
-                currentPage,
-                totalPages
-              )}`}
+              href={`/${hrefPrefix}/[pageNum]`}
               as={`/${asPrefix}/${nextIndex(currentPage, totalPages)}`}
               className={nextLinkClasses}
             >
@@ -167,7 +164,7 @@ const Pagination = ({
               </span>
             )}
             <Link
-              href={`/${hrefPrefix}&pageNum=${totalPages}`}
+              href={`/${hrefPrefix}/[pageNum]`}
               as={`/${asPrefix}/${totalPages}`}
               className={lastLinkClasses}
             >
