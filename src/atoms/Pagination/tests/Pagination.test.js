@@ -266,7 +266,7 @@ describe('Large Pagination', () => {
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('《').href).toBe('http://localhost/episodes/1');
     expect(getByText('〈').href).toBe('http://localhost/episodes/3');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
@@ -345,8 +345,7 @@ describe('inclusiveFirstLast prop', () => {
         inclusiveFirstLast={true}
       />
     );
-
-    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('《').href).toBe('http://localhost/episodes/1');
     expect(getByText('〈').href).toBe('http://localhost/episodes/3');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
     expect(getByText('4').href).toBe('http://localhost/episodes/4');
@@ -392,7 +391,7 @@ describe('inclusiveFirstLast prop', () => {
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('《').href).toBe('http://localhost/episodes/1');
     expect(getByText('〈').href).toBe('http://localhost/episodes/5');
     expect(getByText('5').href).toBe('http://localhost/episodes/5');
     expect(getByText('6').href).toBe('http://localhost/episodes/6');
