@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'uuid';
 import { v4 as uuidv4 } from 'uuid';
 import Link from '../Link/Link';
 import PropTypes from 'prop-types';
