@@ -13,7 +13,12 @@ const EventPrices = ({ prices, ticketLink }) => {
         );
       })}
       <br />
-      <a target={'_blank'} rel="noopener noreferrer" href={ticketLink} className="link">
+      <a
+        target={'_blank'}
+        rel="noopener noreferrer"
+        href={ticketLink}
+        className="link"
+      >
         Buy Tickets here
       </a>
     </div>

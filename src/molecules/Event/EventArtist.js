@@ -9,11 +9,21 @@ const EventArtist = ({ artist }) => {
         <div className="link-plain">{artist.name}</div>
       </a>
       <br />
-      <a target={'_blank'} rel="noopener noreferrer" href={artist.facebook} className="link">
+      <a
+        target={'_blank'}
+        rel="noopener noreferrer"
+        href={artist.facebook}
+        className="link"
+      >
         Facebook
       </a>
       <br />
-      <a target={'_blank'} rel="noopener noreferrer" href={artist.twitter} className="link">
+      <a
+        target={'_blank'}
+        rel="noopener noreferrer"
+        href={artist.twitter}
+        className="link"
+      >
         Twitter
       </a>
     </div>
