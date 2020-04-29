@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import data from '../../../testdata/pagination.json';
+import data from '../../../__testdata__/pagination.json';
 import Pagination from '../Pagination';
 
 afterEach(cleanup);

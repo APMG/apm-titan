@@ -3,7 +3,7 @@ import Link from '../../atoms/Link/Link';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from '../../svg/Logo';
-import { navItems } from '../../testdata/navItems';
+import { navItems } from '../../__testdata__/navItems';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
