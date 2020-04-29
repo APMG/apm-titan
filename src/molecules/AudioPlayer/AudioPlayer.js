@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'webpack-zepto';
-import Player from 'apm-html5-player';
-import FormatTime from 'apm-html5-player/dist/FormatTime';
-import AudioAnalytics from 'apm-html5-player/dist/AudioAnalytics';
+import { Player, FormatTime, AudioAnalytics } from 'apm-html5-player';
 import Icon from '../../atoms/Icon/Icon';
 
 class AudioPlayer extends Component {
