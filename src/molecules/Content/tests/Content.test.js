@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { Image } from 'apm-mimas';
-import { image } from '../../../testdata/image';
+import { image } from '../../../__testdata__/image';
 import Content from '../Content';
 
 // automatically unmount and cleanup DOM after the test is finished
