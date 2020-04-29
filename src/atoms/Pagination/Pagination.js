@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Link from '../Link/Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -133,7 +133,7 @@ const Pagination = ({
           });
 
           return (
-            <li key={uuid()} className={pageClasses}>
+            <li key={uuidv4()} className={pageClasses}>
               <Link
                 href={`/${hrefPrefix}`}
                 as={`/${asPrefix}/${value}`}

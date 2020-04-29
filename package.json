@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -18,14 +18,15 @@
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "prettier": "prettier --check '**/**.js'",
     "prettier:fix": "prettier --check '**/**.js' --write",
-    "blast": "rm -rf node_modules dist package-lock.json && npm cache verify"
+    "blast": "rm -rf node_modules dist package-lock.json && yarn check"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.5.0",
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "date-fns": "^2.2.1",
-    "storybook": "^1.0.0"
+    "storybook": "^1.0.0",
+    "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",

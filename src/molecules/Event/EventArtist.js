@@ -5,15 +5,25 @@ const EventArtist = ({ artist }) => {
   return (
     <div className="eventInfo-artist">
       <h2>Artist</h2>
-      <a target={'_blank'} href={artist.website}>
+      <a target={'_blank'} rel="noopener noreferrer" href={artist.website}>
         <div className="link-plain">{artist.name}</div>
       </a>
       <br />
-      <a target={'_blank'} href={artist.facebook} className="link">
+      <a
+        target={'_blank'}
+        rel="noopener noreferrer"
+        href={artist.facebook}
+        className="link"
+      >
         Facebook
       </a>
       <br />
-      <a target={'_blank'} href={artist.twitter} className="link">
+      <a
+        target={'_blank'}
+        rel="noopener noreferrer"
+        href={artist.twitter}
+        className="link"
+      >
         Twitter
       </a>
     </div>
