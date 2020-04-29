@@ -21,6 +21,7 @@
     "blast": "rm -rf node_modules dist package-lock.json && npm cache verify"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.5.0",
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "date-fns": "^2.2.1",
@@ -28,10 +29,10 @@
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "react": "^16.8.6",
-    "next": "^9.0.3",
     "date-fns": "^2.2.1",
-    "prop-types": "^15.7.2"
+    "next": "^9.0.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.1.9",
