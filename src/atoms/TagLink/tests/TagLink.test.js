@@ -6,17 +6,16 @@ import TagLink from '../TagLink';
 afterEach(cleanup);
 
 test('TagLink props value matches as expected', () => {
-  // Arranged
   const tag = {
     href: '/the/url/path',
     tagName: 'Live from Here'
   };
-  // Act
+
   const { getByText } = render(
     <TagLink tagName={tag.tagName} href={tag.href} />
   );
   const node = getByText('Live from Here');
-  // Assert
+
   expect(node).toBeDefined();
   expect(node.getAttribute('href')).toBe('/the/url/path');
   expect(node.innerHTML).toBe('Live from Here');
