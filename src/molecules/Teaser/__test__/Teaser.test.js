@@ -31,7 +31,13 @@ test('Always renders a root div', () => {
 
 test('Applies elementClass when one is supplied', () => {
   const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} elementClass={elementClass} />
+    <Teaser
+      id="1234"
+      headingLevel={headingLevel}
+      href={href}
+      title={title}
+      elementClass={elementClass}
+    />
   );
 
   expect(container.querySelectorAll('.testClass')).toHaveLength(1);
