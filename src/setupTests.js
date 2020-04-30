@@ -1,3 +1,2 @@
-import '@testing-library/jest-dom';
 import 'jest-prop-type-error';
 import 'babel-polyfill';
