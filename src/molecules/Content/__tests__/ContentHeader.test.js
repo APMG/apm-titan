@@ -2,104 +2,208 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import ContentHeader from '../ContentHeader';
 
-// automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
 
-// Use this object for props that get reused
-const testProps = {
-  title: 'this is a title',
-  authors: [
+function defaultProps() {
+  const title = 'this is a title';
+  const authors = [
     { name: 'Jim', href: '/bio/jim' },
     { name: 'Bill', href: '/bio/bill' }
-  ],
-  headingLevel: 1,
-  publishDate: 'January 12, 2018',
-  subtitle: 'this is a subtitle',
-  tag: { to: '/taglink', tagName: 'tag' }
+  ];
+  const headingLevel = 1;
+  const publishDate = 'January 12, 2018';
+  const subtitle = 'this is a subtitle';
+  const tag = { href: '/taglink', tagName: 'tag' };
+
+  return {
+    title,
+    authors,
+    headingLevel,
+    publishDate,
+    subtitle,
+    tag
+  }
 };
 
-describe('ContentHeader component', () => {
-  test('renders title prop', () => {
-    const { getByText } = render(<ContentHeader title={testProps.title} />);
-    expect(getByText(testProps.title)).toBeDefined();
-  });
+test('Throws an error when required `title` prop is missing', () => {
+  expect(() => {
+    render(<ContentHeader />);
+  }).toThrow();
+});
 
-  test('throws an error when required `title` prop is missing', () => {
-    expect(() => {
-      render(<ContentHeader />);
-    }).toThrow();
-  });
+test('Does not render byline if authors prop is empty', () => {
+  const { title } = defaultProps();
 
-  test('renders authors with correct href if prop exists', () => {
-    const { getByText } = render(
-      <ContentHeader title={testProps.title} authors={testProps.authors} />
-    );
-    const node0 = getByText(testProps.authors[0].name);
-    const node1 = getByText(testProps.authors[1].name);
-    expect(node0).toBeDefined();
-    expect(node0.getAttribute('href')).toEqual(testProps.authors[0].href);
-    expect(node1).toBeDefined();
-    expect(node1.getAttribute('href')).toEqual(testProps.authors[1].href);
-  });
+  const { container } = render(<ContentHeader title={title} />);
 
-  test('does not render byline if authors prop is empty', () => {
-    const { container } = render(<ContentHeader title={testProps.title} />);
-    expect(container.getElementsByClassName('content_byline').length).toBe(0);
-  });
+  expect(container.getElementsByClassName('content_byline').length).toBe(0);
+});
 
-  test('renders publish date if prop exists', () => {
-    const { getByText } = render(
-      <ContentHeader
-        title={testProps.title}
-        publishDate={testProps.publishDate}
-      />
-    );
-    const node0 = getByText('January 12, 2018');
-    expect(node0).toBeDefined();
-  });
+test('Renders byline with correct links', () => {
+  const { title, authors } = defaultProps();
 
-  test('does not render publish date if publishDate prop is empty', () => {
-    const { container } = render(<ContentHeader title={testProps.title} />);
-    // Verify that the publish date html isn't rendered
-    // expect(container.find('time').exists()).toBe(false);
-    expect(container.getElementsByTagName('time').length).toBe(0);
-  });
+  const { getByText } = render(
+    <ContentHeader title={title} authors={authors} />
+  );
 
-  test('renders the Heading component with appropriate heading level', () => {
-    const { getByText } = render(
-      <ContentHeader title={testProps.title} headingLevel={3} />
-    );
-    expect(getByText(testProps.title).tagName).toBe('H3');
-  });
+  const firstAuthorNode = getByText(authors[0].name);
+  const secondAuthorNode = getByText(authors[1].name);
 
-  test('renders the Heading component with an h1 if headingLevel not specified', () => {
-    const { getByText } = render(<ContentHeader title={testProps.title} />);
-    expect(getByText(testProps.title).tagName).toBe('H1');
-  });
+  expect(firstAuthorNode.getAttribute('href')).toEqual(authors[0].href);
+  expect(secondAuthorNode.getAttribute('href')).toEqual(authors[1].href);
+});
 
-  test('renders the subtitle if prop exists', () => {
-    const { getByText } = render(
-      <ContentHeader title={testProps.title} subtitle={testProps.subtitle} />
-    );
-    expect(getByText(testProps.subtitle)).toBeDefined();
-  });
+test('Renders correct byline sentence for 1 author', () => {
+  const props = defaultProps();
+  props.authors = [{ name: 'Jim', href: '/bio/jim' }];
+  
+  const { getByText } = render(
+    <ContentHeader title={props.title} authors={props.authors} />
+  );
 
-  test('does not render subtitle if subtitle prop is empty', () => {
-    const { container } = render(<ContentHeader title={testProps.title} />);
-    expect(container.getElementsByClassName('content_subtitle').length).toBe(0);
-  });
+  const authorNode = getByText(props.authors[0].name);
 
-  // test('renders tag if prop exists', () => {
-  //   const { getByText } = render(
-  //     <ContentHeader title={testProps.title} tag={testProps.tag} />
-  //   );
-  //   const node = getByText(testProps.tag.tagName);
-  //   expect(node).toBeDefined();
-  //   expect(node.getAttribute('href')).toBe(testProps.tag.to);
-  // });
+  expect(authorNode.textContent).toEqual(props.authors[0].name);
+  expect(authorNode.getAttribute('href')).toBe(props.authors[0].href);
+})
 
-  test('does not render TagLink component if tag prop is empty', () => {
-    const { container } = render(<ContentHeader title={testProps.title} />);
-    expect(container.getElementsByClassName('tag').length).toBe(0);
-  });
+test('Renders correct byline sentence for 2 authors', () => {
+  const props = defaultProps();
+
+  const { getByText, getByTestId } = render(
+    <ContentHeader title={props.title} authors={props.authors} />
+  )
+
+  const node = getByTestId('contentByline')
+  const firstAuthorNode = getByText(props.authors[0].name)
+  const secondAuthorNode = getByText(props.authors[1].name)
+
+  expect(firstAuthorNode.textContent).toBe(props.authors[0].name)
+  expect(firstAuthorNode.getAttribute('href')).toBe(props.authors[0].href)
+  expect(secondAuthorNode.textContent).toBe(props.authors[1].name)
+  expect(secondAuthorNode.getAttribute('href')).toBe(props.authors[1].href)
+  expect(node.textContent).toBe("By Jim and Bill")
+})
+
+test('Renders correct byline sentence for 3 or more authors', () => {
+  const props = defaultProps();
+  props.authors = [
+    { name: 'Kyle', href: '/bio/kyle' },
+    { name: 'Kenny', href: '/bio/kenny' },
+    { name: 'Stan', href: '/bio/stan' },
+    { name: 'Cartman', href: '/bio/cartman' }
+  ];
+
+  const { getByText, getByTestId } = render(
+    <ContentHeader title={props.title} authors={props.authors} />
+  )
+
+  const node = getByTestId('contentByline')
+  const firstAuthorNode = getByText(props.authors[0].name)
+  const secondAuthorNode = getByText(props.authors[1].name)
+  const thirdAuthorNode = getByText(props.authors[2].name)
+  const fourthAuthorNode = getByText(props.authors[3].name)
+
+  expect(firstAuthorNode.textContent).toBe(props.authors[0].name)
+  expect(firstAuthorNode.getAttribute('href')).toBe(props.authors[0].href)
+  expect(secondAuthorNode.textContent).toBe(props.authors[1].name)
+  expect(secondAuthorNode.getAttribute('href')).toBe(props.authors[1].href)
+  expect(thirdAuthorNode.textContent).toBe(props.authors[2].name)
+  expect(thirdAuthorNode.getAttribute('href')).toBe(props.authors[2].href)
+  expect(fourthAuthorNode.textContent).toBe(props.authors[3].name)
+  expect(fourthAuthorNode.getAttribute('href')).toBe(props.authors[3].href)
+  expect(node.textContent).toBe("By Kyle, Kenny, Stan and Cartman")
+})
+
+test('Renders publish date if prop exists', () => {
+  const { title, publishDate } = defaultProps();
+
+  const { getByText } = render(
+    <ContentHeader
+      title={title}
+      publishDate={publishDate}
+    />
+  );
+  const node = getByText('January 12, 2018');
+
+  expect(node).toBeDefined();
+});
+
+test('Does not render date if publishDate prop is empty', () => {
+  const { title } = defaultProps();
+
+  const { container } = render(<ContentHeader title={title} />);
+  
+  const node = container.getElementsByTagName('time');
+
+  expect(node.length).toBe(0);
+});
+
+test('Renders the Heading component with appropriate heading level', () => {
+  const { title } = defaultProps();
+
+  const { getByText } = render(
+    <ContentHeader title={title} headingLevel={3} />
+  );
+
+  const node = getByText(title)
+
+  expect(node.tagName).toBe('H3');
+  expect(node.textContent).toBe(title);
+});
+
+test('Renders the Heading component as an H1 if headingLevel is not specified', () => {
+  const { title } = defaultProps();
+
+  const { getByText } = render(<ContentHeader title={title} />);
+
+  const node = getByText(title)
+
+  expect(node.tagName).toBe('H1');
+  expect(node.textContent).toBe(title);
+});
+
+test('Renders the subtitle if prop exists', () => {
+  const { title, subtitle } = defaultProps();
+
+  const { getByText } = render(
+    <ContentHeader title={title} subtitle={subtitle} />
+  );
+
+  const node = getByText(subtitle)
+
+  expect(node.textContent).toBe(subtitle);
+});
+
+test('Does not render subtitle if subtitle prop is empty', () => {
+  const { title } = defaultProps();
+
+  const { container } = render(<ContentHeader title={title} />);
+
+  const node = container.getElementsByClassName('content_subtitle') 
+
+  expect(node.length).toBe(0);
+});
+
+test('Renders tag if prop exists', () => {
+  const { title, tag } = defaultProps();
+
+  const { getByText } = render(
+    <ContentHeader title={title} tag={tag} />
+  );
+
+  const node = getByText(tag.tagName);
+
+  expect(node.getAttribute('href')).toBe(tag.href);
+  expect(node.textContent).toBe(tag.tagName);
+});
+
+test('Does not render TagLink component if tag prop is empty', () => {
+  const { title } = defaultProps();
+
+  const { container } = render(<ContentHeader title={title} />);
+
+  const node = container.getElementsByClassName('tag');
+
+  expect(node.length).toBe(0);
 });

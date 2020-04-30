@@ -9,13 +9,13 @@ afterEach(cleanup);
 
 const apmImage = <Image image={image} />;
 
-const props = {
+const defaultProps = {
   title: 'this is a title',
   bodyHtml: 'body field'
 };
 
-test('renders ContentHeader', () => {
-  const { getByText } = render(<Content title={props.title} />);
+test('renders ContentHeader with correct classes and content', () => {
+  const { getByText } = render(<Content title={defaultProps.title} />);
 
   const node = getByText('this is a title')
 
@@ -25,7 +25,7 @@ test('renders ContentHeader', () => {
 
 test('renders ContentBody if bodyHtml prop exists', () => {
   const { getByText } = render(
-    <Content title={props.title} bodyHtml={props.bodyHtml} />
+    <Content title={defaultProps.title} bodyHtml={defaultProps.bodyHtml} />
   );
 
   const node = getByText('body field')
@@ -34,7 +34,7 @@ test('renders ContentBody if bodyHtml prop exists', () => {
 });
 
 test('does not render ContentBody if bodyHtml prop is empty', () => {
-  const { container } = render(<Content title={props.title} />);
+  const { container } = render(<Content title={defaultProps.title} />);
   const node = container.firstChild
 
   expect(node.getElementsByClassName('content_body').length).toBe(0);
@@ -46,7 +46,7 @@ test('renders ContentFigure if image prop exists', () => {
   }
 
   const { getByAltText } = render(
-    <Content title={props.title} image={apmImage} />
+    <Content title={defaultProps.title} image={apmImage} />
   );
   const node = getByAltText('Serena Brook opens our show at The Town Hall')
 
@@ -54,7 +54,7 @@ test('renders ContentFigure if image prop exists', () => {
 });
 
 test('does not render ContentFigure if bodyHtml prop is empty', () => {
-  const { container } = render(<Content title={props.title} />);
+  const { container } = render(<Content title={defaultProps.title} />);
   const node = container.firstChild
 
   expect(node.getElementsByClassName('figure').length).toBe(0);
