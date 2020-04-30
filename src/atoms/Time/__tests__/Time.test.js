@@ -6,7 +6,7 @@ import { format, subDays, subMinutes } from 'date-fns';
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-test('renders a <time> element with the default config', () => {
+it('renders a <time> element with the default config', () => {
   const data = {
     dateTime: '2019-07-18T04:00:00-05:00'
   };
@@ -21,7 +21,7 @@ test('renders a <time> element with the default config', () => {
   expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-test('uses "time ago" format when prop type="distance"', () => {
+it('uses "time ago" format when prop type="distance"', () => {
   const titleFormat = 'MMMM d, yyyy h:mm aa';
   // Calculate dateTimes based on current test runner's time
   const dateFiveDaysAgo = subDays(new Date(), 5);
@@ -54,7 +54,7 @@ test('uses "time ago" format when prop type="distance"', () => {
   expect(nodeMins.getAttribute('title')).toBe(formattedTimeTwelveMinutesAgo);
 });
 
-test('formats the timestamp according to the format prop', () => {
+it('formats the timestamp according to the format prop', () => {
   const data = {
     date: '2019-07-18T04:00:00-05:00',
     format: 'MM-dd-yyyy'
@@ -70,7 +70,7 @@ test('formats the timestamp according to the format prop', () => {
   expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-test('adds a class to the element when an `elementClass` prop is passed in', () => {
+it('adds a class to the element when an `elementClass` prop is passed in', () => {
   const data = {
     dateTime: '2019-07-18T04:00:00-05:00'
   };
@@ -86,7 +86,7 @@ test('adds a class to the element when an `elementClass` prop is passed in', () 
   expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-test('throws an error when a isRequired value is missing', () => {
+it('throws an error when a isRequired value is missing', () => {
   expect(() => {
     render(<Time />);
   }).toThrow();

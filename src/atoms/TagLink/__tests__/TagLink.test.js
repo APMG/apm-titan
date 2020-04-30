@@ -5,7 +5,7 @@ import TagLink from '../TagLink';
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-test('TagLink props value matches as expected', () => {
+it('Set TagName and href prop', () => {
   const tag = {
     href: '/the/url/path',
     tagName: 'Live from Here'
@@ -17,14 +17,12 @@ test('TagLink props value matches as expected', () => {
   const node = getByText('Live from Here');
 
   expect(node).toBeDefined();
-  expect(node.getAttribute('href')).toBe('/the/url/path');
   expect(node.innerHTML).toBe('Live from Here');
+  expect(node.getAttribute('href')).toBe('/the/url/path');
 });
-test('Throws an error when a isRequired value is missing', () => {
+
+it('Throws an error when a isRequired value is missing', () => {
   expect(() => {
     render(<TagLink />);
   }).toThrow();
-});
-test("We'll have to overhaul TagLink later anyway", () => {
-  expect(true).toBe(true);
 });
