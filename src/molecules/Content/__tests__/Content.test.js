@@ -30,7 +30,7 @@ test('renders ContentBody if bodyHtml prop exists', () => {
 
   const node = container.firstChild.getElementsByClassName('userContent')[0];
 
-  expect(node.textContent).toBe('body field')
+  expect(node.textContent).toBe('body field');
 });
 
 test('does not render ContentBody if bodyHtml prop is empty', () => {
