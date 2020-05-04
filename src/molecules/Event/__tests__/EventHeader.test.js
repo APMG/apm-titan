@@ -14,7 +14,7 @@ function defaultProps() {
   const tag = {
     href: '/taglink',
     tagName: 'tag'
-  }
+  };
 
   return {
     title,
@@ -22,8 +22,8 @@ function defaultProps() {
     publishDate,
     subtitle,
     tag
-  }
-};
+  };
+}
 
 test('Throws an error when required `title` prop is missing', () => {
   expect(() => {
@@ -35,11 +35,8 @@ test('Renders correct title at correct heading level', () => {
   const { title, headingLevel } = defaultProps();
 
   const { getByText } = render(
-    <EventHeader
-      title={title}
-      headingLevel={headingLevel}
-    />
-  )
+    <EventHeader title={title} headingLevel={headingLevel} />
+  );
 
   const titleNode = getByText(title);
 
@@ -50,9 +47,7 @@ test('Renders correct title at correct heading level', () => {
 test('Heading level is H1 if none are specified in the props', () => {
   const { title } = defaultProps();
 
-  const { getByText } = render(
-    <EventHeader title={title} />
-  )
+  const { getByText } = render(<EventHeader title={title} />);
 
   const titleNode = getByText(title);
 
@@ -64,10 +59,7 @@ test('Renders publish date if prop exists', () => {
   const { title, publishDate } = defaultProps();
 
   const { getByText } = render(
-    <EventHeader
-      title={title}
-      publishDate={publishDate}
-    />
+    <EventHeader title={title} publishDate={publishDate} />
   );
 
   const dateNode = getByText(publishDate);
@@ -78,9 +70,7 @@ test('Renders publish date if prop exists', () => {
 test('Does not render publish date if publishDate prop is not provided', () => {
   const { title } = defaultProps();
 
-  const { container } = render(
-    <EventHeader title={title} />
-  );
+  const { container } = render(<EventHeader title={title} />);
 
   expect(container.getElementsByTagName('time').length).toBe(0);
 });
@@ -100,9 +90,7 @@ test('Renders the subtitle if prop is provided', () => {
 test('Does not render subtitle if prop is not provided', () => {
   const { title } = defaultProps();
 
-  const { container } = render(
-    <EventHeader title={title} />
-  );
+  const { container } = render(<EventHeader title={title} />);
 
   expect(container.getElementsByClassName('event_subtitle').length).toBe(0);
 });
@@ -110,9 +98,7 @@ test('Does not render subtitle if prop is not provided', () => {
 test('Renders a tag if the prop is provided', () => {
   const { title, tag } = defaultProps();
 
-  const { getByText } = render(
-    <EventHeader title={title} tag={tag} />
-  );
+  const { getByText } = render(<EventHeader title={title} tag={tag} />);
 
   const tagNode = getByText(tag.tagName);
 

@@ -11,24 +11,18 @@ const toByline = (authors) => {
     return (
       <div className="content_byline" data-testid="contentByline">
         {`By `}
-        <Link href={authors[0].href}>
-          {`${authors[0].name}`}
-        </Link>
+        <Link href={authors[0].href}>{`${authors[0].name}`}</Link>
       </div>
-    )
+    );
   } else if (authors.length === 2) {
     return (
       <div className="content_byline" data-testid="contentByline">
         {`By `}
-        <Link href={authors[0].href}>
-          {`${authors[0].name}`}
-        </Link>
+        <Link href={authors[0].href}>{`${authors[0].name}`}</Link>
         {` and `}
-        <Link href={authors[1].href}>
-          {`${authors[1].name}`}
-        </Link>
+        <Link href={authors[1].href}>{`${authors[1].name}`}</Link>
       </div>
-    )
+    );
   } else {
     return (
       <div className="content_byline" data-testid="contentByline">
@@ -36,28 +30,22 @@ const toByline = (authors) => {
         {authors.slice(0, authors.length - 2).map((author) => {
           return (
             <span key={author.href}>
-              <Link href={author.href}>
-                {`${author.name}`}
-              </Link>
+              <Link href={author.href}>{`${author.name}`}</Link>
               {`, `}
             </span>
           );
         })}
-        <Link
-          href={authors[authors.length - 2].href}
-        >
-          {`${authors[authors.length - 2].name}`} 
+        <Link href={authors[authors.length - 2].href}>
+          {`${authors[authors.length - 2].name}`}
         </Link>
         {` and `}
-        <Link
-          href={authors[authors.length - 1].href}
-        >
-          {`${authors[authors.length - 1].name}`} 
+        <Link href={authors[authors.length - 1].href}>
+          {`${authors[authors.length - 1].name}`}
         </Link>
       </div>
-    )
+    );
   }
-}
+};
 
 const ContentHeader = ({
   title,
@@ -88,9 +76,7 @@ const ContentHeader = ({
       )}
 
       <div className="content_meta">
-        {authors && (
-          toByline(authors)
-        )}
+        {authors && toByline(authors)}
 
         {publishDate}
       </div>

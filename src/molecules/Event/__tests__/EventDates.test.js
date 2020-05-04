@@ -16,20 +16,18 @@ function defaultProps() {
     {
       date: 'May 25, 2019',
       description: 'lol'
-    },
-  ]
+    }
+  ];
 
   return {
     eventDates
-  }
-};
+  };
+}
 
 test('render EventDates if prop exists', () => {
   const { eventDates } = defaultProps();
 
-  const { getByText } = render(
-    <EventDates eventDates={eventDates} />
-  );
+  const { getByText } = render(<EventDates eventDates={eventDates} />);
 
   let firstDateNode = getByText(eventDates[0].date);
   let secondDateNode = getByText(eventDates[1].date);

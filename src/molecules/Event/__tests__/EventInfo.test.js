@@ -28,7 +28,7 @@ function defaultProps() {
     {
       date: 'August 5, 2019'
     }
-  ]
+  ];
 
   return {
     title,
@@ -36,8 +36,8 @@ function defaultProps() {
     venue,
     eventPrices,
     eventDates
-  }
-};
+  };
+}
 
 test('Render EventVenue if venue props is provided', () => {
   const { venue } = defaultProps();
@@ -62,9 +62,7 @@ test('render EventArtist if artist prop exists', () => {
 test('render EventDates if eventDates prop exists', () => {
   const { eventDates } = defaultProps();
 
-  const { getByText } = render(
-    <EventInfo eventDates={eventDates} />
-  );
+  const { getByText } = render(<EventInfo eventDates={eventDates} />);
 
   let datesNode = getByText(eventDates[0].date);
 
@@ -80,16 +78,14 @@ test('render EventPrices if eventPrices prop exists', () => {
     `${eventPrices[0].description}: $${eventPrices[0].price}`
   );
 
-  expect(eventNode.textContent).toBe(
-    `Member price general admission: $69.00`
-  );
+  expect(eventNode.textContent).toBe(`Member price general admission: $69.00`);
 });
 
 test('Does not render EventVenue, EventArtist, EventPrices or EventDates if their respective props are not provided', () => {
   const { container } = render(<EventInfo />);
 
-  expect(container.getElementsByClassName('eventInfo-venue').length).toBe(0)
-  expect(container.getElementsByClassName('eventInfo-artist').length).toBe(0)
-  expect(container.getElementsByClassName('eventInfo-prices').length).toBe(0)
-  expect(container.getElementsByClassName('eventInfo-date').length).toBe(0)
+  expect(container.getElementsByClassName('eventInfo-venue').length).toBe(0);
+  expect(container.getElementsByClassName('eventInfo-artist').length).toBe(0);
+  expect(container.getElementsByClassName('eventInfo-prices').length).toBe(0);
+  expect(container.getElementsByClassName('eventInfo-date').length).toBe(0);
 });

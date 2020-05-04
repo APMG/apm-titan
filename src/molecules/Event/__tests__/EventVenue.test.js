@@ -22,16 +22,14 @@ function defaultProps() {
   return {
     venue
   };
-};
+}
 
 test('Creates the correct address element', () => {
   const { venue } = defaultProps();
 
-  const { container } = render(
-    <EventVenue venue={venue} />
-  )
+  const { container } = render(<EventVenue venue={venue} />);
 
-  const node = container.querySelectorAll('address')[0]
+  const node = container.querySelectorAll('address')[0];
 
   // a snapshot works well here because 1) it's tiny and
   // 2) this should never change. if it does, there's a problem.
@@ -41,11 +39,11 @@ test('Creates the correct address element', () => {
 test('Links to the correct Google Maps coordinates', () => {
   const { venue } = defaultProps();
 
-  const { getByText } = render(
-    <EventVenue venue={venue} />
-  )
+  const { getByText } = render(<EventVenue venue={venue} />);
 
   const node = getByText('View Map');
 
-  expect(node.getAttribute('href')).toBe(`https://www.google.com/maps/?q=${venue.latitude},${venue.longitude}`)
+  expect(node.getAttribute('href')).toBe(
+    `https://www.google.com/maps/?q=${venue.latitude},${venue.longitude}`
+  );
 });
