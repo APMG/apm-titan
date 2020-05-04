@@ -2,6 +2,7 @@ module.exports = {
   coverageDirectory: './coverage',
   collectCoverageFrom: [
     '**/src/**/*.js',
+    '!**/*.story.js',
     '!**/__tests__/**',
     '!**/node_modules/**'
   ],

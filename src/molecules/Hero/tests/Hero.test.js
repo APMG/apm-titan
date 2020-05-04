@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import Hero from '../Hero';
 import HeroInner from '../HeroInner';
-import { data } from '../../../testdata/hero';
+import { data } from '../../../__testdata__/hero';
 
 afterEach(cleanup);
 

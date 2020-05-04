@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { image } from '../../../testdata/image';
+import { image } from '../../../__testdata__/image';
 import { Image } from 'apm-mimas';
 import Teaser from '../Teaser';
 import Time from '../../../atoms/Time/Time';

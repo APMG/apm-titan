@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import Button from '../Button';
 
+// automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
 
 // Use this object for props that get reused
@@ -92,25 +93,7 @@ test('does not include `disabled` attribute if `disabled` prop is false', () => 
   expect(node.classList.contains('disabled')).toBe(false);
 });
 
-test('sets the css class based on `type` prop', () => {
-  const { getByText } = render(
-    <Button type="primary">{testProps.children}</Button>
-  );
-  const node = getByText(testProps.children);
-  expect(node.classList.contains('btn')).toBe(true);
-  expect(node.classList.contains('btn-primary')).toBe(true);
-});
-
-test('sets the css class based on `size` prop', () => {
-  const { getByText } = render(
-    <Button size="large">{testProps.children}</Button>
-  );
-  const node = getByText(testProps.children);
-  expect(node.classList.contains('btn')).toBe(true);
-  expect(node.classList.contains('btn-large')).toBe(true);
-});
-
-test('sets the both css classes based on `type` and `size` props', () => {
+test('sets the css classes based on both `type` and `size` props', () => {
   const { getByText } = render(
     <Button type="primary" size="large">
       {testProps.children}
