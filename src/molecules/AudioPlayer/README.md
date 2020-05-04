@@ -1,3 +1,0 @@
-## Player
-
-> README TEXT GOES HERE.

@@ -24,13 +24,13 @@ test('renders ContentHeader with correct classes and content', () => {
 });
 
 test('renders ContentBody if bodyHtml prop exists', () => {
-  const { getByText } = render(
+  const { container } = render(
     <Content title={defaultProps.title} bodyHtml={defaultProps.bodyHtml} />
   );
 
-  const node = getByText('body field');
+  const node = container.firstChild.getElementsByClassName('userContent')[0];
 
-  expect(node.classList.contains('userContent')).toBe(true);
+  expect(node.textContent).toBe('body field')
 });
 
 test('does not render ContentBody if bodyHtml prop is empty', () => {
@@ -52,11 +52,4 @@ test('renders ContentFigure if image prop exists', () => {
   const node = getByAltText('Serena Brook opens our show at The Town Hall');
 
   expect(node.getAttribute('srcset')).toBe(expected.srcset);
-});
-
-test('does not render ContentFigure if bodyHtml prop is empty', () => {
-  const { container } = render(<Content title={defaultProps.title} />);
-  const node = container.firstChild;
-
-  expect(node.getElementsByClassName('figure').length).toBe(0);
 });
