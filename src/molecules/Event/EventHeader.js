@@ -30,14 +30,14 @@ const EventHeader = ({ title, subtitle, tag, headingLevel, publishDate }) => {
 };
 
 EventHeader.propTypes = {
-  subtitle: PropTypes.string,
+  title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
   publishDate: PropTypes.node,
+  subtitle: PropTypes.string,
   tag: PropTypes.shape({
     href: PropTypes.string,
     tagName: PropTypes.string
-  }),
-  title: PropTypes.string.isRequired
+  })
 };
 
 export default EventHeader;

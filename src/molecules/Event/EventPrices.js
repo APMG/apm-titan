@@ -5,10 +5,10 @@ const EventPrices = ({ prices, ticketLink }) => {
   return (
     <div className="eventInfo-prices">
       <h2>Event tickets</h2>
-      {prices.map((data, index) => {
+      {prices.map((price) => {
         return (
-          <div key={index}>
-            {data.description}: ${data.price}
+          <div key={price.price} className="eventInfo-price">
+            {price.description}: ${price.price}
           </div>
         );
       })}
@@ -34,4 +34,5 @@ EventPrices.propTypes = {
   ),
   ticketLink: PropTypes.string
 };
+
 export default EventPrices;

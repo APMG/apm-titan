@@ -48,4 +48,5 @@ EventVenue.propTypes = {
     longitude: PropTypes.string
   })
 };
+
 export default EventVenue;

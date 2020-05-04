@@ -38,4 +38,5 @@ EventArtist.propTypes = {
     website: PropTypes.string
   })
 };
+
 export default EventArtist;
