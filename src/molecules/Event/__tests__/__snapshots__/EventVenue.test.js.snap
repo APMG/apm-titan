@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creates the correct address element 1`] = `
+<address>
+  701 N 1st Ave
+   
+  Minneapolis
+  , 
+  MN
+  <br />
+  55403
+  <br />
+  (612) 338-8388
+</address>
+`;

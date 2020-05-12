@@ -4,6 +4,49 @@ import Link from 'next/link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
 
+const toByline = (authors) => {
+  if (!authors || authors.length <= 0) return;
+
+  if (authors.length === 1) {
+    return (
+      <div className="content_byline" data-testid="contentByline">
+        {`By `}
+        <Link href={authors[0].href}>{`${authors[0].name}`}</Link>
+      </div>
+    );
+  } else if (authors.length === 2) {
+    return (
+      <div className="content_byline" data-testid="contentByline">
+        {`By `}
+        <Link href={authors[0].href}>{`${authors[0].name}`}</Link>
+        {` and `}
+        <Link href={authors[1].href}>{`${authors[1].name}`}</Link>
+      </div>
+    );
+  } else {
+    return (
+      <div className="content_byline" data-testid="contentByline">
+        {'By '}
+        {authors.slice(0, authors.length - 2).map((author) => {
+          return (
+            <span key={author.href}>
+              <Link href={author.href}>{`${author.name}`}</Link>
+              {`, `}
+            </span>
+          );
+        })}
+        <Link href={authors[authors.length - 2].href}>
+          {`${authors[authors.length - 2].name}`}
+        </Link>
+        {` and `}
+        <Link href={authors[authors.length - 1].href}>
+          {`${authors[authors.length - 1].name}`}
+        </Link>
+      </div>
+    );
+  }
+};
+
 const ContentHeader = ({
   title,
   subtitle,
@@ -33,18 +76,7 @@ const ContentHeader = ({
       )}
 
       <div className="content_meta">
-        {authors && (
-          <div className="content_byline" data-testid="contentByline">
-            By{' '}
-            {authors.map((author) => {
-              return (
-                <Link href={author.href} key={author.href}>
-                  {`${author.name} `}
-                </Link>
-              );
-            })}
-          </div>
-        )}
+        {authors && toByline(authors)}
 
         {publishDate}
       </div>

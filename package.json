@@ -12,6 +12,7 @@
     "dev": "rollup -c -w",
     "test": "jest --watch",
     "test:ci": "jest",
+    "test:coverage": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "eslint": "eslint .",
@@ -25,6 +26,7 @@
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "date-fns": "^2.2.1",
+    "date-fns-tz": "^1.0.10",
     "storybook": "^1.0.0",
     "uuid": "^7.0.2"
   },
