@@ -17,7 +17,7 @@ function constructTime(timeString) {
 }
 
 const Time = (props) => {
-  // If this date string is formatted like our CMS formats it, use the constructTime function above. Otherwise, just parse the date normally. Parsing our CMSs timestamps directly with new Date(string) didn't behave well with the time zone stuff. 
+  // If this date string is formatted like our CMS formats it, use the constructTime function above. Otherwise, just parse the date normally. Parsing our CMSs timestamps directly with new Date(string) didn't behave well with the time zone stuff.
   let cmsDateStampRegex = /\d\d\d\d-[01]\d-[0123]\dT[012]\d:[012345]\d/;
   let time = cmsDateStampRegex.test(props.dateTime)
     ? constructTime(props.dateTime)
