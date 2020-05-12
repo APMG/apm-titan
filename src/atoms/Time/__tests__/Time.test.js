@@ -40,14 +40,12 @@ it('uses "time ago" format when prop type="distance"', () => {
   const nodeDays = getByText('5 days');
   const nodeMins = getByText('12 minutes');
 
-  expect(nodeDays).toBeDefined();
-  expect(nodeMins).toBeDefined();
-  expect(nodeDays.innerHTML).toBe('5 days');
+  expect(nodeDays.textContent).toBe('5 days');
   expect(nodeDays.getAttribute('datetime')).toBe(dateFiveDaysAgo.toString());
   expect(nodeDays.getAttribute('title')).toBe(
     formattedTimeFiveDaysAgo.toString()
   );
-  expect(nodeMins.innerHTML).toBe('12 minutes');
+  expect(nodeMins.textContent).toBe('12 minutes');
   expect(nodeMins.getAttribute('datetime')).toBe(
     dateTwelveMinutesAgo.toString()
   );
