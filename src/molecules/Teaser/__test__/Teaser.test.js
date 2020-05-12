@@ -17,6 +17,7 @@ const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
 const description = 'This here is the description.';
 const headingLevel = 3;
 const TestImage = <Image image={image} />;
+const elementClass = 'testClass';
 
 // SUCCESSES
 
@@ -26,6 +27,20 @@ test('Always renders a root div', () => {
   );
 
   expect(container.querySelectorAll('.teaser')).toHaveLength(1);
+});
+
+test('Applies elementClass when one is supplied', () => {
+  const { container } = render(
+    <Teaser
+      id="1234"
+      headingLevel={headingLevel}
+      href={href}
+      title={title}
+      elementClass={elementClass}
+    />
+  );
+
+  expect(container.querySelectorAll('.testClass')).toHaveLength(1);
 });
 
 test('Contributors string is rendered correctly when contributors array prop is provided', () => {
