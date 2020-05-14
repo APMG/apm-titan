@@ -5,9 +5,9 @@ const EventPrices = ({ prices, ticketLink }) => {
   return (
     <div className="eventInfo-prices">
       <h2>Event tickets</h2>
-      {prices.map((price) => {
+      {prices.map((price, i) => {
         return (
-          <div key={price.price} className="eventInfo-price">
+          <div key={i} className="eventInfo-price">
             {price.description}: ${price.price}
           </div>
         );

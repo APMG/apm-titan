@@ -7,195 +7,131 @@ import Time from '../../../atoms/Time/Time';
 
 afterEach(cleanup);
 
-const href = '/the/url/path';
-const title = 'This Here Is the Title';
-const dateTime = '2019-02-26T11:48:40+00:00';
-const publishDate = <Time dateTime={dateTime} formatString="MMM dd, yyyy" />;
-const prettyDate = 'Feb 26, 2019';
-const contributors = ['Opie Schmuck', 'Opiette Schmuck'];
-const contributorsText = 'By Opie Schmuck and Opiette Schmuck';
-const description = 'This here is the description.';
-const headingLevel = 3;
-const TestImage = <Image image={image} />;
-const elementClass = 'testClass';
+const defaultProps = {
+  href: '/the/url/path',
+  title: 'This Here Is the Title',
+  contributors: ['Opie Schmuck', 'Opiette Schmuck'],
+  description: 'This here is the description.',
+  dateTime: '2019-02-26T11:48:40+00:00'
+};
 
-// SUCCESSES
-
-test('Always renders a root div', () => {
-  const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
-  );
-
-  expect(container.querySelectorAll('.teaser')).toHaveLength(1);
-});
-
-test('Applies elementClass when one is supplied', () => {
-  const { container } = render(
-    <Teaser
-      id="1234"
-      headingLevel={headingLevel}
-      href={href}
-      title={title}
-      elementClass={elementClass}
-    />
-  );
-
-  expect(container.querySelectorAll('.testClass')).toHaveLength(1);
-});
-
-test('Contributors string is rendered correctly when contributors array prop is provided', () => {
-  const { container } = render(
-    <Teaser
-      id="1234"
-      href={href}
-      image={TestImage}
-      title={title}
-      publishDate={publishDate}
-      contributors={contributors}
-      description={description}
-      headingLevel={headingLevel}
-    />
-  );
-
-  expect(container.querySelector('.teaser_contributors').textContent).toEqual(
-    contributorsText
-  );
-});
-
-test('Image component is rendered correctly when image prop is provided', () => {
-  const { container } = render(
-    <Teaser
-      id="1234"
-      href={href}
-      image={TestImage}
-      title={title}
-      publishDate={publishDate}
-      contributors={contributors}
-      description={description}
-      headingLevel={headingLevel}
-    />
-  );
-
-  expect(container.querySelector('img').getAttribute('srcset')).toEqual(
+const expected = {
+  srcset:
     'https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/e428bc-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/58b2ba-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 600w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/95c885-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1000w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/b3a373-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 1400w, https://img.apmcdn.org/c2c452354fbff94d720ba8f86e2c71ba7427b306/widescreen/6ceb83-20181220-serena-brook-opens-our-show-at-the-town-hall.jpg 2000w'
-  );
-});
+};
 
-test('Date and time are rendered correctly if publishDate prop has been provided', () => {
+test('Renders a basic teaser with essential props -- href, title, headingLevel', () => {
   const { container } = render(
     <Teaser
-      id="1234"
-      href={href}
-      image={TestImage}
-      title={title}
-      publishDate={publishDate}
-      contributors={contributors}
-      description={description}
-      headingLevel={headingLevel}
+      headingLevel={3}
+      href={defaultProps.href}
+      title={defaultProps.title}
     />
   );
-  const timeEle = container.querySelector('time');
+  const teaserNodes = container.querySelectorAll('.teaser');
 
-  expect(timeEle.attributes.getNamedItem('dateTime').value).toEqual(dateTime);
-  expect(timeEle.textContent).toEqual(prettyDate);
-});
-
-test('The external link is rendered correctly if href prop has been provided', () => {
-  const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
-  );
-
-  expect(
-    container.querySelector('a').attributes.getNamedItem('href').value
-  ).toEqual(href);
-});
-
-test('The heading level is 3 if the headingLevel prop passed in is 3', () => {
-  const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={headingLevel} />
-  );
-  expect(container.querySelectorAll('h3').length).toBe(1);
+  expect(teaserNodes).toHaveLength(1);
+  expect(teaserNodes[0].textContent).toBe('This Here Is the Title');
 });
 
 test('The heading has class hdg-2 if the headingLevel prop passed in is 2', () => {
-  const level = 2;
-  const { container } = render(
-    <Teaser id="1234" href={href} title={title} headingLevel={level} />
-  );
-
-  expect(container.querySelector('h2').classList.contains('hdg-2')).toBe(true);
-});
-
-// FAILURES
-
-test('Throws an error when required value is missing', () => {
-  expect(() => {
-    render(
-      <Teaser
-        id="1234"
-        contributors={contributors}
-        headingLevel={headingLevel}
-        image={TestImage}
-        publishDate={publishDate}
-      />
-    );
-  }).toThrow();
-});
-
-test('Teaser date is not rendered when the publishDate prop is not provided', () => {
   const { container } = render(
     <Teaser
-      id="1234"
-      description={description}
-      headingLevel={headingLevel}
-      href={href}
-      image={TestImage}
-      title={title}
+      href={defaultProps.href}
+      title={defaultProps.title}
+      headingLevel={2}
     />
   );
+  const headingNode = container.querySelector('h2');
+
+  expect(headingNode.classList.contains('hdg-2')).toBe(true);
+});
+
+test('Applies elementClass as a className when one is supplied', () => {
+  const { getByTestId } = render(
+    <Teaser
+      headingLevel={3}
+      href={defaultProps.href}
+      title={defaultProps.title}
+      elementClass="testClass"
+    />
+  );
+  const teaserNode = getByTestId('relativeLink').parentNode;
+
+  expect(teaserNode.classList).toContain('testClass');
+});
+
+test('Contributors string is rendered correctly when an array with two names is given', () => {
+  const { getByText } = render(
+    <Teaser
+      href={defaultProps.href}
+      title={defaultProps.title}
+      publishDate={
+        <Time dateTime={defaultProps.dateTime} formatString="MMM dd, yyyy" />
+      }
+      contributors={defaultProps.contributors}
+      headingLevel={3}
+    />
+  );
+  const contributorsNode = getByText('By Opie Schmuck and Opiette Schmuck');
+
+  expect(contributorsNode.textContent).toBe(
+    'By Opie Schmuck and Opiette Schmuck'
+  );
+});
+
+test('Correct image is rendered when image prop is given', () => {
+  const { getByAltText } = render(
+    <Teaser
+      href={defaultProps.href}
+      image={<Image image={image} />}
+      title={defaultProps.title}
+      headingLevel={3}
+    />
+  );
+  const imgNode = getByAltText('Serena Brook opens our show at The Town Hall');
+
+  expect(imgNode.getAttribute('srcset')).toEqual(expected.srcset);
+});
+
+test('Date and time are rendered correctly if publishDate prop has been given', () => {
+  const { getByText } = render(
+    <Teaser
+      href={defaultProps.href}
+      title={defaultProps.title}
+      publishDate={
+        <Time dateTime={defaultProps.dateTime} formatString="MMM dd, yyyy" />
+      }
+      contributors={defaultProps.contributors}
+      headingLevel={3}
+    />
+  );
+  const timeNode = getByText('Feb 26, 2019');
+
+  expect(timeNode.getAttribute('datetime')).toBe(defaultProps.dateTime);
+  expect(timeNode.textContent).toBe('Feb 26, 2019');
+});
+
+test('The following optional sections are not rendered when their corresponding prop is not given -- publishDate, contributors, description, tag, and image', () => {
+  const { container } = render(
+    <Teaser
+      headingLevel={3}
+      href={defaultProps.href}
+      title={defaultProps.title}
+    />
+  );
+
   expect(container.querySelectorAll('time')).toHaveLength(0);
-});
-
-test('Teaser contributors are not rendered when the contributors prop is not provided', () => {
-  const { container } = render(
-    <Teaser
-      id="1234"
-      description={description}
-      headingLevel={headingLevel}
-      href={href}
-      image={TestImage}
-      title={title}
-    />
-  );
   expect(container.querySelectorAll('.teaser_contributors')).toHaveLength(0);
-});
-
-test('Teaser description is not rendered when the description prop is not provided', () => {
-  const { container } = render(
-    <Teaser
-      id="1234"
-      headingLevel={headingLevel}
-      href={href}
-      image={TestImage}
-      title={title}
-    />
-  );
   expect(container.querySelectorAll('.teaser_body.UserContent')).toHaveLength(
     0
   );
-});
-
-test('Teaser image is not rendered when the image prop is not provided', () => {
-  const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
-  );
-  expect(container.querySelectorAll('image')).toHaveLength(0);
-  expect(container.querySelectorAll('figure')).toHaveLength(0);
-});
-
-test('Teaser tag is not rendered when the tag prop is not provided', () => {
-  const { container } = render(
-    <Teaser id="1234" headingLevel={headingLevel} href={href} title={title} />
-  );
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
+  expect(container.querySelectorAll('image')).toHaveLength(0);
+});
+
+test('Throws an error when required value is missing', () => {
+  expect(() => {
+    render(<Teaser />);
+  }).toThrow();
 });

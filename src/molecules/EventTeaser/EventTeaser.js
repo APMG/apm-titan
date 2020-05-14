@@ -12,12 +12,7 @@ const EventTeaser = ({ id, title, headingLevel, eventDates, venue }) => {
         {id && (
           <Link href={`/${id}`} className="event_topic link-plain">
             {title && (
-              <Heading
-                level={headingLevel ? headingLevel : 1}
-                elementClass="hdg hdg-4"
-              >
-                {title}
-              </Heading>
+              <Heading level={headingLevel ? headingLevel : 4}>{title}</Heading>
             )}
           </Link>
         )}
@@ -36,8 +31,8 @@ EventTeaser.propTypes = {
       description: PropTypes.string
     })
   ),
-  headingLevel: PropTypes.number,
   id: PropTypes.number.isRequired,
+  headingLevel: PropTypes.number,
   title: PropTypes.string,
   venue: PropTypes.shape({
     id: PropTypes.number,

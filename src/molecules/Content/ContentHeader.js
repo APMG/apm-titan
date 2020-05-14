@@ -65,9 +65,7 @@ const ContentHeader = ({
         />
       )}
 
-      <Heading level={headingLevel ? headingLevel : 1} className="hdg hdg-1">
-        {title}
-      </Heading>
+      <Heading level={headingLevel ? headingLevel : 1}>{title}</Heading>
 
       {subtitle && (
         <p className="content_subtitle" data-testid="contentSubtitle">

@@ -2,51 +2,41 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import Link from '../Link';
 
-// automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
 
-test('uses a router Link component for relative urls', () => {
-  const { getByTestId } = render(<Link href="/path">Text</Link>);
-  // Verify that the router Link component is rendered, not a plain <a> tag
-  const node = getByTestId('relativeLink');
-  expect(node).toBeDefined();
-  expect(node.getAttribute('href')).toBe('/path');
+const defaultProps = () => {
+  return {
+    href: '/path/with-slug',
+    as: 'path?slug=with/slug'
+  };
+};
+
+test('Uses a router Link component for relative urls', () => {
+  const props = defaultProps();
+  const { getByTestId } = render(<Link href={props.href}>Text</Link>);
+  const linkNode = getByTestId('relativeLink');
+
+  expect(linkNode.getAttribute('href')).toBe('/path/with-slug');
 });
 
-test.skip('uses a router Link component for internal absolute urls, transformed into relative path', () => {
-  const { getByTestId } = render(
-    <Link href={`${window.location.origin}/path`}>Text</Link>
-  );
-  // Verify that the router Link component is rendered, not a plain <a> tag
-  const node = getByTestId('hostnameLink');
-  expect(node).toBeDefined();
-  expect(node.getAttribute('href')).toBe('/path');
+test('Uses a regular <a> tag for external urls with full path', () => {
+  const props = defaultProps();
+  props.href = 'http://www.example.com/path';
+  const { getByTestId } = render(<Link href={props.href}>Text</Link>);
+  const linkNode = getByTestId('externalLink');
+
+  expect(linkNode.getAttribute('href')).toBe('http://www.example.com/path');
 });
 
-test('uses a regular <a> tag for external urls with full path', () => {
-  const path = 'http://www.example.com/path';
-  const { getByTestId } = render(<Link href={path}>Text</Link>);
-  // Verify that the <a> tag is rendered, not a router <Link>
-  const node = getByTestId('externalLink');
-  expect(node).toBeDefined();
-  expect(node.getAttribute('href')).toBe(path);
+test('Sets an `as` prop for internal links using next/link', () => {
+  const props = defaultProps();
+  const { getByTestId } = render(<Link {...props}>Text</Link>);
+
+  const linkNode = getByTestId('relativeLink');
+  expect(linkNode.getAttribute('href')).toBe('path?slug=with/slug');
 });
 
-test('sets an `as` prop for internal links using next/link', () => {
-  const path = '/path/with-slug';
-  const as = 'path?slug=with/slug';
-  const { getByTestId } = render(
-    <Link href={path} as={as}>
-      Text
-    </Link>
-  );
-  // Verify that the router Link component is rendered, not a plain <a> tag
-  const node = getByTestId('relativeLink');
-  expect(node).toBeDefined();
-  expect(node.getAttribute('href')).toBe(as);
-});
-
-test('additional props are passed in', () => {
+test('Other standard link attributes are applied to this link object normally', () => {
   const { getByText } = render(
     <Link
       href="/path"
@@ -57,9 +47,9 @@ test('additional props are passed in', () => {
       Text
     </Link>
   );
-  const node = getByText('Text');
+  const linkNode = getByText('Text');
 
-  expect(node.classList).toContain('link-class');
-  expect(node.getAttribute('rel')).toBe('noopener noreferrer');
-  expect(node.getAttribute('target')).toBe('_blank');
+  expect(linkNode.classList).toContain('link-class');
+  expect(linkNode.getAttribute('rel')).toBe('noopener noreferrer');
+  expect(linkNode.getAttribute('target')).toBe('_blank');
 });
