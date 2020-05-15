@@ -4,8 +4,7 @@ import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Event from './Event';
 
 const stories = storiesOf('Event', module);
-stories
-  .addDecorator(withKnobs({ escapeHTML: false }))
+stories.addDecorator(withKnobs({ escapeHTML: false }));
 
 stories
   .add('Event All props', () => {

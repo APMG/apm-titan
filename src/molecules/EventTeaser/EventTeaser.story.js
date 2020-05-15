@@ -4,8 +4,7 @@ import { withKnobs, text, number } from '@storybook/addon-knobs';
 import EventTeaser from './EventTeaser';
 
 const stories = storiesOf('Event Teaser', module);
-stories
-  .addDecorator(withKnobs({ escapeHTML: false }))
+stories.addDecorator(withKnobs({ escapeHTML: false }));
 
 stories.add('Event Teaser All Props', () => {
   return (

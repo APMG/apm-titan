@@ -5,8 +5,7 @@ import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Content from './Content.js';
 
 const stories = storiesOf('Content', module);
-stories
-  .addDecorator(withKnobs({ escapeHTML: false }))
+stories.addDecorator(withKnobs({ escapeHTML: false }));
 
 stories
   .add('Content All', () => {

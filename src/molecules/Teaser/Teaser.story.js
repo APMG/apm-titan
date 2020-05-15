@@ -7,7 +7,7 @@ import { teaser } from './__testdata__/teaser';
 import { image } from '../../__testdata__/image';
 
 const stories = storiesOf('Teaser', module);
-stories.addDecorator(withKnobs).addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs);
 
 stories
   .add('Teaser default', () => (
