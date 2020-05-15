@@ -12,7 +12,7 @@ If you need to make a change to a component, you may do so in the usual way. You
 
 ## Available components
 
-We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that will likely only be useful for templating out APM sites. Our image component, Mimas, is a separate library that can be found [here](https://www.npmjs.com/package/apm-mimas).
+We have split up our components into "atoms" which are very tiny components used everywhere, and "molecules" which are larger, more specific components that will likely only be useful for templating out APM sites. For an in-depth explanation of what these are and what they look like, check out our [Storybook documentation site](https://apmg.github.io/apm-titan/) (WIP). Our image component, Mimas, is a separate library that can be found [here](https://www.npmjs.com/package/apm-mimas).
 
 ## Available Scripts
 
