@@ -3,8 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
 import data from './__testdata__/pagination.json';
 import Pagination from './Pagination';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 
 const stories = storiesOf('Atoms/Pagination', module);
 
@@ -17,7 +15,7 @@ const testPropsLarge = {
   totalElements: data.episodesList.results.totalItems
 };
 
-stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs);
 
 stories.add('Pagination', () => {
   return (

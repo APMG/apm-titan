@@ -2,12 +2,10 @@ import React from 'react';
 import Link from './Link'; // eslint-disable-line
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 
 const stories = storiesOf('Atoms/Link', module);
 
-stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs);
 
 stories.add('Basic Link', () => {
   return (

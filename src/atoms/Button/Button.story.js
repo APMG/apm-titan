@@ -2,12 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import Button from './Button';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 
 const stories = storiesOf('Atoms/Button', module);
 
-stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs);
 
 stories
   .add('Button All Props', () => {
