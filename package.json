@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "0.7.6",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -13,21 +13,21 @@
     "test": "jest --watch",
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "eslint": "eslint .",
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "prettier": "prettier --check '**/**.js'",
     "prettier:fix": "prettier --check '**/**.js' --write",
-    "blast": "rm -rf node_modules dist package-lock.json && yarn check"
+    "blast": "rm -rf node_modules dist package-lock.json && yarn check",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.5.0",
+    "@storybook/cli": "^5.3.18",
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "date-fns": "^2.2.1",
     "date-fns-tz": "^1.0.10",
-    "storybook": "^1.0.0",
+    "react-dom": "^16.13.1",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {
@@ -38,17 +38,19 @@
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.1.9",
-    "@storybook/addon-info": "^5.1.9",
-    "@storybook/addon-knobs": "^5.1.9",
-    "@storybook/addon-links": "^5.1.9",
-    "@storybook/addon-options": "^5.1.9",
-    "@storybook/react": "^5.1.9",
+    "@babel/core": "^7.9.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-options": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^8.0.2",
-    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
+    "css-loader": "^3.5.3",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
@@ -58,22 +60,21 @@
     "jest": "^24.8.0",
     "jest-prop-type-error": "^1.1.0",
     "next": "^9.0.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
+    "path": "^0.12.7",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "react-router": "^5.0.1",
+    "react-router": "^5.2.0",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.3.3",
     "sass-lint": "^1.13.1",
-    "sass-loader": "^7.1.0",
-    "sasslint": "0.0.10",
-    "storybook-react-router": "^1.0.5",
-    "storybook-readme": "^5.0.5",
-    "webpack-zepto": "0.0.1"
+    "sass-loader": "^8.0.2",
+    "storybook-readme": "^5.0.8",
+    "style-loader": "^1.2.1"
   },
   "husky": {
-    "pre-commit": "npm run prettier && npm run eslint",
-    "pre-push": "npm run prettier && npm run eslint && npm run sasslint"
+    "pre-commit": "yarn prettier && yarn eslint",
+    "pre-push": "yarn prettier && yarn eslint && yarn sasslint"
   },
   "files": [
     "dist"
