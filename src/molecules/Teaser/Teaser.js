@@ -55,7 +55,7 @@ const Teaser = ({
 
               {contributors && (
                 <div className="teaser_contributors">
-                  By {toSentence(contributors)}
+                  {`By ${toSentence(contributors)}`}
                 </div>
               )}
             </div>

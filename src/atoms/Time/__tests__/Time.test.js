@@ -6,85 +6,74 @@ import { format, subDays, subMinutes } from 'date-fns';
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-it('renders a <time> element with the default config', () => {
-  const data = {
-    dateTime: '2019-07-18T04:00:00-05:00'
-  };
+const defaultProps = {
+  dateTime: '2019-07-18T04:00:00-05:00',
+  formatString: 'MM-dd-yyyy'
+};
 
-  const { getByText } = render(<Time dateTime={data.dateTime} />);
-  const node = getByText('July 18, 2019');
+test('Renders a <time> element with the default config', () => {
+  const { getByText } = render(<Time dateTime={defaultProps.dateTime} />);
+  const timeNode = getByText('July 18, 2019');
 
-  expect(node).toBeDefined();
-  expect(node.className).toBe('');
-  expect(node.tagName).toBe('TIME');
-  expect(node.innerHTML).toBe('July 18, 2019');
-  expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
+  expect(timeNode.tagName).toBe('TIME');
+  expect(timeNode.textContent).toBe('July 18, 2019');
+  expect(timeNode.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-it('uses "time ago" format when prop type="distance"', () => {
-  const titleFormat = 'MMMM d, yyyy h:mm aa';
+test('Uses "time ago" format when type is "distance"', () => {
   // Calculate dateTimes based on current test runner's time
   const dateFiveDaysAgo = subDays(new Date(), 5);
-  const formattedTimeFiveDaysAgo = format(dateFiveDaysAgo, titleFormat);
+  const formattedTimeFiveDaysAgo = format(
+    dateFiveDaysAgo,
+    'MMMM d, yyyy h:mm aa'
+  );
   const dateTwelveMinutesAgo = subMinutes(new Date(), 12);
   const formattedTimeTwelveMinutesAgo = format(
     dateTwelveMinutesAgo,
-    titleFormat
+    'MMMM d, yyyy h:mm aa'
   );
+
   const { getByText } = render(
     <>
       <Time dateTime={dateFiveDaysAgo.toString()} type="distance" />
       <Time dateTime={dateTwelveMinutesAgo.toString()} type="distance" />
     </>
   );
-  const nodeDays = getByText('5 days');
-  const nodeMins = getByText('12 minutes');
+  const daysNode = getByText('5 days');
+  const minsNode = getByText('12 minutes');
 
-  expect(nodeDays.textContent).toBe('5 days');
-  expect(nodeDays.getAttribute('datetime')).toBe(dateFiveDaysAgo.toString());
-  expect(nodeDays.getAttribute('title')).toBe(
+  expect(daysNode.textContent).toBe('5 days');
+  expect(daysNode.getAttribute('datetime')).toBe(dateFiveDaysAgo.toString());
+  expect(daysNode.getAttribute('title')).toBe(
     formattedTimeFiveDaysAgo.toString()
   );
-  expect(nodeMins.textContent).toBe('12 minutes');
-  expect(nodeMins.getAttribute('datetime')).toBe(
+  expect(minsNode.textContent).toBe('12 minutes');
+  expect(minsNode.getAttribute('datetime')).toBe(
     dateTwelveMinutesAgo.toString()
   );
-  expect(nodeMins.getAttribute('title')).toBe(formattedTimeTwelveMinutesAgo);
+  expect(minsNode.getAttribute('title')).toBe(formattedTimeTwelveMinutesAgo);
 });
 
-it('formats the timestamp according to the format prop', () => {
-  const data = {
-    date: '2019-07-18T04:00:00-05:00',
-    format: 'MM-dd-yyyy'
-  };
-
-  const { getByText } = render(
-    <Time dateTime={data.date} formatString={data.format} />
-  );
+test('Formats the timestamp according to the format prop', () => {
+  const { getByText } = render(<Time {...defaultProps} />);
   const node = getByText('07-18-2019');
 
-  expect(node).toBeDefined();
-  expect(node.innerHTML).toBe('07-18-2019');
+  expect(node.textContent).toBe('07-18-2019');
   expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-it('adds a class to the element when an `elementClass` prop is passed in', () => {
-  const data = {
-    dateTime: '2019-07-18T04:00:00-05:00'
-  };
-
+it('Adds a class to the element when an `elementClass` prop is passed in', () => {
   const { getByText } = render(
-    <Time dateTime={data.dateTime} elementClass="custom classes" />
+    <Time dateTime={defaultProps.dateTime} elementClass="custom classes" />
   );
   const node = getByText('July 18, 2019');
 
-  expect(node).toBeDefined();
-  expect(node.innerHTML).toBe('July 18, 2019');
+  expect(node.textContent).toBe('July 18, 2019');
   expect(node.className).toBe('custom classes');
   expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
 });
 
-it('throws an error when a isRequired value is missing', () => {
+it('Throws an error when a required value is missing', () => {
   expect(() => {
     render(<Time />);
   }).toThrow();

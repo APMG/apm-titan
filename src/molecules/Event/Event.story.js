@@ -2,13 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Event from './Event';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 
 const stories = storiesOf('Event', module);
-stories
-  .addDecorator(withKnobs({ escapeHTML: false }))
-  .addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs({ escapeHTML: false }));
 
 stories
   .add('Event All props', () => {

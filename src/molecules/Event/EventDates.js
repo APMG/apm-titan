@@ -4,12 +4,12 @@ import Time from '../../atoms/Time/Time';
 
 const EventDates = ({ eventDates }) => {
   return (
-    <div className="eventInfo-date">
+    <div className="eventInfo-dates">
       <h2>Event Dates</h2>
       <ul>
-        {eventDates.map((event, index) => {
+        {eventDates.map((event, i) => {
           return (
-            <li key={index}>
+            <li className="eventInfo-date" key={i}>
               <Time dateTime={event.date} formatString="MMMM d, yyyy" />
             </li>
           );

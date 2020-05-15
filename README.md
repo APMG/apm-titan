@@ -8,7 +8,7 @@ Simply download from npm with `npm i @apmg/titan` or `yarn add @apmg/titan`, if 
 
 ## How to edit
 
-If you need to make a change to a component, you may do so in the usual way. You can test your components with Jest by running `npm run test`, you can see each of the components in action in `npm run storybook`. If you want to ensure that the components are working in another application, run `npm link` here and `npm link @apmg/titan` in the directory of your choice. Uninstall the original `@apmg/titan` first if the application you're testing was already relying on it.
+If you need to make a change to a component, you may do so in the usual way. You can test your components with Jest by running `yarn test`, you can see each of the components in action in `yarn storybook`. If you want to ensure that the components are working in another application, run `npm link` here and `npm link @apmg/titan` in the directory of your choice. Uninstall the original `@apmg/titan` first if the application you're testing was already relying on it.
 
 ## Available components
 
@@ -18,11 +18,11 @@ We have split up our components into "atoms" which are very tiny components used
 
 In the project directory, you can run:
 
-### `npm run storybook`
+### `yarn storybook`
 
 See a demo with all of these components in action, with default APM styling.
 
-### `npm run dev`
+### `yarn dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -30,12 +30,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm run test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `dist` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.

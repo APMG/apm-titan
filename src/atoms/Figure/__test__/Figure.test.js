@@ -4,7 +4,6 @@ import Figure from '../Figure';
 import { Image } from 'apm-mimas';
 import { image } from '../../../__testdata__/image';
 
-// automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
 
 function setup() {
@@ -16,73 +15,79 @@ function setup() {
     />
   );
 
-  const testProps = {
+  const defaultProps = {
     caption: 'Caption Lorem Ipsum',
     credit: 'Credit Name',
     creditHref: 'https://www.test.url'
   };
 
-  return { apiImage, fallbackImage, testProps };
+  return { apiImage, fallbackImage, defaultProps };
 }
 
-test('renders an image if the image object exists', () => {
+test('Renders an image if the image object is given', () => {
   const { fallbackImage } = setup();
   const { getByAltText } = render(<Figure image={fallbackImage} />);
+  const imageNode = getByAltText("It's Bill Murray");
 
-  const node = getByAltText("It's Bill Murray");
-  expect(node).toBeDefined();
-  expect(node.getAttribute('src')).toBe('https://www.fillmurray.com/g/400/300');
+  expect(imageNode.getAttribute('src')).toBe(
+    'https://www.fillmurray.com/g/400/300'
+  );
 });
 
-test('throws an error when required image prop is empty', () => {
+test('Renders caption', () => {
+  const { apiImage, defaultProps } = setup();
+  const { getByText } = render(
+    <Figure image={apiImage} caption={defaultProps.caption} />
+  );
+  const captionNode = getByText(defaultProps.caption);
+
+  expect(captionNode.textContent).toBe('Caption Lorem Ipsum');
+});
+
+test('Renders credit as a link if creditHref and credit are given', () => {
+  const { defaultProps, apiImage } = setup();
+  const { getByText } = render(<Figure {...defaultProps} image={apiImage} />);
+  const creditNode = getByText(defaultProps.credit);
+
+  expect(creditNode.tagName).toBe('A');
+  expect(creditNode.textContent).toBe('Credit Name');
+  expect(creditNode.getAttribute('href')).toBe('https://www.test.url');
+});
+
+test('Credit is not a link if creditHref is not given, but credit is', () => {
+  const { defaultProps, apiImage } = setup();
+  defaultProps.credit = null;
+  const { getByText } = render(<Figure {...defaultProps} image={apiImage} />);
+  const linkNode = getByText(defaultProps.caption);
+
+  expect(linkNode.textContent).toBe('Caption Lorem Ipsum');
+  expect(linkNode.tagName).not.toBe('A');
+});
+
+test('Renders credit without a link if creditHref is missing but credit is given', () => {
+  const { apiImage, defaultProps } = setup();
+  const { getByText } = render(
+    <Figure image={apiImage} credit={defaultProps.credit} />
+  );
+  const creditNode = getByText(defaultProps.credit);
+
+  expect(creditNode.tagName).not.toBe('A');
+  expect(creditNode.textContent).toBe('Credit Name');
+});
+
+test('The following optional sections are not rendered when their corresponding prop is not given -- contributors, description, image, publishDate, and tag', () => {
+  const { defaultProps, apiImage } = setup();
+  const { container } = render(<Figure {...defaultProps} image={apiImage} />);
+
+  expect(container.querySelectorAll('.teaser_contributors')).toHaveLength(0);
+  expect(container.querySelectorAll('.tag')).toHaveLength(0);
+  expect(container.querySelectorAll('image')).toHaveLength(0);
+});
+
+// TODO: AudioPlayButton
+
+test('Throws an error when required image prop is empty', () => {
   expect(() => {
     render(<Figure />);
   }).toThrow();
-});
-
-test('renders caption', () => {
-  const { apiImage, testProps } = setup();
-  const { getByText } = render(
-    <Figure image={apiImage} caption={testProps.caption} />
-  );
-  const node = getByText(testProps.caption);
-  expect(node).toBeDefined();
-  expect(node.innerHTML).toBe(testProps.caption);
-});
-
-test('does not render caption if not passed in', () => {
-  const { apiImage, testProps } = setup();
-  const { container } = render(
-    <Figure image={apiImage} caption={testProps.caption} />
-  );
-  expect(container.innerHTML).toContain(testProps.caption);
-});
-
-test('renders credit as a link if creditHref and credit is passed in', () => {
-  const { testProps } = setup();
-  const { getByText } = render(<Figure {...testProps} />);
-  const node = getByText(testProps.credit);
-  expect(node.tagName).toBe('A');
-  expect(node.innerHTML).toBe(testProps.credit);
-  expect(node.getAttribute('href')).toBe(testProps.creditHref);
-});
-
-test('does not render credit as a link if creditHref but not credit is passed in', () => {
-  const { testProps } = setup();
-  const { getByText, container } = render(
-    <Figure {...testProps} credit={null} />
-  );
-  expect(container.innerHTML).toContain(testProps.caption);
-  const node = getByText(testProps.caption);
-  expect(node.tagName).not.toBe('A');
-});
-
-test('renders credit without a link if creditHref is missing but credit exists', () => {
-  const { apiImage, testProps } = setup();
-  const { getByText } = render(
-    <Figure image={apiImage} credit={testProps.credit} />
-  );
-  const node = getByText(testProps.credit);
-  expect(node.tagName).not.toBe('A');
-  expect(node.innerHTML).toBe(testProps.credit);
 });

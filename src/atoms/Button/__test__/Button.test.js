@@ -2,114 +2,126 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import Button from '../Button';
 
-// automatically unmount and cleanup DOM after the test is finished
 afterEach(cleanup);
 
-// Use this object for props that get reused
-const testProps = {
+const defaultProps = {
   children: 'Button Text',
   href: 'https://example.com'
 };
 
-test('renders children', () => {
-  const { getByText } = render(<Button>{testProps.children}</Button>);
-  expect(getByText(testProps.children)).toBeDefined();
+test("Renders the button's children", () => {
+  const { getByText } = render(<Button>{defaultProps.children}</Button>);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.textContent).toBe('Button Text');
 });
 
-test('throws an error when component has no children', () => {
-  expect(() => {
-    render(<Button />);
-  }).toThrow();
+test('Renders a button if href is null', () => {
+  const { getByText } = render(<Button>{defaultProps.children}</Button>);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.tagName).toBe('BUTTON');
+  expect(buttonNode.getAttribute('type')).toBe('button');
+  expect(buttonNode.classList.contains('disabled')).toBe(false);
 });
 
-test('renders <a> tag if href passed in', () => {
+test('Uses `type="submit"` if submitForm is true', () => {
   const { getByText } = render(
-    <Button href={testProps.href}>{testProps.children}</Button>
+    <Button submitForm={true}>{defaultProps.children}</Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.tagName).toBe('A');
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.tagName).toBe('BUTTON');
+  expect(buttonNode.getAttribute('type')).toBe('submit');
 });
 
-test('adds target="_blank" if newWindow prop is true and href is passed in', () => {
+test('Renders a link with button styles instead of a button if href is given', () => {
   const { getByText } = render(
-    <Button href={testProps.href} newWindow={true}>
-      {testProps.children}
+    <Button href={defaultProps.href}>{defaultProps.children}</Button>
+  );
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.tagName).toBe('A');
+  expect(buttonNode.getAttribute('href')).toBe('https://example.com');
+});
+
+test('Adds `target="_blank"` if newWindow prop is true and href is passed in', () => {
+  const { getByText } = render(
+    <Button href={defaultProps.href} newWindow={true}>
+      {defaultProps.children}
     </Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.tagName).toBe('A');
-  expect(node.getAttribute('target')).toBe('_blank');
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.tagName).toBe('A');
+  expect(buttonNode.getAttribute('target')).toBe('_blank');
 });
 
-test('renders <button type="button"> tag if href is null', () => {
-  const { getByText } = render(<Button>{testProps.children}</Button>);
-  const node = getByText(testProps.children);
-  expect(node.tagName).toBe('BUTTON');
-  expect(node.getAttribute('type')).toBe('button');
-  expect(node.classList.contains('disabled')).toBe(false);
-});
-
-test('uses type="submit" if submitForm is true', () => {
+test('Adds `disabled` attribute if disabled prop is true', () => {
   const { getByText } = render(
-    <Button submitForm={true}>{testProps.children}</Button>
+    <Button disabled={true}>{defaultProps.children}</Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.tagName).toBe('BUTTON');
-  expect(node.getAttribute('type')).toBe('submit');
+
+  const buttonNode = getByText(defaultProps.children);
+  expect(buttonNode.getAttribute('disabled')).toBe('');
 });
 
-test('renders <span> tag if both href is passed in and disabled=true', () => {
+// This is because you can't disable a link like you can a button
+test('Renders `<span>` tag if href prop is given AND `disabled = true`', () => {
   const { getByText } = render(
-    <Button href={testProps.href} disabled={true}>
-      {testProps.children}
+    <Button href={defaultProps.href} disabled={true}>
+      {defaultProps.children}
     </Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.tagName).toBe('SPAN');
-  expect(node.classList.contains('disabled')).toBe(true);
-});
+  const buttonNode = getByText(defaultProps.children);
 
-test('adds `disabled` attribute if `disabled` prop is true', () => {
-  const { getByText } = render(
-    <Button disabled={true}>{testProps.children}</Button>
-  );
-  const node = getByText(testProps.children);
-  expect(node.getAttribute('disabled')).toBe('');
+  expect(buttonNode.tagName).toBe('SPAN');
+  expect(buttonNode.classList).toContain('disabled');
 });
 
 test('does not include `disabled` attribute if `disabled` prop is missing', () => {
-  const { getByText } = render(<Button>{testProps.children}</Button>);
-  const node = getByText(testProps.children);
-  expect(node.getAttribute('disabled')).toBe(null);
-  expect(node.classList.contains('disabled')).toBe(false);
+  const { getByText } = render(<Button>{defaultProps.children}</Button>);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.getAttribute('disabled')).toBe(null);
+  expect(buttonNode.classList).not.toContain('disabled');
 });
 
-test('does not include `disabled` attribute if `disabled` prop is false', () => {
+test('Does not include `disabled` attribute if `disabled` prop is false', () => {
   const { getByText } = render(
-    <Button disabled={false}>{testProps.children}</Button>
+    <Button disabled={false}>{defaultProps.children}</Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.getAttribute('disabled')).toBe(null);
-  expect(node.classList.contains('disabled')).toBe(false);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.getAttribute('disabled')).toBe(null);
+  expect(buttonNode.classList).not.toContain('disabled');
 });
 
-test('sets the css classes based on both `type` and `size` props', () => {
+test('Sets the css classes based on both `type` and `size` props', () => {
   const { getByText } = render(
     <Button type="primary" size="large">
-      {testProps.children}
+      {defaultProps.children}
     </Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.classList.contains('btn')).toBe(true);
-  expect(node.classList.contains('btn-primary')).toBe(true);
-  expect(node.classList.contains('btn-large')).toBe(true);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.classList).toContain('btn');
+  expect(buttonNode.classList).toContain('btn-primary');
+  expect(buttonNode.classList).toContain('btn-large');
 });
 
-test('sets the custom css class based on `elementClass` prop', () => {
+test('Sets the custom css class based on `elementClass` prop', () => {
   const { getByText } = render(
-    <Button elementClass="foo">{testProps.children}</Button>
+    <Button elementClass="foo">{defaultProps.children}</Button>
   );
-  const node = getByText(testProps.children);
-  expect(node.classList.contains('btn')).toBe(true);
-  expect(node.classList.contains('foo')).toBe(true);
+  const buttonNode = getByText(defaultProps.children);
+
+  expect(buttonNode.classList).toContain('btn');
+  expect(buttonNode.classList).toContain('foo');
+});
+
+test('Throws an error when component has no children', () => {
+  expect(() => {
+    render(<Button />);
+  }).toThrow();
 });

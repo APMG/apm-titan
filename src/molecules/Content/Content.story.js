@@ -3,14 +3,9 @@ import { Image } from 'apm-mimas';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Content from './Content.js';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 
 const stories = storiesOf('Content', module);
-
-stories
-  .addDecorator(withKnobs({ escapeHTML: false }))
-  .addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs({ escapeHTML: false }));
 
 stories
   .add('Content All', () => {

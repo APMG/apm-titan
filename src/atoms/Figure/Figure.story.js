@@ -2,13 +2,11 @@ import React from 'react';
 import { Image } from 'apm-mimas';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
 import Figure from './Figure';
 
 const stories = storiesOf('Atoms/Figure', module);
 
-stories.addDecorator(withKnobs()).addDecorator(withReadme([readme]));
+stories.addDecorator(withKnobs);
 
 stories.add('Full config', () => {
   const testImage = (
