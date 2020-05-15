@@ -2,3 +2,5 @@
 src/styles/**/*
 # Location of built files:
 dist/**/*
+# Location of documentation:
+docs/**/*
