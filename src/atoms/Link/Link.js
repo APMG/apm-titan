@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RouterLink from 'next/link';
+import { useRouter } from 'next/router';
 
 // NOTE: this component does not support hash links (internal anchor links)
 //       because reach router doesn't support them. If support becomes
@@ -8,10 +9,11 @@ import RouterLink from 'next/link';
 //       this component can be modified to support them.
 
 const Link = (props) => {
-  const { href, as, children, ...rest } = props;
+  const { href, as, children, className, activeClassName, ...rest } = props;
   const host = typeof window !== 'undefined' ? window.location.host : '';
   const hostReg = new RegExp(host);
   const protocolReg = /^(http:\/\/|https:\/\/|\/\/)/;
+  const router = useRouter();
 
   // Provide the url without 'http://', 'https://', or '//'
   function urlWithoutProtocol(url) {
@@ -38,24 +40,37 @@ const Link = (props) => {
     return protocolReg.test(url);
   }
 
+  let fullClassName = className;
+  const currentPath = router?.asPath || router?.pathname; //prefer asPath if it exists
+  if (activeClassName && currentPath == href) {
+    fullClassName = className
+      ? `${className} ${activeClassName}`
+      : activeClassName;
+  }
+
   if (isHostnameMatch(href)) {
     return (
       <RouterLink href={pathname(href)} as={as}>
-        <a {...rest} data-testid="hostnameLink">
+        <a {...rest} className={fullClassName} data-testid="hostnameLink">
           {children}
         </a>
       </RouterLink>
     );
   } else if (isExternalUrl(href)) {
     return (
-      <a href={href} {...rest} data-testid="externalLink">
+      <a
+        href={href}
+        {...rest}
+        className={fullClassName}
+        data-testid="externalLink"
+      >
         {children}
       </a>
     );
   } else {
     return (
       <RouterLink href={href} as={as}>
-        <a {...rest} data-testid="relativeLink">
+        <a {...rest} className={fullClassName} data-testid="relativeLink">
           {children}
         </a>
       </RouterLink>
@@ -67,7 +82,9 @@ Link.propTypes = {
   // Children are required because even if the link is styled with a class it should have text inside for accessibility
   children: PropTypes.any.isRequired,
   href: PropTypes.string.isRequired,
-  as: PropTypes.string
+  as: PropTypes.string,
+  className: PropTypes.string,
+  activeClassName: PropTypes.string
 };
 
 export default Link;
