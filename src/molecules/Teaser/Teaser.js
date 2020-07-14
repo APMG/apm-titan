@@ -16,6 +16,7 @@ const Teaser = ({
   tag,
   audioPlayButton,
   image,
+  video,
   contributors,
   description,
   elementClass
@@ -41,6 +42,31 @@ const Teaser = ({
 
       <Link href={href} as={as} className="teaser_link">
         <div className="teaser_image">{image}</div>
+        {video && (
+          <div className="teaser_video">
+            <figure className="figure">
+              <video
+                id={video.primaryVisuals?.video?.credit?.name}
+                autoPlay="true"
+                muted="true"
+              >
+                <source
+                  src={video.primaryVisuals?.video.url}
+                  type="video/mp4"
+                />
+                Your browser does not support HTML5 video.
+              </video>
+              <figcaption className="figure_caption">
+                <div className="figure_caption_content">
+                  {video.primaryVisuals?.video?.caption}
+                </div>
+                <span className="figure_credit">
+                  {video.primaryVisuals?.video?.credit?.name}
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        )}
 
         <div className="teaser_content">
           <div className="teaser_header">
@@ -79,6 +105,7 @@ Teaser.propTypes = {
   href: PropTypes.string.isRequired,
   as: PropTypes.string,
   image: PropTypes.object,
+  video: PropTypes.object,
   publishDate: PropTypes.node,
   tag: PropTypes.shape({
     to: PropTypes.string.isRequired,
