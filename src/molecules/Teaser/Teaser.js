@@ -42,16 +42,17 @@ const Teaser = ({
 
       <Link href={href} as={as} className="teaser_link">
         <div className="teaser_image">{image}</div>
+
         {video && (
           <div className="teaser_video">
             <figure className="figure">
-              <video id={video?.credit?.name} autoPlay="true" muted="true">
+              <video id={video.credit.name} autoPlay={true} muted={true}>
                 <source src={video.url} type="video/mp4" />
                 Your browser does not support HTML5 video.
               </video>
               <figcaption className="figure_caption">
-                <div className="figure_caption_content">{video?.caption}</div>
-                <span className="figure_credit">{video?.credit?.name}</span>
+                <div className="figure_caption_content">{video.caption}</div>
+                <span className="figure_credit">{video.credit.name}</span>
               </figcaption>
             </figure>
           </div>

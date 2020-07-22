@@ -7,12 +7,34 @@ import Time from '../../../atoms/Time/Time';
 
 afterEach(cleanup);
 
+const renderIgnoringUnstableFlushDiscreteUpdates = (component) => {
+  // tslint:disable: no-console
+  const originalError = console.error;
+  const error = jest.fn();
+  console.error = error;
+  const result = render(component);
+  expect(error).toHaveBeenCalledTimes(1);
+  expect(error).toHaveBeenCalledWith(
+    'Warning: unstable_flushDiscreteUpdates: Cannot flush updates when React is already rendering.%s',
+    expect.any(String)
+  );
+  console.error = originalError;
+  // tslint:enable: no-console
+  return result;
+};
+
 const defaultProps = {
   href: '/the/url/path',
   title: 'This Here Is the Title',
   contributors: ['Opie Schmuck', 'Opiette Schmuck'],
   description: 'This here is the description.',
-  dateTime: '2019-02-26T11:48:40+00:00'
+  dateTime: '2019-02-26T11:48:40+00:00',
+  video: {
+    url: 'https://mpr.apmcdn.org/video/apmreports/chicagoclean.mp4',
+    caption: 'this is a video caption',
+    background: 'true',
+    credit: { name: 'credit name' }
+  }
 };
 
 const expected = {
@@ -128,6 +150,24 @@ test('The following optional sections are not rendered when their corresponding 
   );
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
   expect(container.querySelectorAll('image')).toHaveLength(0);
+});
+
+test('Renders video object', () => {
+  const { container, getByText } = renderIgnoringUnstableFlushDiscreteUpdates(
+    <Teaser
+      headingLevel={3}
+      href={defaultProps.href}
+      title={defaultProps.title}
+      video={defaultProps.video}
+    />
+  );
+
+  const videoNode = getByText('this is a video caption');
+
+  expect(videoNode.textContent).toBe('this is a video caption');
+  expect(container.querySelectorAll('figure_caption')).toHaveLength(0);
+  expect(container.querySelectorAll('figure_caption_content')).toHaveLength(0);
+  expect(container.querySelectorAll('figure_credit')).toHaveLength(0);
 });
 
 test('Throws an error when required value is missing', () => {
