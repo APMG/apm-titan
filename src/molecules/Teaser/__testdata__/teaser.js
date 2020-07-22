@@ -11,7 +11,7 @@ export const teaser = {
       caption: 'this is a video caption',
       background: 'true',
       credit: { name: 'credit name' }
-    }
+    },
     __typename: 'PrimaryVisual'
   },
   audio: [
