@@ -6,6 +6,12 @@ export const teaser = {
   canonicalSlug: '2018/10/17/update-on-episode-51-nebach',
   primaryVisuals: {
     lead: null,
+    video: {
+      url: 'https://mpr.apmcdn.org/video/apmreports/chicagoclean.mp4',
+      caption: 'this is a video caption',
+      background: 'true',
+      credit: { name: 'credit name' }
+    }
     __typename: 'PrimaryVisual'
   },
   audio: [
