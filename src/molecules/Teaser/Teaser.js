@@ -46,7 +46,7 @@ const Teaser = ({
         {video && (
           <div className="teaser_video">
             <figure className="figure">
-              <video autoPlay={true} muted={true}>
+              <video autoPlay={true} muted={true} loop={true}>
                 <source src={video.url} type="video/mp4" />
               </video>
               <figcaption className="figure_caption">
