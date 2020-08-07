@@ -6,17 +6,21 @@ afterEach(cleanup);
 
 const defaultProps = () => {
   return {
-    href: '/path/with-slug',
-    as: 'path?slug=with/slug'
+    href: '/story/[...slug]',
+    as: '/story/with/slug'
   };
 };
 
 test('Uses a router Link component for relative urls', () => {
   const props = defaultProps();
-  const { getByTestId } = render(<Link href={props.href}>Text</Link>);
+  const { getByTestId } = render(
+    <Link href={props.href} as={props.as}>
+      Text
+    </Link>
+  );
   const linkNode = getByTestId('relativeLink');
 
-  expect(linkNode.getAttribute('href')).toBe('/path/with-slug');
+  expect(linkNode.getAttribute('href')).toBe('/story/with/slug');
 });
 
 test('Uses a regular <a> tag for external urls with full path', () => {
@@ -33,7 +37,7 @@ test('Sets an `as` prop for internal links using next/link', () => {
   const { getByTestId } = render(<Link {...props}>Text</Link>);
 
   const linkNode = getByTestId('relativeLink');
-  expect(linkNode.getAttribute('href')).toBe('path?slug=with/slug');
+  expect(linkNode.getAttribute('href')).toBe('/story/with/slug');
 });
 
 test('Other standard link attributes are applied to this link object normally', () => {
