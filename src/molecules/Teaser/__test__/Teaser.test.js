@@ -163,11 +163,12 @@ test('Renders video object', () => {
   );
 
   const videoNode = getByText('this is a video caption');
-
   expect(videoNode.textContent).toBe('this is a video caption');
-  expect(container.querySelectorAll('figure_caption')).toHaveLength(0);
-  expect(container.querySelectorAll('figure_caption_content')).toHaveLength(0);
-  expect(container.querySelectorAll('figure_credit')).toHaveLength(0);
+  expect(container.getElementsByClassName('figure_caption')).toHaveLength(1);
+  expect(
+    container.getElementsByClassName('figure_caption_content')
+  ).toHaveLength(1);
+  expect(container.getElementsByClassName('figure_credit')).toHaveLength(1);
 });
 
 test('Throws an error when required value is missing', () => {
