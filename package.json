@@ -17,13 +17,9 @@
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "prettier": "prettier --check '**/**.js'",
     "prettier:fix": "prettier --check '**/**.js' --write",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -o docs",
-    "storybook:serve": "serve ./docs",
     "blast": "rm -rf node_modules dist package-lock.json && yarn check"
   },
   "dependencies": {
-    "@storybook/cli": "^5.3.18",
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "date-fns": "^2.2.1",
@@ -40,13 +36,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
-    "@storybook/addon-actions": "^5.3.18",
-    "@storybook/addon-docs": "^5.3.18",
-    "@storybook/addon-info": "^5.3.18",
-    "@storybook/addon-knobs": "^5.3.18",
-    "@storybook/addon-links": "^5.3.18",
-    "@storybook/addon-options": "^5.3.18",
-    "@storybook/react": "^5.3.18",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^8.0.2",
     "babel-eslint": "^10.1.0",
