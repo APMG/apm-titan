@@ -30,7 +30,7 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "date-fns": "^2.2.1",
-    "next": "^9.0.3",
+    "next": "^10.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6"
   },
