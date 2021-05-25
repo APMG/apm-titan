@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import Link from '../../atoms/Link/Link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
+import Video from '../../atoms/Video/Video'
+
 import { toSentence } from '../../utils/utils';
 
 const Teaser = ({
@@ -41,26 +43,7 @@ const Teaser = ({
       )}
 
       <Link href={href} as={as} className="teaser_link">
-        <div className="teaser_image">{image}</div>
-
-        {video && (
-          <div className="teaser_video">
-            <figure className="figure">
-              <video autoPlay={true} muted={true} loop={true}>
-                <source src={video.url} type="video/mp4" />
-              </video>
-              <figcaption className="figure_caption">
-                {video.caption && (
-                  <div className="figure_caption_content">{video.caption}</div>
-                )}
-                {video?.credit?.name && (
-                  <span className="figure_credit">{video.credit.name}</span>
-                )}
-              </figcaption>
-            </figure>
-          </div>
-        )}
-
+      {video ? <Video video={video}/> :  <div className="teaser_image">{image}</div>}
         <div className="teaser_content">
           <div className="teaser_header">
             <Heading level={headingLevel}>{title}</Heading>
