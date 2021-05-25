@@ -7,9 +7,9 @@ const Video = ({ video }) => {
     const uri = new URL(video.url);
     switch (uri.hostname) {
       case 'www.facebook.com':
-        // eslint-disable-next-line jsx-a11y/iframe-has-title
         playerEmbed = (
           <iframe
+            title={video.credit.name}
             src={video.url}
             width="560"
             height="460"
@@ -50,6 +50,7 @@ const Video = ({ video }) => {
         // eslint-disable-next-line jsx-a11y/iframe-has-title
         playerEmbed = (
           <iframe
+            title={video.credit.name}
             src={video.url.replace(/watch\?v=/g, 'embed/')}
             width="420"
             height="460"
