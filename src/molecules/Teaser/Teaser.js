@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Link from '../../atoms/Link/Link';
 import Heading from '../../atoms/Heading/Heading';
 import TagLink from '../../atoms/TagLink/TagLink';
-import Video from '../../atoms/Video/Video'
+import Video from '../../atoms/Video/Video';
 
 import { toSentence } from '../../utils/utils';
 
@@ -43,7 +43,11 @@ const Teaser = ({
       )}
 
       <Link href={href} as={as} className="teaser_link">
-      {video ? <Video video={video}/> :  <div className="teaser_image">{image}</div>}
+        {video ? (
+          <Video video={video} />
+        ) : (
+          <div className="teaser_image">{image}</div>
+        )}
         <div className="teaser_content">
           <div className="teaser_header">
             <Heading level={headingLevel}>{title}</Heading>

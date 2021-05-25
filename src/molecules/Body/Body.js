@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // Amat's (ruby) repo: https://gitlab.mpr.org/cms-prototype/amat
 
 const Body = ({ bodyHtml, elementClass }) => {
-  console.log('bodyHTML 🔵:', bodyHtml)
+  console.log('bodyHTML 🔵:', bodyHtml);
   const classes = classNames({
     userContent: true,
     [elementClass]: elementClass
