@@ -21,18 +21,18 @@ const Video = ({ video }) => {
         );
         break;
       case 'player.vimeo.com':
-        case 'mpr.apmcdn.org':
-          playerEmbed = (
-            <video
-              id={video.credit.name}
-              autoPlay={true}
-              muted={true}
-              loop={true}
-            >
-              <source src={video.url} type="video/mp4" />
-              Your browser does not support HTML5 video.
-            </video>
-          );
+      case 'mpr.apmcdn.org':
+        playerEmbed = (
+          <video
+            id={video.credit.name}
+            autoPlay={true}
+            muted={true}
+            loop={true}
+          >
+            <source src={video.url} type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+        );
         break;
       case 'www.youtube.com':
         // eslint-disable-next-line jsx-a11y/iframe-has-title
