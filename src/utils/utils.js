@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function toSentence(arr) {
   if (!arr || arr.length === 0) {
     return;
@@ -24,4 +26,56 @@ export function prevIndex(i) {
 // Get the next index OR max
 export function nextIndex(i, count) {
   return i < count ? i + 1 : count;
+}
+
+// Returns youtube video id
+export function youtubeParser(url) {
+  var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  var match = url.match(regExp);
+  return match && match[7].length == 11 ? match[7] : false;
+}
+
+// Return playerEmbed determined by type of primary video source
+export function getVideoPlayer(video) {
+  let playerEmbed;
+  const uri = new URL(video.url);
+  switch (uri.hostname) {
+    case 'www.facebook.com':
+      playerEmbed = (
+        <iframe
+          title={video.credit.name}
+          src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0&width=560`}
+          width="560"
+          height="460"
+          scrolling="no"
+          frameBorder="0"
+          allowtransparency="true"
+          allowFullScreen={true}
+        ></iframe>
+      );
+      break;
+    case 'player.vimeo.com':
+    case 'mpr.apmcdn.org':
+      playerEmbed = (
+        <video id={video.credit.name} autoPlay={true} muted={true} loop={true}>
+          <source src={video.url} type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+      );
+      break;
+    case 'www.youtube.com':
+      // eslint-disable-next-line jsx-a11y/iframe-has-title
+      playerEmbed = (
+        <iframe
+          title={video.credit.name}
+          src={`https://www.youtube.com/embed/${youtubeParser(video.url)}`}
+          width="420"
+          height="460"
+        ></iframe>
+      );
+      break;
+    default:
+      console.error(playerEmbed, 'source is not a valid video url');
+  }
+  return playerEmbed;
 }

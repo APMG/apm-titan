@@ -37,7 +37,7 @@ describe('Video', () => {
   const defaultPropsFacebook = {
     video: {
       url:
-        'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FMPRnews%2Fvideos%2F2976642805906134%2F&show_text=false&width=560',
+        'https://www.facebook.com/MPRnews/videos/337942824530987',
       caption: 'this is a video caption for facebook',
       background: 'true',
       credit: { name: 'credit name', url: 'https://www.facebook.com' }
@@ -92,7 +92,7 @@ describe('Video', () => {
     expect(iframe).toBeTruthy();
     expect(videoNode.textContent).toBe('this is a video caption for facebook');
     expect(container.innerHTML).toBe(
-      '<div class="content_primaryVisual"><figure class="figure"><iframe title="credit name" src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2FMPRnews%2Fvideos%2F2976642805906134%2F&amp;show_text=false&amp;width=560" width="560" height="460" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen=""></iframe><figcaption class="figure_caption"><div class="figure_caption_content">this is a video caption for facebook</div><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><span class="figure_credit">credit name</span></a></figcaption></figure></div>'
+      '<div class="content_primaryVisual"><figure class="figure"><iframe title="credit name" src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&amp;show_text=0&amp;width=560" width="560" height="460" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen=""></iframe><figcaption class="figure_caption"><div class="figure_caption_content">this is a video caption for facebook</div><a href="https://www.facebook.com" target="_blank" rel="noreferrer"><span class="figure_credit">credit name</span></a></figcaption></figure></div>'
     );
     expect(container.getElementsByClassName('figure_caption')).toHaveLength(1);
     expect(
