@@ -36,8 +36,7 @@ describe('Video', () => {
 
   const defaultPropsFacebook = {
     video: {
-      url:
-        'https://www.facebook.com/MPRnews/videos/337942824530987',
+      url: 'https://www.facebook.com/MPRnews/videos/337942824530987',
       caption: 'this is a video caption for facebook',
       background: 'true',
       credit: { name: 'credit name', url: 'https://www.facebook.com' }
