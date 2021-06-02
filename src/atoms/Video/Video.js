@@ -1,56 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getVideoPlayer } from '../../utils/utils';
 
 const Video = ({ video }) => {
-  function getVideoPlayer(video) {
-    let playerEmbed;
-    const uri = new URL(video.url);
-    switch (uri.hostname) {
-      case 'www.facebook.com':
-        playerEmbed = (
-          <iframe
-            title={video.credit.name}
-            src={video.url}
-            width="560"
-            height="460"
-            scrolling="no"
-            frameBorder="0"
-            allowtransparency="true"
-            allowFullScreen={true}
-          ></iframe>
-        );
-        break;
-      case 'player.vimeo.com':
-      case 'mpr.apmcdn.org':
-        playerEmbed = (
-          <video
-            id={video.credit.name}
-            autoPlay={true}
-            muted={true}
-            loop={true}
-          >
-            <source src={video.url} type="video/mp4" />
-            Your browser does not support HTML5 video.
-          </video>
-        );
-        break;
-      case 'www.youtube.com':
-        // eslint-disable-next-line jsx-a11y/iframe-has-title
-        playerEmbed = (
-          <iframe
-            title={video.credit.name}
-            src={video.url.replace(/watch\?v=/g, 'embed/')}
-            width="420"
-            height="460"
-          ></iframe>
-        );
-        break;
-      default:
-        console.error(playerEmbed, 'source is not a valid video url');
-    }
-    return playerEmbed;
-  }
-
   let videoPlayer = video && getVideoPlayer(video);
 
   return (
