@@ -147,7 +147,7 @@ describe('getVideoPlayer', () => {
         }
         title="jason"
         width="560"
-        height="460"
+        height="385"
         scrolling="no"
         frameBorder="0"
         allowtransparency="true"
