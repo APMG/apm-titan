@@ -42,14 +42,14 @@ export function getVideoPlayer(video) {
   switch (uri.hostname) {
     case 'www.facebook.com':
       playerEmbed = (
-        <iframe
+        <div className="iframe-container"><iframe
           title={video.credit.name}
           src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0&width=560`}
           scrolling="no"
           frameBorder="0"
           allowtransparency="true"
           allowFullScreen={true}
-        ></iframe>
+        ></iframe></div>
       );
       break;
     case 'player.vimeo.com':
@@ -64,10 +64,10 @@ export function getVideoPlayer(video) {
     case 'www.youtube.com':
       // eslint-disable-next-line jsx-a11y/iframe-has-title
       playerEmbed = (
-        <iframe
+        <div className="iframe-container"><iframe
           title={video.credit.name}
           src={`https://www.youtube.com/embed/${youtubeParser(video.url)}`}
-        ></iframe>
+        ></iframe></div>
       );
       break;
     default:
