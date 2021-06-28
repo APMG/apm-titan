@@ -23,7 +23,7 @@ const Figure = ({
     figure: {
       margin: 0
     }
-  }
+  };
 
   function captionCredit() {
     if (credit && creditHref) {
@@ -38,7 +38,7 @@ const Figure = ({
   }
 
   return (
-    <figure className={classes} style={ isAmp ? styles.figure : {}} >
+    <figure className={classes} style={isAmp ? styles.figure : {}}>
       {image}
       {caption || credit ? (
         <figcaption className="figure_caption">

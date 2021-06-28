@@ -141,16 +141,18 @@ describe('getVideoPlayer', () => {
     expect(getVideoPlayer(facebook)).toBeDefined();
     // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual(
-      <div className="iframe-container"><iframe
-        src={
-          'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&show_text=0&width=560'
-        }
-        title="jason"
-        scrolling="no"
-        frameBorder="0"
-        allowtransparency="true"
-        allowFullScreen={true}
-      ></iframe></div>
+      <div className="iframe-container">
+        <iframe
+          src={
+            'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&show_text=0&width=560'
+          }
+          title="jason"
+          scrolling="no"
+          frameBorder="0"
+          allowtransparency="true"
+          allowFullScreen={true}
+        ></iframe>
+      </div>
     );
   });
   test('return youtube iframe if youtube.url matches the uri.hostname, www.youtube.com', () => {
@@ -158,10 +160,12 @@ describe('getVideoPlayer', () => {
     expect(getVideoPlayer(youtube)).toBeDefined();
     // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual(
-      <div className="iframe-container"><iframe
-        src={'https://www.youtube.com/embed/JrAPSy9Rboc'}
-        title="jason3"
-      ></iframe></div>
+      <div className="iframe-container">
+        <iframe
+          src={'https://www.youtube.com/embed/JrAPSy9Rboc'}
+          title="jason3"
+        ></iframe>
+      </div>
     );
   });
   test('return vimeo html5 player if vimeo.url matches the uri.hostname, player.vimeo.com', () => {
