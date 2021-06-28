@@ -45,8 +45,6 @@ export function getVideoPlayer(video) {
         <iframe
           title={video.credit.name}
           src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0&width=560`}
-          width="560"
-          height="385"
           scrolling="no"
           frameBorder="0"
           allowtransparency="true"
@@ -69,8 +67,6 @@ export function getVideoPlayer(video) {
         <iframe
           title={video.credit.name}
           src={`https://www.youtube.com/embed/${youtubeParser(video.url)}`}
-          width="420"
-          height="460"
         ></iframe>
       );
       break;

@@ -146,8 +146,6 @@ describe('getVideoPlayer', () => {
           'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&show_text=0&width=560'
         }
         title="jason"
-        width="560"
-        height="385"
         scrolling="no"
         frameBorder="0"
         allowtransparency="true"
@@ -163,8 +161,6 @@ describe('getVideoPlayer', () => {
       <iframe
         src={'https://www.youtube.com/embed/JrAPSy9Rboc'}
         title="jason3"
-        width="420"
-        height="460"
       ></iframe>
     );
   });
