@@ -64,7 +64,7 @@ Figure.propTypes = {
   position: PropTypes.string,
   credit: PropTypes.string,
   creditHref: PropTypes.string,
-  isAmp: PropTypes.boolean
+  isAmp: PropTypes.bool
 };
 
 export default Figure;
