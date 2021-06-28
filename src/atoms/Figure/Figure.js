@@ -9,7 +9,8 @@ const Figure = ({
   size,
   position,
   credit,
-  creditHref
+  creditHref,
+  isAmp
 }) => {
   const classes = classNames({
     figure: true,
@@ -17,6 +18,12 @@ const Figure = ({
     [`figure-${size}`]: size,
     [elementClass]: elementClass
   });
+
+  const styles = {
+    figure: {
+      margin: 0
+    }
+  }
 
   function captionCredit() {
     if (credit && creditHref) {
@@ -31,7 +38,7 @@ const Figure = ({
   }
 
   return (
-    <figure className={classes}>
+    <figure className={classes} style={ isAmp ? styles.figure : {}} >
       {image}
       {caption || credit ? (
         <figcaption className="figure_caption">
@@ -56,7 +63,8 @@ Figure.propTypes = {
   size: PropTypes.string,
   position: PropTypes.string,
   credit: PropTypes.string,
-  creditHref: PropTypes.string
+  creditHref: PropTypes.string,
+  isAmp: PropTypes.boolean
 };
 
 export default Figure;
