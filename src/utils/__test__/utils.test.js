@@ -144,7 +144,7 @@ describe('getVideoPlayer', () => {
       <div className="iframe-container">
         <iframe
           src={
-            'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&show_text=0&width=560'
+            'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/MPRnews/videos/337942824530987&show_text=0'
           }
           title="jason"
           scrolling="no"

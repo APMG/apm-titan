@@ -45,7 +45,7 @@ export function getVideoPlayer(video) {
         <div className="iframe-container">
           <iframe
             title={video.credit.name}
-            src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0&width=560`}
+            src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0`}
             scrolling="no"
             frameBorder="0"
             allowtransparency="true"
