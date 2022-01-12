@@ -10,7 +10,7 @@ const EventDates = ({ eventDates }) => {
         {eventDates.map((event, i) => {
           return (
             <li className="eventInfo-date" key={i}>
-              <Time dateTime={event.date} formatString="MMMM d, yyyy" />
+              <Time dateTime={event.date} formatString="MMMM D, YYYY" />
             </li>
           );
         })}

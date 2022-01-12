@@ -2,6 +2,9 @@
 
 This is a collection of React components that are frequently needed in American Public Media's website. It will work with any website set up with Next.js.
 
+Note as of version 1.0.15 we have swapped date-fns out and replaced it with dayjs. 
+Dayjs formatting strings are similar too but not the same as date-fns. See https://day.js.org/docs/en/display/format vs. https://date-fns.org/v2.28.0/docs/format. You may have to make some adjustments. Additionally the Time compondent now needs to take timezone into account as the dateTime prop needs to be timezone aware. If you pass in for example '08-26-2021' as the dateTime prop it will assume 8/26/2021 UTC time so id you want Central time it will actually display 8/25/2021 at 6 or 7 pm depending on daylights savings time. 
+
 ## How to use
 
 Simply download from npm with `npm i @apmg/titan` or `yarn add @apmg/titan`, if you're using yarn. Import the components with ES6 import statements in the usual way. For example, if a page you are working on needs Content, Event, and Button components, you'd put the line `import { Content, Event, Button } from '@apmg/titan` at the top of your file.

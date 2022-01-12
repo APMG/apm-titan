@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDistanceToNow } from 'date-fns';
-import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+const tz = 'America/Chicago';
 
 function constructTime(timeString) {
   let sections = timeString.split(/-|T/);
@@ -23,19 +28,21 @@ const Time = (props) => {
     ? constructTime(props.dateTime)
     : new Date(props.dateTime);
 
-  let utcTime = zonedTimeToUtc(time, 'America/Chicago');
-  let chicagoTime = utcToZonedTime(utcTime, 'America/Chicago');
+  let utcTime = dayjs(time)
+    .tz(tz)
+    .utc();
+  let chicagoTime = utcTime.tz(tz);
 
   if (props.type === 'distance') {
     return (
       <time
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
-        title={format(chicagoTime, 'MMMM d, yyyy h:mm aa', {
-          timeZone: 'America/Chicago'
-        })}
+        title={chicagoTime.tz(tz).format('MMMM D, YYYY h:mm A')}
       >
-        {formatDistanceToNow(time)}
+        {`${Math.abs(dayjs(time).diff(dayjs(), props.distanceFormat))} ${
+          props.distanceFormat
+        }s`}
       </time>
     );
   } else {
@@ -44,9 +51,7 @@ const Time = (props) => {
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
       >
-        {format(chicagoTime, props.formatString, {
-          timeZone: 'America/Chicago'
-        })}
+        {chicagoTime.format(props.formatString)}
       </time>
     );
   }
@@ -54,13 +59,15 @@ const Time = (props) => {
 
 Time.defaultProps = {
   type: 'timestamp',
-  formatString: 'MMMM d, yyyy'
+  formatString: 'MMMM DD, YYYY',
+  distanceFormat: 'day'
 };
 
 Time.propTypes = {
   dateTime: PropTypes.string.isRequired,
   elementClass: PropTypes.string,
   formatString: PropTypes.string,
+  distanceFormat: PropTypes.string,
   type: PropTypes.oneOf(['timestamp', 'distance'])
 };
 
