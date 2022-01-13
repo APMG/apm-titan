@@ -6,7 +6,6 @@ import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-const tz = 'America/Chicago';
 
 function constructTime(timeString) {
   let sections = timeString.split(/-|T/);
