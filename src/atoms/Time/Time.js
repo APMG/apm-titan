@@ -28,17 +28,12 @@ const Time = (props) => {
     ? constructTime(props.dateTime)
     : new Date(props.dateTime);
 
-  let utcTime = dayjs(time)
-    .tz(tz)
-    .utc();
-  let chicagoTime = utcTime.tz(tz);
-
   if (props.type === 'distance') {
     return (
       <time
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
-        title={chicagoTime.format('MMMM D, YYYY h:mm A')}
+        title={dayjs(time).format('MMMM D, YYYY h:mm A')}
       >
         {`${Math.abs(dayjs(time).diff(dayjs(), props.distanceFormat))} ${
           props.distanceFormat
@@ -51,7 +46,7 @@ const Time = (props) => {
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
       >
-        {chicagoTime.format(props.formatString)}
+        {dayjs(time).format(props.formatString)}
       </time>
     );
   }
