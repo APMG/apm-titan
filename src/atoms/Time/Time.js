@@ -38,7 +38,7 @@ const Time = (props) => {
       <time
         className={props.elementClass && props.elementClass}
         dateTime={props.dateTime}
-        title={chicagoTime.tz(tz).format('MMMM D, YYYY h:mm A')}
+        title={chicagoTime.format('MMMM D, YYYY h:mm A')}
       >
         {`${Math.abs(dayjs(time).diff(dayjs(), props.distanceFormat))} ${
           props.distanceFormat
