@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 afterEach(cleanup);
 
 const defaultProps = {
-  dateTime: '2019-07-18T04:00:00-05:00',
+  dateTime: '2019-07-18T06:00:00-05:00',
   formatString: 'MM-DD-YYYY'
 };
 
@@ -17,7 +17,7 @@ test('Renders a <time> element with the default config', () => {
 
   expect(timeNode.tagName).toBe('TIME');
   expect(timeNode.textContent).toBe('July 18, 2019');
-  expect(timeNode.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
+  expect(timeNode.getAttribute('datetime')).toBe('2019-07-18T06:00:00-05:00');
 });
 
 test('Uses "time ago" format when type is "distance"', () => {
@@ -61,7 +61,7 @@ test('Formats the timestamp according to the format prop', () => {
   const node = getByText('07-18-2019');
 
   expect(node.textContent).toBe('07-18-2019');
-  expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
+  expect(node.getAttribute('datetime')).toBe('2019-07-18T06:00:00-05:00');
 });
 
 it('Adds a class to the element when an `elementClass` prop is passed in', () => {
@@ -72,7 +72,7 @@ it('Adds a class to the element when an `elementClass` prop is passed in', () =>
 
   expect(node.textContent).toBe('July 18, 2019');
   expect(node.className).toBe('custom classes');
-  expect(node.getAttribute('datetime')).toBe('2019-07-18T04:00:00-05:00');
+  expect(node.getAttribute('datetime')).toBe('2019-07-18T06:00:00-05:00');
 });
 
 it('Throws an error when a required value is missing', () => {
