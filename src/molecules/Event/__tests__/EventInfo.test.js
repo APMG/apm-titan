@@ -25,7 +25,7 @@ const defaultProps = {
   ],
   eventDates: [
     {
-      date: 'August 5, 2019'
+      date: '2019-08-05T06:00:00-05:00'
     }
   ]
 };
@@ -48,7 +48,7 @@ test('Render EventDates if eventDates prop is given', () => {
   const { getByText } = render(
     <EventInfo eventDates={defaultProps.eventDates} />
   );
-  let datesNode = getByText(defaultProps.eventDates[0].date);
+  let datesNode = getByText('August 5, 2019');
 
   expect(datesNode.textContent).toBe('August 5, 2019');
 });

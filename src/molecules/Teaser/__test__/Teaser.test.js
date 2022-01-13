@@ -89,7 +89,7 @@ test('Contributors string is rendered correctly when an array with two names is 
       href={defaultProps.href}
       title={defaultProps.title}
       publishDate={
-        <Time dateTime={defaultProps.dateTime} formatString="MMM dd, yyyy" />
+        <Time dateTime={defaultProps.dateTime} formatString="MMM DD, YYYY" />
       }
       contributors={defaultProps.contributors}
       headingLevel={3}
@@ -122,7 +122,7 @@ test('Date and time are rendered correctly if publishDate prop has been given', 
       href={defaultProps.href}
       title={defaultProps.title}
       publishDate={
-        <Time dateTime={defaultProps.dateTime} formatString="MMM dd, yyyy" />
+        <Time dateTime={defaultProps.dateTime} formatString="MMM DD, YYYY" />
       }
       contributors={defaultProps.contributors}
       headingLevel={3}

@@ -59,6 +59,7 @@ const Button = ({
 };
 
 Button.propTypes = {
+  as: PropTypes.any,
   children: PropTypes.any.isRequired,
   disabled: PropTypes.bool,
   elementClass: PropTypes.string,

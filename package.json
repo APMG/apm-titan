@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -22,14 +22,12 @@
   "dependencies": {
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
-    "date-fns": "^2.2.1",
-    "date-fns-tz": "^1.0.10",
+    "dayjs": "^1.10.7",
     "react-dom": "^16.13.1",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "date-fns": "^2.2.1",
     "next": "^10.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6"
