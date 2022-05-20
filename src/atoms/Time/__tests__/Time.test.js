@@ -14,7 +14,7 @@ const defaultProps = {
 test('Renders a <time> element with the Timezone, 10:23 PM props should expect Timezone conversion to be 5:23 PM', () => {
   let defaultTimezoneProps = {
     dateTime: '2022-05-10T22:23:35+00:00',
-    formatString: 'MM-DD-YYYY h:mm:ss A'
+    formatString: 'MMMM D, YYYY h:mm A'
   };
 
   const { getByText } = render(
