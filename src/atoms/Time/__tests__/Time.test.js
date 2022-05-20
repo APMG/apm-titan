@@ -27,6 +27,22 @@ test('Renders a <time> element with the Timezone, 10:23 PM props should expect T
   expect(timeNode.getAttribute('datetime')).toBe('2022-05-10T22:23:35+00:00');
 });
 
+test('Renders a <time> element with the Date(single digit) and Timezone a day before, 2:23 AM props should expect Timezone conversion to be 9:23 PM', () => {
+  let defaultTimezoneProps = {
+    dateTime: '2022-05-10T02:23:35+00:00',
+    formatString: 'MM-DD-YYYY h:mm:ss A'
+  };
+
+  const { getByText } = render(
+    <Time dateTime={defaultTimezoneProps.dateTime} />
+  );
+  const timeNode = getByText('May 9, 2022 9:23 PM');
+
+  expect(timeNode.tagName).toBe('TIME');
+  expect(timeNode.textContent).toBe('May 9, 2022 9:23 PM');
+  expect(timeNode.getAttribute('datetime')).toBe('2022-05-10T02:23:35+00:00');
+});
+
 test('Renders a <time> element with the default config', () => {
   const { getByText } = render(<Time dateTime={defaultProps.dateTime} />);
   const timeNode = getByText('July 17, 2019 9:00 PM');

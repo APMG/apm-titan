@@ -42,7 +42,7 @@ const Time = (props) => {
 
 Time.defaultProps = {
   type: 'timestamp',
-  formatString: 'MMMM DD, YYYY h:mm A',
+  formatString: 'MMMM D, YYYY h:mm A',
   distanceFormat: 'day'
 };
 
