@@ -7,7 +7,7 @@ module.exports = {
     '!**/node_modules/**'
   ],
   setupFilesAfterEnv: ['./src/setupTests.js'],
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: 'jest-environment-jsdom'
   //coverageThreshold: {
   //global: {
   //statements: 85,
