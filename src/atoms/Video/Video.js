@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getVideoPlayer } from '../../utils/utils';
 
-const Video = ({ video }) => {
+const Video = ({ video, hideCaption }) => {
   let videoPlayer = video && getVideoPlayer(video);
 
   return (
@@ -12,7 +12,7 @@ const Video = ({ video }) => {
         {video.caption && (
           <figcaption className="figure_caption">
             <div className="figure_caption_content">{video.caption}</div>
-            {video.credit.name && video.credit.url && (
+            {!hideCaption && video.credit.name && video.credit.url && (
               <a href={video.credit.url} target="_blank" rel="noreferrer">
                 <span className="figure_credit">{video.credit.name}</span>
               </a>
@@ -28,7 +28,8 @@ const Video = ({ video }) => {
 };
 
 Video.propTypes = {
-  video: PropTypes.object
+  video: PropTypes.object,
+  hideCaption: PropTypes.bool
 };
 
 export default Video;
