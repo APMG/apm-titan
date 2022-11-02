@@ -21,7 +21,8 @@ const Teaser = ({
   video,
   contributors,
   description,
-  elementClass
+  elementClass,
+  hideVideoCaption
 }) => {
   const classes = classNames({
     teaser: true,
@@ -44,7 +45,7 @@ const Teaser = ({
 
       <Link href={href} as={as} className="teaser_link">
         {video ? (
-          <Video video={video} />
+          <Video video={video} hideCaption={hideVideoCaption} />
         ) : (
           <div className="teaser_image">{image}</div>
         )}
@@ -91,7 +92,8 @@ Teaser.propTypes = {
     to: PropTypes.string.isRequired,
     tagName: PropTypes.string.isRequired
   }),
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  hideVideoCaption: PropTypes.bool
 };
 
 export default Teaser;
