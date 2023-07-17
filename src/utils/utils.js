@@ -48,7 +48,6 @@ export function getVideoPlayer(video) {
             src={`https://www.facebook.com/plugins/video.php?href=${video.url}&show_text=0`}
             scrolling="no"
             frameBorder="0"
-            allowtransparency="true"
             allowFullScreen={true}
           ></iframe>
         </div>
