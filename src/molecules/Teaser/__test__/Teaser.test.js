@@ -14,19 +14,6 @@ jest.mock('next/router', () => {
   };
 });
 
-const renderIgnoringUnstableFlushDiscreteUpdates = (component) => {
-  // tslint:disable: no-console
-  const originalError = console.error;
-  const error = jest.fn();
-  console.error = error;
-  const result = render(component);
-  expect(error).toHaveBeenCalledTimes(1);
-  expect(error).toHaveBeenCalledWith(expect.any(String));
-  console.error = originalError;
-  // tslint:enable: no-console
-  return result;
-};
-
 const defaultProps = {
   href: '/the/url/path',
   title: 'This Here Is the Title',

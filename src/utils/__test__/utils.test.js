@@ -149,7 +149,6 @@ describe('getVideoPlayer', () => {
           title="jason"
           scrolling="no"
           frameBorder="0"
-          allowtransparency="true"
           allowFullScreen={true}
         ></iframe>
       </div>
