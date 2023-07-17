@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "1.0.19",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -23,14 +23,14 @@
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "dayjs": "^1.10.7",
-    "react-dom": "^16.13.1",
+    "react-dom": "^18.2",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "next": "^10.1.0",
+    "next": "^13.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6"
+    "react": "^18.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -38,9 +38,8 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "7.17.12",
     "@reach/router": "^1.3.4",
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/react": "^12.0.4",
-    "jest-environment-jsdom": "^28.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "ansi-regex": "^6.0.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -54,20 +53,19 @@
     "eslint-plugin-react": "^7.14.2",
     "husky": "^3.0.3",
     "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
     "jest-prop-type-error": "^1.1.0",
     "merge": "^2.0.0",
     "minimist": "^1.2.6",
-    "next": "^12.1.0",
-    "node-sass": "^4.14.1",
+    "next": "^13.0",
     "path": "^0.12.7",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-is": "^16.13.1",
+    "react": "^18.2",
+    "react-is": "^18.2",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.3.3",
-    "sass-lint": "^1.13.1",
-    "sass-loader": "^8.0.2",
+    "sass": "^1.63.6",
     "serve": "^11.3.0",
     "style-loader": "^1.2.1"
   },

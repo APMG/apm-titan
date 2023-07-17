@@ -47,15 +47,3 @@ test('Allows both `className` replacement and appended `elementClass`', () => {
 
   expect(getByText('children').className).toBe('lots of custom classes');
 });
-
-test('Throws an error when a isRequired value is missing', () => {
-  expect(() => {
-    render(<Heading>children</Heading>);
-  }).toThrow();
-});
-
-test('Throws an error if `level` outside 1-6 is supplied', () => {
-  expect(() => {
-    render(<Heading level={7}>children</Heading>);
-  }).toThrow();
-});

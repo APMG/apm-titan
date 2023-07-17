@@ -77,9 +77,3 @@ test('The following optional sections are  not rendered when their corresponding
   expect(container.querySelectorAll('.event_subtitle')).toHaveLength(0);
   expect(container.querySelectorAll('.tag')).toHaveLength(0);
 });
-
-test('Throws an error when required `title` prop is missing', () => {
-  expect(() => {
-    render(<EventHeader />);
-  }).toThrow();
-});

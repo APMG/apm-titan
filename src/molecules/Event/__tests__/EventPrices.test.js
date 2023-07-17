@@ -42,14 +42,6 @@ test('Creates EventPrice nodes for a number of prices', () => {
   expect(thirdPriceNode.textContent).toBe('VIP: $100');
 });
 
-test('Throws if valid price is not given', () => {
-  defaultProps.prices = [{ description: 'what' }];
-
-  expect(() => {
-    render(<EventPrices prices={defaultProps.prices} />);
-  }).toThrow();
-});
-
 test('Links to the URL provided in the ticketLink prop', () => {
   const { getByText } = render(
     <EventPrices

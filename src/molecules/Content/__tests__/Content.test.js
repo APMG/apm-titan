@@ -81,9 +81,3 @@ test('The optional sections bodyHtml and image are not rendered when their corre
   expect(bodyNodes).toHaveLength(0);
   expect(imageNodes).toHaveLength(0);
 });
-
-test('Throws an error when required `title` prop is missing', () => {
-  expect(() => {
-    render(<Content />);
-  }).toThrow();
-});

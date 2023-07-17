@@ -1,8 +1,14 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import Link from '../Link';
 
 afterEach(cleanup);
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: jest.fn()
+  };
+});
 
 const defaultProps = () => {
   return {
@@ -13,12 +19,12 @@ const defaultProps = () => {
 
 test('Uses a router Link component for relative urls', () => {
   const props = defaultProps();
-  const { getByTestId } = render(
+  render(
     <Link href={props.href} as={props.as}>
       Text
     </Link>
   );
-  const linkNode = getByTestId('relativeLink');
+  const linkNode = screen.getByTestId('relativeLink');
 
   expect(linkNode.getAttribute('href')).toBe('/story/with/slug');
 });

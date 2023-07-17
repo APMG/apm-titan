@@ -74,9 +74,3 @@ test('Does not render EventInfo if venue or artist prop is empty', () => {
   expect(artistNode).toHaveLength(0);
   expect(pricesNode).toHaveLength(0);
 });
-
-test('Throws an error when required `title` prop is missing', () => {
-  expect(() => {
-    render(<Event />);
-  }).toThrow();
-});

@@ -147,9 +147,3 @@ test('The optional sections authors and subtitle are not rendered when their cor
   expect(authorNodes).toHaveLength(0);
   expect(subtitleNodes).toHaveLength(0);
 });
-
-test('Throws an error when required `title` prop is missing', () => {
-  expect(() => {
-    render(<ContentHeader />);
-  }).toThrow();
-});

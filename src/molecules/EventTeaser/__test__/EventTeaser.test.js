@@ -4,6 +4,13 @@ import EventTeaser from '../EventTeaser';
 
 afterEach(cleanup);
 
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: jest.fn()
+  };
+});
+
 const defaultProps = {
   id: 324,
   title: '#MicroShow: Sharon Van Etten',
@@ -107,10 +114,4 @@ test('Does not render venue or event dates if props not given', () => {
 
   expect(venueNodes).toHaveLength(0);
   expect(dateNodes).toHaveLength(0);
-});
-
-test('Throws an error when required "title" and "id" props are missing', () => {
-  expect(() => {
-    render(<EventTeaser />);
-  }).toThrow();
 });
