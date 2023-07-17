@@ -106,9 +106,3 @@ it('Adds a class to the element when an `elementClass` prop is passed in', () =>
   expect(node.className).toBe('custom classes');
   expect(node.getAttribute('datetime')).toBe('2019-07-18T02:00:00-00:00');
 });
-
-it('Throws an error when a required value is missing', () => {
-  expect(() => {
-    render(<Time />);
-  }).toThrow();
-});

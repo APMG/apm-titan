@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RouterLink from 'next/link';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 // NOTE: this component does not support hash links (internal anchor links)
@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 //       available or switching to react-router-v4+ HashLink component,
 //       this component can be modified to support them.
 
-const Link = (props) => {
+const TitanLink = (props) => {
   const { href, as, children, className, activeClassName, ...rest } = props;
   const host = typeof window !== 'undefined' ? window.location.host : '';
   const hostReg = new RegExp(host);
@@ -50,11 +50,15 @@ const Link = (props) => {
 
   if (isHostnameMatch(href)) {
     return (
-      <RouterLink href={pathname(href)} as={as}>
-        <a {...rest} className={fullClassName} data-testid="hostnameLink">
-          {children}
-        </a>
-      </RouterLink>
+      <Link
+        {...rest}
+        href={pathname(href)}
+        as={as}
+        className={fullClassName}
+        data-testid="hostnameLink"
+      >
+        {children}
+      </Link>
     );
   } else if (isExternalUrl(href)) {
     return (
@@ -69,16 +73,20 @@ const Link = (props) => {
     );
   } else {
     return (
-      <RouterLink href={href} as={as}>
-        <a {...rest} className={fullClassName} data-testid="relativeLink">
-          {children}
-        </a>
-      </RouterLink>
+      <Link
+        {...rest}
+        href={href}
+        as={as}
+        className={fullClassName}
+        data-testid="relativeLink"
+      >
+        {children}
+      </Link>
     );
   }
 };
 
-Link.propTypes = {
+TitanLink.propTypes = {
   // Children are required because even if the link is styled with a class it should have text inside for accessibility
   children: PropTypes.any.isRequired,
   href: PropTypes.string.isRequired,
@@ -87,4 +95,4 @@ Link.propTypes = {
   activeClassName: PropTypes.string
 };
 
-export default Link;
+export default TitanLink;

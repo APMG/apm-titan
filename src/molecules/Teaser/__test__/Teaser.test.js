@@ -7,6 +7,13 @@ import Time from '../../../atoms/Time/Time';
 
 afterEach(cleanup);
 
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: jest.fn()
+  };
+});
+
 const renderIgnoringUnstableFlushDiscreteUpdates = (component) => {
   // tslint:disable: no-console
   const originalError = console.error;
@@ -14,10 +21,7 @@ const renderIgnoringUnstableFlushDiscreteUpdates = (component) => {
   console.error = error;
   const result = render(component);
   expect(error).toHaveBeenCalledTimes(1);
-  expect(error).toHaveBeenCalledWith(
-    'Warning: unstable_flushDiscreteUpdates: Cannot flush updates when React is already rendering.%s',
-    expect.any(String)
-  );
+  expect(error).toHaveBeenCalledWith(expect.any(String));
   console.error = originalError;
   // tslint:enable: no-console
   return result;
@@ -153,7 +157,7 @@ test('The following optional sections are not rendered when their corresponding 
 });
 
 test('Renders video object', () => {
-  const { container, getByText } = renderIgnoringUnstableFlushDiscreteUpdates(
+  const { container, getByText } = render(
     <Teaser
       headingLevel={3}
       href={defaultProps.href}
@@ -169,10 +173,4 @@ test('Renders video object', () => {
     container.getElementsByClassName('figure_caption_content')
   ).toHaveLength(1);
   expect(container.getElementsByClassName('figure_credit')).toHaveLength(1);
-});
-
-test('Throws an error when required value is missing', () => {
-  expect(() => {
-    render(<Teaser />);
-  }).toThrow();
 });

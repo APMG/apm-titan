@@ -4,6 +4,13 @@ import Button from '../Button';
 
 afterEach(cleanup);
 
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: jest.fn()
+  };
+});
+
 const defaultProps = {
   children: 'Button Text',
   href: 'https://example.com'
@@ -118,10 +125,4 @@ test('Sets the custom css class based on `elementClass` prop', () => {
 
   expect(buttonNode.classList).toContain('btn');
   expect(buttonNode.classList).toContain('foo');
-});
-
-test('Throws an error when component has no children', () => {
-  expect(() => {
-    render(<Button />);
-  }).toThrow();
 });

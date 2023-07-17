@@ -5,6 +5,13 @@ import Pagination from '../Pagination';
 
 afterEach(cleanup);
 
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: jest.fn()
+  };
+});
+
 const setup = () => {
   const small = {
     hasFirstAndLast: false,

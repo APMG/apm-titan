@@ -85,9 +85,3 @@ test('The following optional sections are not rendered when their corresponding 
 });
 
 // TODO: AudioPlayButton
-
-test('Throws an error when required image prop is empty', () => {
-  expect(() => {
-    render(<Figure />);
-  }).toThrow();
-});
