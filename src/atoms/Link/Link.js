@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 // NOTE: this component does not support hash links (internal anchor links)
 //       because reach router doesn't support them. If support becomes
@@ -9,18 +8,17 @@ import { useRouter } from 'next/router';
 //       this component can be modified to support them.
 
 const TitanLink = (props) => {
-  const { href, as, children, className, activeClassName, ...rest } = props;
+  const { href, as, children, className, activeClassName, currentPath, ...rest } = props;
   const host = typeof window !== 'undefined' ? window.location.host : '';
   const hostReg = new RegExp(host);
   const protocolReg = /^(http:\/\/|https:\/\/|\/\/)/;
-  const router = useRouter();
 
   // Provide the url without 'http://', 'https://', or '//'
   function urlWithoutProtocol(url) {
     return url.replace(protocolReg, '');
   }
-
-  // Get the url without the protocol or domain (host)
+    
+    // Get the url without the protocol or domain (host)
   function pathname(url) {
     return urlWithoutProtocol(url).replace(hostReg, '');
   }
@@ -41,7 +39,6 @@ const TitanLink = (props) => {
   }
 
   let fullClassName = className;
-  const currentPath = router?.asPath || router?.pathname; //prefer asPath if it exists
   if (activeClassName && currentPath == href) {
     fullClassName = className
       ? `${className} ${activeClassName}`
@@ -92,7 +89,8 @@ TitanLink.propTypes = {
   href: PropTypes.string.isRequired,
   as: PropTypes.string,
   className: PropTypes.string,
-  activeClassName: PropTypes.string
+  activeClassName: PropTypes.string,
+  currentPath: PropTypes.string
 };
 
 export default TitanLink;

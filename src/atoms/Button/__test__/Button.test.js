@@ -4,13 +4,6 @@ import Button from '../Button';
 
 afterEach(cleanup);
 
-jest.mock('next/router', () => {
-  return {
-    ...jest.requireActual('next/router'),
-    useRouter: jest.fn()
-  };
-});
-
 const defaultProps = {
   children: 'Button Text',
   href: 'https://example.com'

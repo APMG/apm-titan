@@ -7,13 +7,6 @@ import Time from '../../../atoms/Time/Time';
 
 afterEach(cleanup);
 
-jest.mock('next/router', () => {
-  return {
-    ...jest.requireActual('next/router'),
-    useRouter: jest.fn()
-  };
-});
-
 const defaultProps = {
   href: '/the/url/path',
   title: 'This Here Is the Title',

@@ -4,13 +4,6 @@ import EventTeaser from '../EventTeaser';
 
 afterEach(cleanup);
 
-jest.mock('next/router', () => {
-  return {
-    ...jest.requireActual('next/router'),
-    useRouter: jest.fn()
-  };
-});
-
 const defaultProps = {
   id: 324,
   title: '#MicroShow: Sharon Van Etten',

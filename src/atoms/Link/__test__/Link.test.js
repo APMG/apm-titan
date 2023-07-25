@@ -3,12 +3,6 @@ import { render, cleanup, screen } from '@testing-library/react';
 import Link from '../Link';
 
 afterEach(cleanup);
-jest.mock('next/router', () => {
-  return {
-    ...jest.requireActual('next/router'),
-    useRouter: jest.fn()
-  };
-});
 
 const defaultProps = () => {
   return {
