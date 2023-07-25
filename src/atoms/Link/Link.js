@@ -8,7 +8,15 @@ import Link from 'next/link';
 //       this component can be modified to support them.
 
 const TitanLink = (props) => {
-  const { href, as, children, className, activeClassName, currentPath, ...rest } = props;
+  const {
+    href,
+    as,
+    children,
+    className,
+    activeClassName,
+    currentPath,
+    ...rest
+  } = props;
   const host = typeof window !== 'undefined' ? window.location.host : '';
   const hostReg = new RegExp(host);
   const protocolReg = /^(http:\/\/|https:\/\/|\/\/)/;
@@ -17,8 +25,8 @@ const TitanLink = (props) => {
   function urlWithoutProtocol(url) {
     return url.replace(protocolReg, '');
   }
-    
-    // Get the url without the protocol or domain (host)
+
+  // Get the url without the protocol or domain (host)
   function pathname(url) {
     return urlWithoutProtocol(url).replace(hostReg, '');
   }
