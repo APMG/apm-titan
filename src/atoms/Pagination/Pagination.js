@@ -22,7 +22,8 @@ const Pagination = ({
   firstSymbol,
   prevSymbol,
   nextSymbol,
-  lastSymbol
+  lastSymbol,
+  middleSymbol
 }) => {
   const classes = classNames({
     pagination: true,
@@ -66,7 +67,9 @@ const Pagination = ({
     if (hasFirstAndLast) {
       if (inclusiveFirstLast && currentPage > 1 + buffer) {
         return true;
-      } else if (!inclusiveFirstLast && currentPage > 1) {
+      } else if (!inclusiveFirstLast && currentPage >= 1) {
+        return true;
+      } else if (middleSymbol && currentPage >= 1) {
         return true;
       } else return false;
     } else {
@@ -78,13 +81,19 @@ const Pagination = ({
     if (hasFirstAndLast) {
       if (inclusiveFirstLast && currentPage < totalPages - buffer) {
         return true;
-      } else if (!inclusiveFirstLast && currentPage < totalPages) {
+      } else if (!inclusiveFirstLast && currentPage <= totalPages) {
+        return true;
+      } else if (middleSymbol && currentPage >= 1) {
         return true;
       } else return false;
     } else {
       return false;
     }
   };
+
+  const currentNumOrFirstNum = middleSymbol
+    ? `${asPrefix}/${currentPage}`
+    : `${asPrefix}/1`;
 
   return (
     <nav data-testid="pagination-test" className={classes}>
@@ -93,7 +102,7 @@ const Pagination = ({
           <li className="pagination_page pagination_page-first">
             <Link
               href={`/${hrefPrefix}`}
-              as={`/${asPrefix}/1`}
+              as={currentNumOrFirstNum}
               className={firstLinkClasses}
             >
               {firstSymbol}
@@ -103,6 +112,7 @@ const Pagination = ({
                 {firstLastSeparator}
               </span>
             )}
+            {middleSymbol && middleSymbol}
           </li>
         )}
         {currentPage > 1 && (
@@ -116,34 +126,34 @@ const Pagination = ({
             </Link>
           </li>
         )}
+        {!middleSymbol &&
+          paginationArray.map((value) => {
+            const pageClasses = classNames({
+              pagination_page: true,
+              'pagination_page-number': true,
+              'pagination_page-current': currentPage === value
+            });
 
-        {paginationArray.map((value) => {
-          const pageClasses = classNames({
-            pagination_page: true,
-            'pagination_page-number': true,
-            'pagination_page-current': currentPage === value
-          });
+            const linkClasses = classNames({
+              pagination_link: true,
+              'pagination_link-number': true,
+              'pagination_link-current': currentPage === value,
+              [numberClass]: numberClass,
+              [currentNumberClass]: currentNumberClass && currentPage === value
+            });
 
-          const linkClasses = classNames({
-            pagination_link: true,
-            'pagination_link-number': true,
-            'pagination_link-current': currentPage === value,
-            [numberClass]: numberClass,
-            [currentNumberClass]: currentNumberClass && currentPage === value
-          });
-
-          return (
-            <li key={uuidv4()} className={pageClasses}>
-              <Link
-                href={`/${hrefPrefix}`}
-                as={`/${asPrefix}/${value}`}
-                className={linkClasses}
-              >
-                {value}
-              </Link>
-            </li>
-          );
-        })}
+            return (
+              <li key={uuidv4()} className={pageClasses}>
+                <Link
+                  href={`/${hrefPrefix}`}
+                  as={`/${asPrefix}/${value}`}
+                  className={linkClasses}
+                >
+                  {value}
+                </Link>
+              </li>
+            );
+          })}
         {currentPage < totalPages && (
           <li className="pagination_page pagination_page-next">
             <Link
@@ -155,7 +165,6 @@ const Pagination = ({
             </Link>
           </li>
         )}
-
         {showLast() && (
           <li className="pagination_page pagination_page-last">
             {firstLastSeparator && currentPage < totalPages - buffer - 1 && (
@@ -194,7 +203,8 @@ Pagination.propTypes = {
   firstSymbol: PropTypes.any,
   prevSymbol: PropTypes.any,
   nextSymbol: PropTypes.any,
-  lastSymbol: PropTypes.any
+  lastSymbol: PropTypes.any,
+  middleSymbol: PropTypes.any
 };
 
 Pagination.defaultProps = {
