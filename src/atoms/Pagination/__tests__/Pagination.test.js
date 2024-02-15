@@ -140,7 +140,7 @@ describe('Large Pagination', () => {
       />
     );
 
-    expect(container.querySelectorAll('.pagination_link')).toHaveLength(5);
+    expect(container.querySelectorAll('.pagination_link')).toHaveLength(6);
     expect(getByText('1').href).toBe('http://localhost/episodes/1');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
@@ -281,7 +281,7 @@ describe('Is inclusiveFirstLast true', () => {
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes');
+    expect(getByText('《').href).toBe('http://localhost/episodes/1');
     expect(getByText('〈').href).toBe('http://localhost/episodes/5');
     expect(getByText('5').href).toBe('http://localhost/episodes/5');
     expect(getByText('6').href).toBe('http://localhost/episodes/6');

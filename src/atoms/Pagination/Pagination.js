@@ -93,7 +93,7 @@ const Pagination = ({
 
   const currentNumOrFirstNum = middleSymbol
     ? `${asPrefix}/${currentPage}`
-    : `${asPrefix}`;
+    : `${asPrefix}/1`;
 
   return (
     <nav data-testid="pagination-test" className={classes}>

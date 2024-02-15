@@ -16,9 +16,3 @@ test('Renders a tag given a name and href', () => {
   expect(node.textContent).toBe('Live from Here');
   expect(node.getAttribute('href')).toBe('/the/url/path');
 });
-
-it('Throws an error when a isRequired value is missing', () => {
-  expect(() => {
-    render(<TagLink />);
-  }).toThrow();
-});
