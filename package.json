@@ -23,14 +23,14 @@
     "apm-html5-player": "^0.4.1",
     "apm-mimas": "^0.1.9",
     "dayjs": "^1.10.7",
-    "react-dom": "^18.2",
+    "react-dom": "^18.2.0",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
     "next": "^13.0",
     "prop-types": "^15.7.2",
-    "react": "^18.2"
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -60,8 +60,8 @@
     "path": "^0.12.7",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "react": "^18.2",
-    "react-is": "^18.2",
+    "react": "^18.2.0",
+    "react-is": "^18.2.0",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.3.3",
     "sass": "^1.63.6",

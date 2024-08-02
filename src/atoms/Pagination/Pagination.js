@@ -93,7 +93,7 @@ const Pagination = ({
 
   const currentNumOrFirstNum = middleSymbol
     ? `${asPrefix}/${currentPage}`
-    : `${asPrefix}/1`;
+    : `${asPrefix}`;
 
   return (
     <nav data-testid="pagination-test" className={classes}>
@@ -118,8 +118,7 @@ const Pagination = ({
         {currentPage > 1 && (
           <li className="pagination_page pagination_page-prev">
             <Link
-              href={`/${hrefPrefix}`}
-              as={`/${asPrefix}/${prevIndex(currentPage)}`}
+              href={`/${asPrefix}/${prevIndex(currentPage)}`}
               className={prevLinkClasses}
             >
               {prevSymbol}
