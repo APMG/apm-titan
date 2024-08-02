@@ -20,6 +20,7 @@ export function markup(rawMarkup) {
 
 // Get the previous index OR min
 export function prevIndex(i) {
+  if (i === 2) return '';
   return i > 1 ? i - 1 : 1;
 }
 
