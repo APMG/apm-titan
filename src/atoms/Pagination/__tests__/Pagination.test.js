@@ -56,7 +56,7 @@ describe('Small Pagination', () => {
     );
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(2);
-    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes');
     expect(getByText('〉').href).toBe('http://localhost/episodes/2');
   });
 
@@ -97,7 +97,7 @@ describe('Medium Pagination', () => {
     );
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(3);
-    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('〉').href).toBe('http://localhost/episodes/2');
   });
@@ -141,7 +141,7 @@ describe('Large Pagination', () => {
     );
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(6);
-    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('1').href).toBe('http://localhost/episodes');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
     expect(getByText('〉').href).toBe('http://localhost/episodes/2');
@@ -163,7 +163,7 @@ describe('Large Pagination', () => {
     );
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(9);
-    expect(getByText('《').href).toBe('http://localhost/episodes/1');
+    expect(getByText('《').href).toBe('http://localhost/episodes');
     expect(getByText('〈').href).toBe('http://localhost/episodes/3');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
@@ -233,7 +233,7 @@ describe('Is inclusiveFirstLast true', () => {
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes/1');
+    expect(getByText('《').href).toBe('http://localhost/episodes');
     expect(getByText('〈').href).toBe('http://localhost/episodes/3');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
     expect(getByText('4').href).toBe('http://localhost/episodes/4');
@@ -258,8 +258,8 @@ describe('Is inclusiveFirstLast true', () => {
     );
 
     expect(queryByText('《')).toBeNull();
-    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
-    expect(getByText('1').href).toBe('http://localhost/episodes/1');
+    expect(getByText('〈').href).toBe('http://localhost/episodes');
+    expect(getByText('1').href).toBe('http://localhost/episodes');
     expect(getByText('2').href).toBe('http://localhost/episodes/2');
     expect(getByText('3').href).toBe('http://localhost/episodes/3');
     expect(getByText('〉').href).toBe('http://localhost/episodes/3');
@@ -281,7 +281,7 @@ describe('Is inclusiveFirstLast true', () => {
       />
     );
 
-    expect(getByText('《').href).toBe('http://localhost/episodes/1');
+    expect(getByText('《').href).toBe('http://localhost/episodes');
     expect(getByText('〈').href).toBe('http://localhost/episodes/5');
     expect(getByText('5').href).toBe('http://localhost/episodes/5');
     expect(getByText('6').href).toBe('http://localhost/episodes/6');
@@ -404,7 +404,7 @@ describe('Is firstLastSeparator true', () => {
     );
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(4);
-    expect(getByText('〈').href).toBe('http://localhost/episodes/1');
+    expect(getByText('〈').href).toBe('http://localhost/episodes');
     expect(container.querySelectorAll('.pagination_link-first')[0].href).toBe(
       'http://localhost/episodes/2'
     );
@@ -461,7 +461,7 @@ describe('Is firstLastSeparator true', () => {
 
     expect(container.querySelectorAll('.pagination_link')).toHaveLength(3);
     expect(container.querySelectorAll('.pagination_link-first')[0].href).toBe(
-      'http://localhost/episodes/1'
+      'http://localhost/episodes'
     );
     expect(getAllByText('of')).toHaveLength(1);
     expect(container.querySelectorAll('.pagination_link-last')[0].href).toBe(
