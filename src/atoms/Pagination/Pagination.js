@@ -92,7 +92,7 @@ const Pagination = ({
   };
 
   const currentNumOrFirstNum = middleSymbol
-    ? `${asPrefix}/${currentPage}`
+    ? `${asPrefix}${currentPage === 1 ? '' : `/${currentPage}`}`
     : `${asPrefix}`;
 
   return (
@@ -145,7 +145,7 @@ const Pagination = ({
               <li key={uuidv4()} className={pageClasses}>
                 <Link
                   href={`/${hrefPrefix}`}
-                  as={`/${asPrefix}/${value}`}
+                  as={`/${asPrefix}${value === 1 ? '' : `/${value}`}`}
                   className={linkClasses}
                 >
                   {value}
