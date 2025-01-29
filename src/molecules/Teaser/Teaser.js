@@ -22,17 +22,28 @@ const Teaser = ({
   contributors,
   description,
   elementClass,
-  hideVideoCaption,
-  showLink = true
+  hideVideoCaption
 }) => {
   const classes = classNames({
     teaser: true,
     [elementClass]: elementClass
   });
 
-  const Inner = () => {
-    return (
-      <>
+  return (
+    <article className={classes}>
+      {tag && (
+        <TagLink
+          elementClass="teaser_tagLink"
+          to={tag.to}
+          tagName={tag.tagName}
+        />
+      )}
+
+      {audioPlayButton && (
+        <div className="teaser_button">{audioPlayButton}</div>
+      )}
+
+      <Link href={href} as={as} className="teaser_link">
         {video ? (
           <Video video={video} hideCaption={hideVideoCaption} />
         ) : (
@@ -56,35 +67,10 @@ const Teaser = ({
               )}
             </div>
           )}
-
-          {description && (
-            <div className="teaser_body userContent">{description}</div>
-          )}
         </div>
-      </>
-    );
-  };
-
-  return (
-    <article className={classes}>
-      {tag && (
-        <TagLink
-          elementClass="teaser_tagLink"
-          to={tag.to}
-          tagName={tag.tagName}
-        />
-      )}
-
-      {audioPlayButton && (
-        <div className="teaser_button">{audioPlayButton}</div>
-      )}
-
-      {showLink ? (
-        <Link href={href} as={as} className="teaser_link">
-          <Inner />
-        </Link>
-      ) : (
-        <Inner />
+      </Link>
+      {description && (
+        <div className="teaser_body userContent">{description}</div>
       )}
     </article>
   );
@@ -106,8 +92,7 @@ Teaser.propTypes = {
     tagName: PropTypes.string.isRequired
   }),
   title: PropTypes.string.isRequired,
-  hideVideoCaption: PropTypes.bool,
-  showLink: PropTypes.bool
+  hideVideoCaption: PropTypes.bool
 };
 
 export default Teaser;
