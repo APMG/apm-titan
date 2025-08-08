@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -29,7 +29,7 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "next": ">=14.1.1",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.7.2 ",
     "react": "^18.2.0"
   },
   "devDependencies": {
@@ -75,14 +75,14 @@
   "files": [
     "dist"
   ],
-  "resolutions" : {
+  "resolutions": {
     "cross-spawn": ">=7.0.5",
     "@babel/traverse": ">=7.23.2",
     "ws": ">=8.17.1",
     "braces": ">=3.0.3",
     "rollup": ">=2.79.2",
-    "ajv":">=6.12.3",
-    "minimatch":  ">=3.0.5",
+    "ajv": ">=6.12.3",
+    "minimatch": ">=3.0.5",
     "path-to-regexp": "3.3.0"
   }
 }
