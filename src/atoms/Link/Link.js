@@ -10,7 +10,6 @@ import Link from 'next/link';
 const TitanLink = (props) => {
   const {
     href,
-    as,
     children,
     className,
     activeClassName,
@@ -47,6 +46,7 @@ const TitanLink = (props) => {
   }
 
   let fullClassName = className;
+
   if (activeClassName && currentPath == href) {
     fullClassName = className
       ? `${className} ${activeClassName}`
@@ -58,7 +58,6 @@ const TitanLink = (props) => {
       <Link
         {...rest}
         href={pathname(href)}
-        as={as}
         className={fullClassName}
         data-testid="hostnameLink"
       >
@@ -81,7 +80,6 @@ const TitanLink = (props) => {
       <Link
         {...rest}
         href={href}
-        as={as}
         className={fullClassName}
         data-testid="relativeLink"
       >
@@ -95,7 +93,6 @@ TitanLink.propTypes = {
   // Children are required because even if the link is styled with a class it should have text inside for accessibility
   children: PropTypes.any.isRequired,
   href: PropTypes.string.isRequired,
-  as: PropTypes.string,
   className: PropTypes.string,
   activeClassName: PropTypes.string,
   currentPath: PropTypes.string

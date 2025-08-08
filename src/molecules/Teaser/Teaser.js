@@ -14,7 +14,6 @@ const Teaser = ({
   headingLevel,
   publishDate,
   href,
-  as,
   tag,
   audioPlayButton,
   image,
@@ -43,35 +42,37 @@ const Teaser = ({
         <div className="teaser_button">{audioPlayButton}</div>
       )}
 
-      <Link href={href} as={as} className="teaser_link">
-        {video ? (
-          <Video video={video} hideCaption={hideVideoCaption} />
-        ) : (
-          <div className="teaser_image">{image}</div>
-        )}
-        <div className="teaser_content">
-          <div className="teaser_header">
-            <Heading level={headingLevel}>{title}</Heading>
-          </div>
-
-          {(publishDate || contributors) && (
-            <div className="teaser_meta">
-              {publishDate && (
-                <div className="teaser_pubdate">{publishDate}</div>
-              )}
-
-              {contributors && (
-                <div className="teaser_contributors">
-                  {`By ${toSentence(contributors)}`}
-                </div>
-              )}
-            </div>
+      <Link href={href} className="teaser_link">
+        <div className="teaser_link">
+          {video ? (
+            <Video video={video} hideCaption={hideVideoCaption} />
+          ) : (
+            <div className="teaser_image">{image}</div>
           )}
+          <div className="teaser_content">
+            <div className="teaser_header">
+              <Heading level={headingLevel}>{title}</Heading>
+            </div>
+
+            {(publishDate || contributors) && (
+              <div className="teaser_meta">
+                {publishDate && (
+                  <div className="teaser_pubdate">{publishDate}</div>
+                )}
+
+                {contributors && (
+                  <div className="teaser_contributors">
+                    {`By ${toSentence(contributors)}`}
+                  </div>
+                )}
+              </div>
+            )}
+            {description && (
+              <div className="teaser_body userContent">{description}</div>
+            )}
+          </div>
         </div>
       </Link>
-      {description && (
-        <div className="teaser_body userContent">{description}</div>
-      )}
     </article>
   );
 };
@@ -83,7 +84,6 @@ Teaser.propTypes = {
   elementClass: PropTypes.string,
   headingLevel: PropTypes.number.isRequired,
   href: PropTypes.string.isRequired,
-  as: PropTypes.string,
   image: PropTypes.object,
   video: PropTypes.object,
   publishDate: PropTypes.node,

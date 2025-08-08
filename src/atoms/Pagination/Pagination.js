@@ -14,8 +14,7 @@ const Pagination = ({
   currentPage,
   totalPages,
   buffer,
-  hrefPrefix,
-  asPrefix,
+  basePath,
   hasFirstAndLast,
   inclusiveFirstLast,
   firstLastSeparator,
@@ -91,20 +90,19 @@ const Pagination = ({
     }
   };
 
-  const currentNumOrFirstNum = middleSymbol
-    ? `${asPrefix}${currentPage === 1 ? '' : `/${currentPage}`}`
-    : `${asPrefix}`;
+  const getFirstPageHref = () => {
+    if (middleSymbol) {
+      return currentPage === 1 ? `/${basePath}` : `/${basePath}/${currentPage}`;
+    }
+    return `/${basePath}`;
+  };
 
   return (
     <nav data-testid="pagination-test" className={classes}>
       <ul className="pagination_list">
         {showFirst() && (
           <li className="pagination_page pagination_page-first">
-            <Link
-              href={`/${hrefPrefix}`}
-              as={currentNumOrFirstNum}
-              className={firstLinkClasses}
-            >
+            <Link href={getFirstPageHref()} className={firstLinkClasses}>
               {firstSymbol}
             </Link>
             {firstLastSeparator && currentPage > buffer + 2 && (
@@ -118,7 +116,7 @@ const Pagination = ({
         {currentPage > 1 && (
           <li className="pagination_page pagination_page-prev">
             <Link
-              href={`/${asPrefix}/${prevIndex(currentPage)}`}
+              href={`/${basePath}/${prevIndex(currentPage)}`}
               className={prevLinkClasses}
             >
               {prevSymbol}
@@ -141,13 +139,12 @@ const Pagination = ({
               [currentNumberClass]: currentNumberClass && currentPage === value
             });
 
+            const pageHref =
+              value === 1 ? `/${basePath}` : `/${basePath}/${value}`;
+
             return (
               <li key={uuidv4()} className={pageClasses}>
-                <Link
-                  href={`/${hrefPrefix}`}
-                  as={`/${asPrefix}${value === 1 ? '' : `/${value}`}`}
-                  className={linkClasses}
-                >
+                <Link href={pageHref} className={linkClasses}>
                   {value}
                 </Link>
               </li>
@@ -156,8 +153,7 @@ const Pagination = ({
         {currentPage < totalPages && (
           <li className="pagination_page pagination_page-next">
             <Link
-              href={`/${hrefPrefix}`}
-              as={`/${asPrefix}/${nextIndex(currentPage, totalPages)}`}
+              href={`/${basePath}/${nextIndex(currentPage, totalPages)}`}
               className={nextLinkClasses}
             >
               {nextSymbol}
@@ -172,8 +168,7 @@ const Pagination = ({
               </span>
             )}
             <Link
-              href={`/${hrefPrefix}`}
-              as={`/${asPrefix}/${totalPages}`}
+              href={`/${basePath}/${totalPages}`}
               className={lastLinkClasses}
             >
               {lastSymbol}
@@ -192,8 +187,7 @@ Pagination.propTypes = {
   numberClass: PropTypes.string,
   currentNumberClass: PropTypes.string,
   currentPage: PropTypes.number.isRequired,
-  hrefPrefix: PropTypes.string.isRequired,
-  asPrefix: PropTypes.string.isRequired,
+  basePath: PropTypes.string.isRequired,
   buffer: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
   hasFirstAndLast: PropTypes.bool,

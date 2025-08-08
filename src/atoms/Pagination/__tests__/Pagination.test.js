@@ -9,8 +9,8 @@ const setup = () => {
   const small = {
     hasFirstAndLast: false,
     buffer: 0,
-    hrefPrefix: 'episode?slug=episodes',
-    asPrefix: 'episodes',
+    basePath: 'episodes',
+    resourceType: 'episodes',
     currentPage: data.episodesList.results.currentPage,
     totalPages: data.episodesList.results.totalPages
   };
@@ -18,8 +18,8 @@ const setup = () => {
   const medium = {
     hasFirstAndLast: false,
     buffer: 1,
-    hrefPrefix: 'episode?slug=episodes',
-    asPrefix: 'episodes',
+    basePath: 'episodes',
+    resourceType: 'episodes',
     currentPage: data.episodesList.results.currentPage,
     totalPages: data.episodesList.results.totalPages
   };
@@ -27,17 +27,13 @@ const setup = () => {
   const large = {
     hasFirstAndLast: true,
     buffer: 2,
-    hrefPrefix: 'episode?slug=episodes',
-    asPrefix: 'episodes',
+    basePath: 'episodes',
+    resourceType: 'episodes',
     currentPage: data.episodesList.results.currentPage,
     totalPages: data.episodesList.results.totalPages
   };
 
-  return {
-    small,
-    medium,
-    large
-  };
+  return { small, medium, large };
 };
 
 describe('Small Pagination', () => {
@@ -47,8 +43,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={small.hasFirstAndLast}
         buffer={small.buffer}
-        hrefPrefix={small.hrefPrefix}
-        asPrefix={small.asPrefix}
+        basePath={small.basePath}
         currentPage={small.currentPage}
         resourceType={small.resourceType}
         totalPages={small.totalPages}
@@ -66,8 +61,7 @@ describe('Small Pagination', () => {
       <Pagination
         hasFirstAndLast={small.hasFirstAndLast}
         buffer={small.buffer}
-        hrefPrefix={small.hrefPrefix}
-        asPrefix={small.asPrefix}
+        basePath={small.basePath}
         resourceType={small.resourceType}
         currentPage={4}
         totalPages={small.totalPages}
@@ -88,8 +82,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={medium.hasFirstAndLast}
         buffer={medium.buffer}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         currentPage={medium.currentPage}
         resourceType={medium.resourceType}
         totalPages={medium.totalPages}
@@ -108,8 +101,7 @@ describe('Medium Pagination', () => {
       <Pagination
         hasFirstAndLast={medium.hasFirstAndLast}
         buffer={medium.buffer}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         resourceType={medium.resourceType}
         currentPage={4}
         totalPages={medium.totalPages}
@@ -132,8 +124,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={large.hasFirstAndLast}
         buffer={large.buffer}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         currentPage={large.currentPage}
         resourceType={large.resourceType}
         totalPages={large.totalPages}
@@ -154,8 +145,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={large.hasFirstAndLast}
         buffer={large.buffer}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={4}
         totalPages={large.totalPages}
@@ -180,8 +170,7 @@ describe('Large Pagination', () => {
       <Pagination
         hasFirstAndLast={large.hasFirstAndLast}
         buffer={large.buffer}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={4}
         totalPages={large.totalPages}
@@ -203,8 +192,7 @@ describe('Large Pagination', () => {
       <Pagination
         elementClass="foo"
         buffer={large.buffer}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={4}
         totalPages={large.totalPages}
@@ -224,8 +212,7 @@ describe('Is inclusiveFirstLast true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={4}
         totalPages={7}
@@ -248,8 +235,7 @@ describe('Is inclusiveFirstLast true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={2}
         totalPages={7}
@@ -272,8 +258,7 @@ describe('Is inclusiveFirstLast true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={6}
         totalPages={7}
@@ -298,8 +283,7 @@ describe('Is firstLastSeparator true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={5}
         totalPages={9}
@@ -317,8 +301,7 @@ describe('Is firstLastSeparator true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={3}
         totalPages={9}
@@ -336,8 +319,7 @@ describe('Is firstLastSeparator true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={8}
         totalPages={9}
@@ -355,8 +337,7 @@ describe('Is firstLastSeparator true', () => {
       <Pagination
         hasFirstAndLast={true}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={8}
         totalPages={9}
@@ -375,8 +356,7 @@ describe('Is firstLastSeparator true', () => {
         hasFirstAndLast={true}
         inclusiveFirstLast={false}
         buffer={1}
-        hrefPrefix={large.hrefPrefix}
-        asPrefix={large.asPrefix}
+        basePath={large.basePath}
         resourceType={large.resourceType}
         currentPage={8}
         totalPages={9}
@@ -394,8 +374,7 @@ describe('Is firstLastSeparator true', () => {
         hasFirstAndLast={true}
         inclusiveFirstLast={false}
         buffer={1}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         resourceType={medium.resourceType}
         currentPage={2}
         totalPages={8}
@@ -422,8 +401,7 @@ describe('Is firstLastSeparator true', () => {
         hasFirstAndLast={true}
         inclusiveFirstLast={false}
         buffer={1}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         resourceType={medium.resourceType}
         currentPage={4}
         totalPages={7}
@@ -450,8 +428,7 @@ describe('Is firstLastSeparator true', () => {
         hasFirstAndLast={true}
         inclusiveFirstLast={false}
         buffer={1}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         resourceType={medium.resourceType}
         currentPage={1}
         totalPages={2}
@@ -477,8 +454,7 @@ describe('Is firstLastSeparator true', () => {
         hasFirstAndLast={true}
         inclusiveFirstLast={false}
         buffer={1}
-        hrefPrefix={medium.hrefPrefix}
-        asPrefix={medium.asPrefix}
+        basePath={medium.basePath}
         resourceType={medium.resourceType}
         currentPage={8}
         totalPages={8}

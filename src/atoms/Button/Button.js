@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import Link from '../Link/Link';
 
 const Button = ({
-  as,
   children,
   disabled,
   elementClass,
@@ -34,7 +33,6 @@ const Button = ({
       return (
         <Link
           href={href}
-          as={as}
           className={classes}
           target={newWindow ? '_blank' : null}
           rel={newWindow ? 'noopener noreferrer' : null}
@@ -59,7 +57,6 @@ const Button = ({
 };
 
 Button.propTypes = {
-  as: PropTypes.any,
   children: PropTypes.any.isRequired,
   disabled: PropTypes.bool,
   elementClass: PropTypes.string,
