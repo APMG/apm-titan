@@ -67,12 +67,12 @@ const Teaser = ({
                 )}
               </div>
             )}
-            {description && (
-              <div className="teaser_body userContent">{description}</div>
-            )}
           </div>
         </div>
       </Link>
+      {description && (
+        <div className="teaser_body userContent">{description}</div>
+      )}
     </article>
   );
 };
