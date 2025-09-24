@@ -47,7 +47,7 @@ const TitanLink = (props) => {
 
   let fullClassName = className;
 
-  if (activeClassName && currentPath == href) {
+  if (activeClassName && currentPath === href) {
     fullClassName = className
       ? `${className} ${activeClassName}`
       : activeClassName;

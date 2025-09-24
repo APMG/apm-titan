@@ -64,7 +64,6 @@ export function getVideoPlayer(video) {
       );
       break;
     case 'www.youtube.com':
-      // eslint-disable-next-line jsx-a11y/iframe-has-title
       playerEmbed = (
         <div className="iframe-container">
           <iframe

@@ -41,6 +41,7 @@ describe('markup()', () => {
   it('returns an object with a key of __html and the value of a markup string', () => {
     const input = '<blink>I am blinking</blink>';
     const result = markup(input);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual({ __html: input });
   });
 });
@@ -87,30 +88,37 @@ describe('youtubeParser', () => {
 
   test('test: varOne - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varOne);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
   test('test: varTwo - youtube video variation: should return youtube id: QdK8U-VIH_o', () => {
     const result = youtubeParser(youtubeLinks.varTwo);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('QdK8U-VIH_o');
   });
   test('test: varThree - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varThree);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
   test('test: varFour - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varFour);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
   test('test: varFive - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varFive);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
   test('test: varSix - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varSix);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
   test('test: varSeven - youtube video variation: should return youtube id: 0zM3nApSvMg', () => {
     const result = youtubeParser(youtubeLinks.varSeven);
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual('0zM3nApSvMg');
   });
 });
@@ -170,6 +178,7 @@ describe('getVideoPlayer', () => {
   test('return vimeo html5 player if vimeo.url matches the uri.hostname, player.vimeo.com', () => {
     const result = getVideoPlayer(vimeo);
     expect(getVideoPlayer(vimeo)).toBeDefined();
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual(
       <video id={vimeo.credit.name} autoPlay={true} muted={true} loop={true}>
         <source src={vimeo.url} type="video/mp4" />
@@ -180,6 +189,7 @@ describe('getVideoPlayer', () => {
   test('return mpr.apmcdn html5 player if mpr.apmcdn matches the uri.hostname, mpr.apmcdn.org', () => {
     const result = getVideoPlayer(mprApmcdn);
     expect(getVideoPlayer(mprApmcdn)).toBeDefined();
+    // eslint-disable-next-line jsx-a11y/iframe-has-title
     expect(result).toEqual(
       <video
         id={mprApmcdn.credit.name}

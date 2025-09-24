@@ -1,6 +1,6 @@
 {
   "name": "@apmg/titan",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/APMG/apm-titan.git"
@@ -13,7 +13,8 @@
     "test": "jest --watch",
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
-    "eslint": "eslint .",
+    "eslint": "eslint . --quiet",
+    "eslint:fix": "eslint . --fix",
     "sasslint": "sass-lint -c .sass-lint.yml -v -q",
     "prettier": "prettier --check '**/**.js'",
     "prettier:fix": "prettier --check '**/**.js' --write",
@@ -28,7 +29,7 @@
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "next": "15.2.3",
+    "next": "15.4.7",
     "prop-types": "^15.7.2 ",
     "react": "^18.2.0"
   },
@@ -37,18 +38,18 @@
     "@babel/plugin-proposal-class-properties": "^7.17.12",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "7.17.12",
-    "@testing-library/react": "^14.0.0",
     "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "ansi-regex": "^6.0.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
-    "css-loader": "^3.5.3",
-    "eslint": "^6.0.1",
+    "css-loader": "^6.10.0",
+    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.14.2",
     "husky": "^3.0.3",
     "jest": "^28.1.0",
@@ -56,21 +57,21 @@
     "jest-prop-type-error": "^1.1.0",
     "merge": "^2.0.0",
     "minimist": "^1.2.6",
-    "next": "15.2.3",
+    "next": "15.4.7",
     "path": "^0.12.7",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
     "react-is": "^18.2.0",
-    "rollup": "1.0.0",
+    "rollup": "^2.79.2",
     "rollup-plugin-babel": "^4.3.3",
     "sass": "^1.63.6",
-    "serve": "^11.3.0",
+    "serve": "^14.2.0",
     "style-loader": "^1.2.1"
   },
   "husky": {
-    "pre-commit": "yarn prettier && yarn eslint",
-    "pre-push": "yarn prettier && yarn eslint && yarn sasslint"
+    "pre-commit": "yarn prettier",
+    "pre-push": "yarn prettier && yarn sasslint"
   },
   "files": [
     "dist"
@@ -81,9 +82,9 @@
     "ws": ">=8.17.1",
     "braces": ">=3.0.3",
     "rollup": ">=2.79.2",
-    "ajv": ">=6.12.3",
     "minimatch": ">=3.0.5",
     "path-to-regexp": "3.3.0",
-    "form-data": ">=4.0.4"
+    "form-data": ">=4.0.4",
+    "tmp": ">=0.2.4"
   }
 }
